@@ -1,4 +1,3 @@
-# -*- org-html-self-link-headlines: t; -*-
 #+TITLE: 计算机网络：自顶向下方法 题解
 #+AUTHOR: Shi-Chao Xia
 #+EMAIL: shichaoxia@outlook.com
@@ -6564,14 +6563,14 @@
 
     为了在Arnold和Bernard之间创建一条TCP连接，Arnold或Bernard必须向对方发起连接。但是，Arnold和Bernard的外层的NAT会丢弃从WAN端到达的SYN数据包。因此，如果Arnold和Bernard都在NAT后面，他们都不能发起建立与对方的TCP连接。
 
-*** P19
+*** P19 通用转发与流表
 
     考虑显示在图4-30中的SDN OpenFlow网络。假定对于到达s2的数据报的期望转发行为如下：
 
-    + 来自主机h5或h6并且发往主机h1或h2的任何数据报应当通过输出端口2转发到输入端口1。
-    + 来自主机h1或h2并且发往主机h5或h6的任何数据报应当通过输出端口1转发到输入端口2。
-    + 任何在端口1或2到达并且发往主机h3或h4的数据报应当传递到特定的主机。
-    + 主机h3和h4应当能够向彼此发送数据报。
+    + any datagrams arriving on input port 1 from hosts h5 or h6 that are destined to hosts h1 or h2 should be forwarded over output port 2;
+    + any datagrams arriving on input port 2 from hosts h1 or h2 that are destined to hosts h5 or h6 should be forwarded over output port 1;
+    + any arriving datagrams on input ports 1 or 2 and destined to hosts h3 or h4 should be delivered to the host specified;
+    + hosts h3 and h4 should be able to send datagrams to each other.
 
 
     详述实现这种转发行为的s2中的流表项。
@@ -6579,3 +6578,14 @@
     #+ATTR_ORG: :width 350
     #+ATTR_HTML: :style width:100%; max-width:660px;
     [[file:img/fig4-30.png]]
+
+    | 匹配                                                   | 动作       |
+    |--------------------------------------------------------+------------|
+    | Ingress Port = 1; IP Src = 10.3.*.*; IP Dst = 10.1.*.* | Forward(2) |
+    | Ingress Port = 2; IP Src = 10.1.*.*; IP Dst = 10.3.*.* | Forward(1) |
+    | Ingress Port = 1; IP Dst = 10.2.0.3;                   | Forward(3) |
+    | Ingress Port = 2; IP Dst = 10.2.0.3;                   | Forward(3) |
+    | Ingress Port = 1; IP Dst = 10.2.0.4;                   | Forward(4) |
+    | Ingress Port = 2; IP Dst = 10.2.0.4;                   | Forward(4) |
+    | Ingress Port = 3; IP Dst = 10.2.0.4;                   | Forward(4) |
+    | Ingress Port = 4; IP Dst = 10.2.0.3;                   | Forward(3) |
