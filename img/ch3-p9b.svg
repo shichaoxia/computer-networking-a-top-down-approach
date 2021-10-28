@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="378px" preserveAspectRatio="none" style="width:306px;height:378px;background:#FFFFFF;" version="1.1" viewBox="0 0 306 378" width="306px" zoomAndPan="magnify"><defs/><g><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="91" x2="91" y1="36.4883" y2="342.9043"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="213" x2="213" y1="36.4883" y2="342.9043"/><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="63" y="5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="70" y="25.5352">发送发</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="63" y="341.9043"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="70" y="362.4395">发送发</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="185" y="5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="192" y="25.5352">接收方</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="185" y="341.9043"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="192" y="362.4395">接收方</text><polygon fill="#454645" points="201,74.4541,211,78.4541,201,82.4541,205,78.4541" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="91" x2="207" y1="78.4541" y2="78.4541"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="29" x="98" y="73.7119">pkt0</text><path d="M5,54.9883 L5,87.9883 A3.5,3.5 0 0 0 8.5,91.4883 L82.5,91.4883 A3.5,3.5 0 0 0 86,87.9883 L86,61.4883 L76,51.4883 L8.5,51.4883 A3.5,3.5 0 0 0 5,54.9883 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M76,51.4883 L76,59.7383 A1.75,1.75 0 0 0 77.75,61.4883 L86,61.4883 L76,51.4883 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="69.0566">发送分组0</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="84.3672">等待ACK0</text><polygon fill="#FF0000" points="102,151.041,92,155.041,102,159.041,98,155.041" style="stroke:#FF0000;stroke-width:1.0;"/><line style="stroke:#FF0000;stroke-width:1.0;" x1="96" x2="212" y1="155.041" y2="155.041"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="108" y="150.2988">ACK0 (发生篡改)</text><path d="M218,113.2646 L218,146.2646 A3.5,3.5 0 0 0 221.5,149.7646 L295.5,149.7646 A3.5,3.5 0 0 0 299,146.2646 L299,119.7646 L289,109.7646 L221.5,109.7646 A3.5,3.5 0 0 0 218,113.2646 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M289,109.7646 L289,118.0146 A1.75,1.75 0 0 0 290.75,119.7646 L299,119.7646 L289,109.7646 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="224" y="127.333">接收分组0</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="224" y="142.6436">发送ACK0</text><path d="M5,105.6094 L5,153.6094 A3.5,3.5 0 0 0 8.5,157.1094 L82.5,157.1094 A3.5,3.5 0 0 0 86,153.6094 L86,112.1094 L76,102.1094 L8.5,102.1094 A3.5,3.5 0 0 0 5,105.6094 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M76,102.1094 L76,110.3594 A1.75,1.75 0 0 0 77.75,112.1094 L86,112.1094 L76,102.1094 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="119.6777">接收ACK0</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="11" y="134.9883">发生篡改</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="11" y="150.2988">忽略</text><polygon fill="#7FFFD4" points="76,168.041,106,168.041,116,179.041,106,191.041,76,191.041,66,179.041,76,168.041" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="78" y="184.6094">超时</text><polygon fill="#454645" points="201,216.6621,211,220.6621,201,224.6621,205,220.6621" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="91" x2="207" y1="220.6621" y2="220.6621"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="29" x="98" y="215.9199">pkt0</text><path d="M5,204.8516 L5,222.8516 A3.5,3.5 0 0 0 8.5,226.3516 L82.5,226.3516 A3.5,3.5 0 0 0 86,222.8516 L86,211.3516 L76,201.3516 L8.5,201.3516 A3.5,3.5 0 0 0 5,204.8516 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M76,201.3516 L76,209.6016 A1.75,1.75 0 0 0 77.75,211.3516 L86,211.3516 L76,201.3516 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="218.9199">重发分组0</text><polygon fill="#454645" points="102,259.6279,92,263.6279,102,267.6279,98,263.6279" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="96" x2="212" y1="263.6279" y2="263.6279"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="108" y="258.8857">ACK0</text><path d="M218,240.1621 L218,273.1621 A3.5,3.5 0 0 0 221.5,276.6621 L295.5,276.6621 A3.5,3.5 0 0 0 299,273.1621 L299,246.6621 L289,236.6621 L221.5,236.6621 A3.5,3.5 0 0 0 218,240.1621 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M289,236.6621 L289,244.9121 A1.75,1.75 0 0 0 290.75,246.6621 L299,246.6621 L289,236.6621 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="224" y="254.2305">忽略分组0</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="224" y="269.541">发送ACK0</text><polygon fill="#454645" points="201,310.249,211,314.249,201,318.249,205,314.249" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="91" x2="207" y1="314.249" y2="314.249"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="29" x="98" y="309.5068">pkt1</text><path d="M5,290.7832 L5,323.7832 A3.5,3.5 0 0 0 8.5,327.2832 L82.5,327.2832 A3.5,3.5 0 0 0 86,323.7832 L86,297.2832 L76,287.2832 L8.5,287.2832 A3.5,3.5 0 0 0 5,290.7832 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M76,287.2832 L76,295.5332 A1.75,1.75 0 0 0 77.75,297.2832 L86,297.2832 L76,287.2832 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="304.8516">接收ACK0</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="11" y="320.1621">发送分组1</text><!--MD5=[a3e3f0c24cb4009c8f1ed7b7527595da]
+@startuml
+!theme vibrant
+participant 发送发 as S
+participant 接收方 as R
+S -> R: pkt0
+note left: 发送分组0\n等待ACK0
+R -[#red]> S: ACK0 (发生篡改)
+note right: 接收分组0\n发送ACK0
+note left: 接收ACK0\n发生篡改\n忽略
+hnote over S: 超时
+S -> R: pkt0
+note left: 重发分组0
+R -> S: ACK0
+note right: 忽略分组0\n发送ACK0
+S -> R: pkt1
+note left: 接收ACK0\n发送分组1
+@enduml
+
+@startuml
+skinparam BackgroundColor FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 696969
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 696969
+skinparam SequenceGroupBorderColor 696969
+skinparam SequenceGroupBorderThickness 1
+
+skinparam sequenceDivider {
+    BorderColor 454645
+    BorderThickness 1
+    FontColor 454645
+}
+
+skinparam participant {
+    BackgroundColor FF6347
+    BorderColor FF6F61
+    FontColor FFFFFF
+}
+
+skinparam database {
+    BackgroundColor 00FFFF
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam entity {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam note {
+    BackgroundColor 7FFFD4
+    BorderColor 7FFFD4
+    FontColor 454645
+}
+
+skinparam actor {
+    BackgroundColor 454645
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam boundary {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam control {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam collections {
+    BackgroundColor FF6347
+    BorderColor FFFFFF
+    FontColor 454645
+}
+participant 发送发 as S
+participant 接收方 as R
+S -> R: pkt0
+note left: 发送分组0\n等待ACK0
+R -[#red]> S: ACK0 (发生篡改)
+note right: 接收分组0\n发送ACK0
+note left: 接收ACK0\n发生篡改\n忽略
+hnote over S: 超时
+S -> R: pkt0
+note left: 重发分组0
+R -> S: ACK0
+note right: 忽略分组0\n发送ACK0
+S -> R: pkt1
+note left: 接收ACK0\n发送分组1
+@enduml
+
+PlantUML version 1.2021.9(Sun Jul 25 18:13:56 CST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: US-ASCII
+Language: zh
+Country: CN
+--></g></svg>

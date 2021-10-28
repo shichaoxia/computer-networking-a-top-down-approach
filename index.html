@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-10-28 Thu 15:19 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>计算机网络：自顶向下方法 题解</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Shi-Chao Xia" />
+<link rel="stylesheet" type="text/css" href="css/org.css">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">计算机网络：自顶向下方法 题解</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org31d3adb">1. 习题</a>
+<ul>
+<li><a href="#orge0abdb5">1.1. P1 基于目的地转发的限制</a></li>
+<li><a href="#orgfc4c83a">1.2. P2</a></li>
+<li><a href="#org7b92ddf">1.3. P3 交换结构时延</a></li>
+<li><a href="#orge8a9cf3">1.4. P4 交换结构调度</a></li>
+<li><a href="#org778f5e1">1.5. P5 地址范围转换为最长前缀匹配</a></li>
+<li><a href="#orge6b4d8e">1.6. P6 最长前缀匹配与地址范围</a></li>
+<li><a href="#orgbb1a94c">1.7. P7</a></li>
+<li><a href="#org91af7e2">1.8. P8 子网与接口数量</a></li>
+<li><a href="#orgb890f78">1.9. P9 子网掩码记法</a></li>
+<li><a href="#org037c880">1.10. P10</a></li>
+<li><a href="#orgfea2dbf">1.11. P11</a></li>
+<li><a href="#orga02fed3">1.12. P12 子网划分</a></li>
+<li><a href="#orga5babcc">1.13. P13 大学IP地址块和服务器位置</a></li>
+<li><a href="#org9b1fb06">1.14. P14 分片</a></li>
+<li><a href="#org289220d">1.15. P15</a></li>
+<li><a href="#org33ee781">1.16. P16 NAT</a></li>
+<li><a href="#org2c0c90e">1.17. P17</a></li>
+<li><a href="#org07d7f38">1.18. P18 NAT与TCP连接</a></li>
+<li><a href="#org658c05b">1.19. P19</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org31d3adb" class="outline-2">
+<h2 id="org31d3adb"><span class="section-number-2">1</span> <a href="#org31d3adb">习题</a></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge0abdb5" class="outline-3">
+<h3 id="orge0abdb5"><span class="section-number-3">1.1</span> <a href="#orge0abdb5">P1 基于目的地转发的限制</a></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+考虑下面的网络。<br />
+</p>
+<ol class="org-ol">
+<li>显示路由器A中的转发表，使得目的地为主机H3的所有流量都通过接口3转发。<br /></li>
+<li>写出路由器A中的转发表，使得从H1发往主机H3的所有流量都通过接口3转发，从H2发往主机H3的所有流量都通过接口4转发。（提示：这是一个技巧性的问题。）<br /></li>
+</ol>
+
+
+
+<div id="orgb279456" class="figure">
+<p><img src="img/ch4-p1.png" alt="ch4-p1.png" style="width:100%; max-width:400px;" /><br />
+</p>
+</div>
+
+<ol class="org-ol">
+<li><p>
+&#x00ad;<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">目的地址</th>
+<th scope="col" class="org-right">输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">H3</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table></li>
+
+<li>路由器使用基于目的地转发时只能根据目的地转发数据报，因此不能根据不同源主机将数据报转发到不同接口。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgfc4c83a" class="outline-3">
+<h3 id="orgfc4c83a"><span class="section-number-3">1.2</span> <a href="#orgfc4c83a">P2</a></h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+假设两个分组在完全相同的时刻到达一台路由器的两个不同输入端口。同时假设在该路由器中没有其他分组。<br />
+</p>
+<ol class="org-ol">
+<li>假设这两个分组朝着两个不同的输出端口转发。当交换结构使用一条共享总线时，这两个分组可能在相同时刻通过该交换结构转发吗？<br /></li>
+<li>假设这两个分组朝着两个不同的输出端口转发。当交换结构使用经内存交换时，这两个分组可能在相同时刻通过该交换结构转发吗？<br /></li>
+<li>假设这两个分组朝着相同的输出端口转发。当交换结构使用纵横式时，这两个分组可能在相同时刻通过该交换结构转发吗？<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li>不能，因为一次只有一个分组能够跨越总线。<br /></li>
+<li>不能，因为经过共享系统总线一次仅能执行一个内存读写。<br /></li>
+<li>不能，输出端口相同时，相当于共享了一部分总线。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7b92ddf" class="outline-3">
+<h3 id="org7b92ddf"><span class="section-number-3">1.3</span> <a href="#org7b92ddf">P3 交换结构时延</a></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+在4.2节中，我们注意到如果交换结构速率是输入线路速率的n倍，其最大的排队时延为(n-1)D。假设所有分组有相同长度，在相同时刻n个分组到达n个输出端口，同时所有n个分组要转发到不同的输出端口。对于内存、总线和纵横式交换结构，一个分组的最大时延是多少？<br />
+</p>
+
+<p>
+(n-1)D<br />
+(n-1)D<br />
+0<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge8a9cf3" class="outline-3">
+<h3 id="orge8a9cf3"><span class="section-number-3">1.4</span> <a href="#orge8a9cf3">P4 交换结构调度</a></h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+考虑下列交换机。假设所有数据报具有相同长度，交换机以一种分时隙、同步的方式运行，在一个时隙中一个数据报能够从某输入端口传送到某输出端口。其交换结构是纵横式的，因此在一个时隙中至多一个数据报能够传送到一个给定输出端口，但在一个时隙中不同的输出端口能够接收到来自不同输入端口的数据报，从输入端口到它们的输出端口传送所示的分组，所需的时隙数量最小是多少？此时假定使用你所需要的任何输入排队调度方法（即此时没有HOL阻塞）。假定采用你能够设计的最差情况下的调度方案，且非空输入队列不会空闲，所需的时隙数量最大是多少？<br />
+</p>
+
+
+<div id="org8e1efaf" class="figure">
+<p><img src="img/ch4-p4.png" alt="ch4-p4.png" style="width:100%; max-width:420px;" /><br />
+</p>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">时隙1</th>
+<th scope="col" class="org-left">时隙2</th>
+<th scope="col" class="org-left">时隙3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><del>X</del></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">X <del>Y</del></td>
+<td class="org-left"><del>X</del></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Z Y</td>
+<td class="org-left">Z <del>Y</del></td>
+<td class="org-left"><del>Z</del></td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">时隙1</th>
+<th scope="col" class="org-left">时隙2</th>
+<th scope="col" class="org-left">时隙3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><del>X</del></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">X Y</td>
+<td class="org-left">X <del>Y</del></td>
+<td class="org-left"><del>X</del></td>
+</tr>
+
+<tr>
+<td class="org-left">Z <del>Y</del></td>
+<td class="org-left"><del>Z</del></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+两种情况都是3个时隙。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org778f5e1" class="outline-3">
+<h3 id="org778f5e1"><span class="section-number-3">1.5</span> <a href="#org778f5e1">P5 地址范围转换为最长前缀匹配</a></h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+考虑使用32比特主机地址的某数据报网络。假定一台路由器具有4条链路，编号为0~3，分组能被转发到如下的各链路接口：<br />
+</p>
+
+
+<div id="orgbe44b68" class="figure">
+<p><img src="img/ch4-p5.png" alt="ch4-p5.png" style="width:100%; max-width:450px;" /><br />
+</p>
+</div>
+
+<ol class="org-ol">
+<li>提供一个具有5个表项的转发表，使用最长前缀匹配，转发分组到正确的链路接口。<br /></li>
+<li><p>
+描述你的转发表是如何为具有下列目的地址的数据报决定适当的链路接口的。<br />
+</p>
+
+<pre class="example" id="org11f37a2">
+11001000 10010001 01010001 01010101
+11100001 01000000 11000011 00111100
+11100001 10000000 00010001 01110111
+</pre></li>
+</ol>
+
+
+<ol class="org-ol">
+<li><p>
+&#x00ad;<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">目的地址</th>
+<th scope="col" class="org-right">链路接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">11100000 00</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">11100000 01000000</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">1110000</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">11100001 1</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">其他</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table></li>
+
+<li>3<br />
+2<br />
+3<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge6b4d8e" class="outline-3">
+<h3 id="orge6b4d8e"><span class="section-number-3">1.6</span> <a href="#orge6b4d8e">P6 最长前缀匹配与地址范围</a></h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+考虑使用8比特主机地址的某数据报网络。假定一台路由器使用最长前缀匹配并具有下列转发表：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">前缀匹配</th>
+<th scope="col" class="org-right">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">00</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">010</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">011</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+对这4个接口中的每个，给出相应的目的主机地址的范围和在该范围中的地址数量。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">前缀匹配</th>
+<th scope="col" class="org-left">目的地址范围</th>
+<th scope="col" class="org-right">地址数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">00</td>
+<td class="org-left">0000 0000 ~ 0011 1111</td>
+<td class="org-right">2^6</td>
+</tr>
+
+<tr>
+<td class="org-right">010</td>
+<td class="org-left">0100 0000 ~ 0101 1111</td>
+<td class="org-right">2^5</td>
+</tr>
+
+<tr>
+<td class="org-right">011</td>
+<td class="org-left">0110 0000 ~ 0111 1111</td>
+<td class="org-right">2^5</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">1000 0000 ~ 1011 1111</td>
+<td class="org-right">2^6</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">1100 0000 ~ 1111 1111</td>
+<td class="org-right">2^6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgbb1a94c" class="outline-3">
+<h3 id="orgbb1a94c"><span class="section-number-3">1.7</span> <a href="#orgbb1a94c">P7</a></h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+考虑使用8比特主机地址的数据报网络。假定一台路由器使用最长前缀匹配并具有下列转发表：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">前缀匹配</th>
+<th scope="col" class="org-right">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">111</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">其他</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+对这4个接口中的每个，给出相应的目的主机地址的范围和在该范围中的地址数量。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">前缀匹配</th>
+<th scope="col" class="org-right">前三位</th>
+<th scope="col" class="org-left">地址范围</th>
+<th scope="col" class="org-right">地址数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">110</td>
+<td class="org-left">1100 0000 ~ 1101 1111</td>
+<td class="org-right">2^5</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">100 101</td>
+<td class="org-left">1000 0000 ~ 1011 1111</td>
+<td class="org-right">2^6</td>
+</tr>
+
+<tr>
+<td class="org-right">111</td>
+<td class="org-right">111</td>
+<td class="org-left">1110 0000 ~ 1111 1111</td>
+<td class="org-right">2^5</td>
+</tr>
+
+<tr>
+<td class="org-right">其他</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">0000 0000 ~ 0111 1111</td>
+<td class="org-right">2^7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org91af7e2" class="outline-3">
+<h3 id="org91af7e2"><span class="section-number-3">1.8</span> <a href="#org91af7e2">P8 子网与接口数量</a></h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+考虑互联3个子网（子网1、子网2和子网3）的一台路由器。假定这3个子网的所有接口要求具有前缀223.1.17/24。还假定子网1要求支持多达60个接口，子网2要求支持多达90个接口，子网3要求支持多达12个接口。提供3个满足这些限制的网络地址（形式为a.b.c.d/x）。<br />
+</p>
+
+<p>
+223.1.17.0/26<br />
+223.1.17.128/25<br />
+223.1.17.192/28<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb890f78" class="outline-3">
+<h3 id="orgb890f78"><span class="section-number-3">1.9</span> <a href="#orgb890f78">P9 子网掩码记法</a></h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+在4.2.1节中给出了一个转发表（使用最长前缀匹配）的例子。使用a.b.c.d/x记法代替二进制字符串记法，重写该转发表。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">二进制记法</th>
+<th scope="col" class="org-left">子网掩码记法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">11001000 00010111 00010</td>
+<td class="org-left">200.23.16/21</td>
+</tr>
+
+<tr>
+<td class="org-left">11001000 00010111 00011000</td>
+<td class="org-left">200.23.24/24</td>
+</tr>
+
+<tr>
+<td class="org-left">11001000 00010111 00011</td>
+<td class="org-left">200.23.24/21</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org037c880" class="outline-3">
+<h3 id="org037c880"><span class="section-number-3">1.10</span> <a href="#org037c880">P10</a></h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+在习题P5中要求你给出转发表（使用最长前缀匹配）。使用a.b.c.d/x记法代替二进制字符串记法，重写该转发表。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">二进制记法</th>
+<th scope="col" class="org-left">子网掩码记法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">11100000 00</td>
+<td class="org-left">224.0/10</td>
+</tr>
+
+<tr>
+<td class="org-left">11100000 01000000</td>
+<td class="org-left">224.64/16</td>
+</tr>
+
+<tr>
+<td class="org-left">1110000</td>
+<td class="org-left">224/7</td>
+</tr>
+
+<tr>
+<td class="org-left">11100001 1</td>
+<td class="org-left">225.128/9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgfea2dbf" class="outline-3">
+<h3 id="orgfea2dbf"><span class="section-number-3">1.11</span> <a href="#orgfea2dbf">P11</a></h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+考虑一个具有前缀128.119.40.128/26的子网。给出能被分配给该网络的一个IP地址（形式为XXX.XXX.XXX.XXX）的例子。假定一个ISP拥有形式为128.119.40.64/26的地址块。假定它要从该地址块生成4个子网，每块具有相同数量的IP地址。这4个子网（形式为a.b.c.d/x）的前缀是什么？<br />
+</p>
+
+<ol class="org-ol">
+<li>128.119.40.128<br /></li>
+<li><p>
+128.119.40.64/26最后8位是0100 0000，均分给4个子网需要用掉2位：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">0100 0000</td>
+<td class="org-left">128.119.40.64/28</td>
+</tr>
+
+<tr>
+<td class="org-left">0101 0000</td>
+<td class="org-left">128.119.40.80/28</td>
+</tr>
+
+<tr>
+<td class="org-left">0110 0000</td>
+<td class="org-left">128.119.40.96/28</td>
+</tr>
+
+<tr>
+<td class="org-left">0111 0000</td>
+<td class="org-left">128.119.40.112/28</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga02fed3" class="outline-3">
+<h3 id="orga02fed3"><span class="section-number-3">1.12</span> <a href="#orga02fed3">P12 子网划分</a></h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+考虑图4-20中显示的拓扑。（在12:00以顺时针开始）标记具有主机的3个子网为网络A、B和C，标记没有主机的子网为网络D、E和F。<br />
+</p>
+<ol class="org-ol">
+<li>为这6个子网分配网络地址，要满足下列限制：所有地址必须从214.97.254/23起分配；子网A应当具有足够地址以支持250个接口；子网B应当具有足够地址以支持120个接口；子网C应当具有足够地址以支待120个接口。当然，子网D、E和F应当支持两个接口。对于每个子网，分配采用的形式是a.b.c.d/x或a.b.c.d/x~e.f.g.h/y。<br /></li>
+<li>使用你对（a）部分的答案，为这3台路由器提供转发表（使用最长前缀匹配）。<br /></li>
+</ol>
+
+
+
+<div id="org1b08286" class="figure">
+<p><img src="img/fig4-20.png" alt="fig4-20.png" style="width:100%; max-width:450px;" /><br />
+</p>
+</div>
+
+
+<div id="orge85885a" class="figure">
+<p><img src="img/ch4-p12.png" alt="ch4-p12.png" style="width:100%; max-width:700px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5babcc" class="outline-3">
+<h3 id="orga5babcc"><span class="section-number-3">1.13</span> <a href="#orga5babcc">P13 大学IP地址块和服务器位置</a></h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+使用美国因特网编码注册机构 (<a href="http://www.arin.net/whois">http://www.arin.net/whois</a>) 的whois服务来确定三所大学所用的IP地址块。whois服务能被用于确定某个特定的IP地址的确定地理位置吗？使用 www.maxmind.com 来确定位于这三所大学的Web服务器的位置。<br />
+</p>
+
+<pre class="example" id="orgcabe0cc">
+❯ dig nyu.edu
+
+; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; nyu.edu
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 49081
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 3, ADDITIONAL: 6
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;nyu.edu.			IN	A
+
+;; ANSWER SECTION:
+nyu.edu.		550	IN	A	216.165.47.10
+
+;; AUTHORITY SECTION:
+nyu.edu.		34436	IN	NS	ns1.nyu.net.
+nyu.edu.		34436	IN	NS	ns4.nyu.edu.
+nyu.edu.		34436	IN	NS	ns2.nyu.org.
+
+;; ADDITIONAL SECTION:
+ns1.nyu.net.		27920	IN	A	128.122.0.8
+ns2.nyu.org.		27918	IN	A	128.122.0.76
+ns4.nyu.edu.		3707	IN	A	3.226.48.68
+ns1.nyu.net.		27920	IN	AAAA	2607:f600:1001:6100::8
+ns2.nyu.org.		27918	IN	AAAA	2607:f600:1001:6000::76
+
+;; Query time: 23 msec
+;; SERVER: 192.168.8.1#53(192.168.8.1)
+;; WHEN: Thu Oct 28 11:24:45 CST 2021
+;; MSG SIZE  rcvd: 224
+
+❯ whois 216.165.47.10
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.arin.net
+
+inetnum:      216.0.0.0 - 216.255.255.255
+organisation: ARIN
+status:       ALLOCATED
+
+whois:        whois.arin.net
+
+changed:      1998-04
+source:       IANA
+
+# whois.arin.net
+
+NetRange:       216.165.0.0 - 216.165.127.255
+CIDR:           216.165.0.0/17
+NetName:        NYU-NET2
+NetHandle:      NET-216-165-0-0-1
+Parent:         NET216 (NET-216-0-0-0-0)
+NetType:        Direct Assignment
+OriginAS:
+Organization:   New York University (NYU)
+RegDate:        1999-08-11
+Updated:        2017-11-27
+Comment:        Please query Merit's RADb for up to date information on allocations, routing policy, and contacts.
+Comment:
+Comment:        whois -h whois.radb.net
+Comment:
+Comment:        www.ra.net
+Ref:            https://rdap.arin.net/registry/ip/216.165.0.0
+</pre>
+
+
+<div id="orgab2ca59" class="figure">
+<p><img src="img/ch4-p13.png" alt="ch4-p13.png" style="width:100%; max-width:1000px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b1fb06" class="outline-3">
+<h3 id="org9b1fb06"><span class="section-number-3">1.14</span> <a href="#org9b1fb06">P14 分片</a></h3>
+<div class="outline-text-3" id="text-1-14">
+<p>
+考虑向具有700字节MTU的一条链路发送一个2400字节的数据报。假定初始数据报标有标识号422。将会生成多少个分片？在生成相关分片的数据报中各个字段的值是多少？<br />
+</p>
+
+<p>
+根据<a href="https://datatracker.ietf.org/doc/html/rfc791#section-3.1">RFC791</a>，片偏移以64bit为单位。<br />
+</p>
+
+
+<div id="org34fceb9" class="figure">
+<p><img src="img/ch4-p14.png" alt="ch4-p14.png" style="width:100%; max-width:600px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org289220d" class="outline-3">
+<h3 id="org289220d"><span class="section-number-3">1.15</span> <a href="#org289220d">P15</a></h3>
+<div class="outline-text-3" id="text-1-15">
+<p>
+假定在源主机A和目的主机B之间的数据报被限制为1500字节（包括首部）。假设IP首部为20字节，要发送一个5MB的MP3文件需要多少个数据报？解释你的答案是如何计算的。<br />
+</p>
+
+<p>
+⌈5e6/(1500-20TCP-20IP)⌉ = 3425<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org33ee781" class="outline-3">
+<h3 id="org33ee781"><span class="section-number-3">1.16</span> <a href="#org33ee781">P16 NAT</a></h3>
+<div class="outline-text-3" id="text-1-16">
+<p>
+考虑在图4-25中建立的网络。假定ISP现在为路由器分配地址24.34.112.235，家庭网络的网络地址是192.168.1/24。<br />
+</p>
+<ol class="org-ol">
+<li>在家庭网络中为所有接口分配地址。<br /></li>
+<li>假定每台主机具有两个进行中的TCP连接，所有都是针对主机128.119.40.86的80端口的。在NAT转换表中提供6个对应表项。<br /></li>
+</ol>
+
+
+
+<div id="org2ea45b8" class="figure">
+<p><img src="img/fig4-25.png" alt="fig4-25.png" style="width:100%; max-width:680px;" /><br />
+</p>
+</div>
+
+
+<div id="orgc619ea2" class="figure">
+<p><img src="img/ch4-p16.png" alt="ch4-p16.png" style="width:100%; max-width:600px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c0c90e" class="outline-3">
+<h3 id="org2c0c90e"><span class="section-number-3">1.17</span> <a href="#org2c0c90e">P17</a></h3>
+<div class="outline-text-3" id="text-1-17">
+<p>
+假设你有兴趣检测NAT后面的主机数量。你观察到在每个IP分组上IP层顺序地标出一个标识号。由一台主机生成的第一个IP分组的标识号是一个随机数，后继IP分组的标识号是顺序分配的。假设由NAT后面主机产生的所有IP分组都发往外部。<br />
+</p>
+<ol class="org-ol">
+<li>基于这个观察，假定你能够俘获由NAT向外部发送的所有分组，你能概要给出一种简单的技术来检测NAT后面不同主机的数量吗？评估你的答案。<br /></li>
+<li>如果标识号不是顺序分配而是随机分配的，这种技术还能正常工作吗？评估你的答案。<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li>连续的标识号指示一台主机。<br /></li>
+<li>不能。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org07d7f38" class="outline-3">
+<h3 id="org07d7f38"><span class="section-number-3">1.18</span> <a href="#org07d7f38">P18 NAT与TCP连接</a></h3>
+<div class="outline-text-3" id="text-1-18">
+<p>
+在这个习题中，我们将探讨NAT对P2P应用程序的影响。假定用户名为Arnold的对等方通过查询发现，用户名为Bernard的对等方有一个要下载的文件。同时假定Bernard和Arnold都位于NAT后面。尝试设计一种技术，使得Arnold与Bernard创建一条TCP连接，而不对NAT做应用特定的配置。如果难以设计这样的技术，试讨论其原因。<br />
+</p>
+
+<p>
+为了在Arnold和Bernard之间创建一条TCP连接，Arnold或Bernard必须向对方发起连接。但是，Arnold和Bernard的外层的NAT会丢弃从WAN端到达的SYN数据包。因此，如果Arnold和Bernard都在NAT后面，他们都不能发起建立与对方的TCP连接。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org658c05b" class="outline-3">
+<h3 id="org658c05b"><span class="section-number-3">1.19</span> <a href="#org658c05b">P19</a></h3>
+<div class="outline-text-3" id="text-1-19">
+<p>
+考虑显示在图4-30中的SDN OpenFlow网络。假定对于到达s2的数据报的期望转发行为如下：<br />
+</p>
+
+<ul class="org-ul">
+<li>来自主机h5或h6并且发往主机h1或h2的任何数据报应当通过输出端口2转发到输入端口1。<br /></li>
+<li>来自主机h1或h2并且发往主机h5或h6的任何数据报应当通过输出端口1转发到输入端口2。<br /></li>
+<li>任何在端口1或2到达并且发往主机h3或h4的数据报应当传递到特定的主机。<br /></li>
+<li>主机h3和h4应当能够向彼此发送数据报。<br /></li>
+</ul>
+
+
+<p>
+详述实现这种转发行为的s2中的流表项。<br />
+</p>
+
+
+<div id="org7ee51a6" class="figure">
+<p><img src="img/fig4-30.png" alt="fig4-30.png" style="width:100%; max-width:660px;" /><br />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Shi-Chao Xia</p>
+<p class="date">Created: 2021-10-28 Thu 15:19</p>
+</div>
+</body>
+</html>

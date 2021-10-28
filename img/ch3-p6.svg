@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="453px" preserveAspectRatio="none" style="width:669px;height:453px;background:#FFFFFF;" version="1.1" viewBox="0 0 669 453" width="669px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="155.75" rx="3.5" ry="3.5" style="stroke:#696969;stroke-width:1.0;" width="406" x="146" y="244.5"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="291" x2="291" y1="37.5" y2="417.25"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="399" x2="399" y1="37.5" y2="417.25"/><rect fill="#FF6347" height="31.5" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="263" y="5"/><text fill="#FFFFFF" font-family="Sarasa Mono SC Nerd" font-size="14" lengthAdjust="spacing" textLength="42" x="270" y="25.692">发送发</text><rect fill="#FF6347" height="31.5" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="263" y="416.25"/><text fill="#FFFFFF" font-family="Sarasa Mono SC Nerd" font-size="14" lengthAdjust="spacing" textLength="42" x="270" y="436.942">发送发</text><rect fill="#FF6347" height="31.5" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="371" y="5"/><text fill="#FFFFFF" font-family="Sarasa Mono SC Nerd" font-size="14" lengthAdjust="spacing" textLength="42" x="378" y="25.692">接收方</text><rect fill="#FF6347" height="31.5" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="371" y="416.25"/><text fill="#FFFFFF" font-family="Sarasa Mono SC Nerd" font-size="14" lengthAdjust="spacing" textLength="42" x="378" y="436.942">接收方</text><polygon fill="#454645" points="387,76.875,397,80.875,387,84.875,391,80.875" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="291" x2="393" y1="80.875" y2="80.875"/><text fill="#000000" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="28" x="298" y="75.339">pkt0</text><path d="M5,56 L5,91 A3.5,3.5 0 0 0 8.5,94.5 L282.5,94.5 A3.5,3.5 0 0 0 286,91 L286,62.5 L276,52.5 L8.5,52.5 A3.5,3.5 0 0 0 5,56 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M276,52.5 L276,60.75 A1.75,1.75 0 0 0 277.75,62.5 L286,62.5 L276,52.5 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="59" x="11" y="70.214">发送分组0</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="260" x="11" y="86.464">[等待来自上层的调用0]→[等待ACK或NAK 0]</text><polygon fill="#FF0000" points="302,137.5,292,141.5,302,145.5,298,141.5" style="stroke:#FF0000;stroke-width:1.0;"/><line style="stroke:#FF0000;stroke-width:1.0;" x1="296" x2="398" y1="141.5" y2="141.5"/><text fill="#000000" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="84" x="308" y="135.964">ACK(corrupt)</text><path d="M404,108.5 L404,159.5 A3.5,3.5 0 0 0 407.5,163 L658.5,163 A3.5,3.5 0 0 0 662,159.5 L662,115 L652,105 L407.5,105 A3.5,3.5 0 0 0 404,108.5 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M652,105 L652,113.25 A1.75,1.75 0 0 0 653.75,115 L662,115 L652,105 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="59" x="410" y="122.714">接收分组0</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="47" x="410" y="138.964">发送ACK</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="237" x="410" y="155.214">[等待来自下层的0]→[等待来自下层的1]</text><polygon fill="#454645" points="387,206.25,397,210.25,387,214.25,391,210.25" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="291" x2="393" y1="210.25" y2="210.25"/><text fill="#000000" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="28" x="298" y="204.714">pkt0</text><path d="M156,177.25 L156,228.25 A3.5,3.5 0 0 0 159.5,231.75 L282.5,231.75 A3.5,3.5 0 0 0 286,228.25 L286,183.75 L276,173.75 L159.5,173.75 A3.5,3.5 0 0 0 156,177.25 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M276,173.75 L276,182 A1.75,1.75 0 0 0 277.75,183.75 L286,183.75 L276,173.75 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="52" x="162" y="191.464">分组损坏</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="59" x="162" y="207.714">重传分组0</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="109" x="162" y="223.964">[等待ACK或NAK 0]</text><path d="M149.5,244.5 L243,244.5 L243,252.5 L233,262.5 L146,262.5 L146,248 " fill="#EEEEEE" style="stroke:#696969;stroke-width:1.0;"/><rect fill="none" height="155.75" rx="3.5" ry="3.5" style="stroke:#696969;stroke-width:1.0;" width="406" x="146" y="244.5"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="52" x="161" y="258.214">进入死锁</text><polygon fill="#454645" points="302,300.25,292,304.25,302,308.25,298,304.25" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="296" x2="398" y1="304.25" y2="304.25"/><text fill="#000000" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="21" x="308" y="298.714">NAK</text><path d="M404,271.25 L404,322.25 A3.5,3.5 0 0 0 407.5,325.75 L533.5,325.75 A3.5,3.5 0 0 0 537,322.25 L537,277.75 L527,267.75 L407.5,267.75 A3.5,3.5 0 0 0 404,271.25 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M527,267.75 L527,276 A1.75,1.75 0 0 0 528.75,277.75 L537,277.75 L527,267.75 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="56" x="410" y="285.464">has_seq0</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="47" x="410" y="301.714">发送NAK</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="112" x="410" y="317.964">[等待来自下层的1]</text><polygon fill="#454645" points="387,369,397,373,387,377,391,373" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="291" x2="393" y1="373" y2="373"/><text fill="#000000" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="28" x="298" y="367.464">pkt0</text><path d="M156,340 L156,391 A3.5,3.5 0 0 0 159.5,394.5 L282.5,394.5 A3.5,3.5 0 0 0 286,391 L286,346.5 L276,336.5 L159.5,336.5 A3.5,3.5 0 0 0 156,340 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M276,336.5 L276,344.75 A1.75,1.75 0 0 0 277.75,346.5 L286,346.5 L276,336.5 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="35" x="162" y="354.214">isNAK</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="59" x="162" y="370.464">重传分组0</text><text fill="#454645" font-family="Sarasa Mono SC Nerd" font-size="13" lengthAdjust="spacing" textLength="109" x="162" y="386.714">[等待ACK或 NAK0]</text><!--MD5=[7b6e1da84013b999e906a1b7fe5ab3be]
+@startuml
+!theme vibrant
+skinparam defaultFontName "Sarasa Mono SC Nerd"
+participant 发送发 as S
+participant 接收方 as R
+S -> R: pkt0
+note left: 发送分组0\n[等待来自上层的调用0]→[等待ACK或NAK 0]
+
+R -[#red]> S: ACK(corrupt)
+note right: 接收分组0\n发送ACK\n[等待来自下层的0]→[等待来自下层的1]
+
+S -> R: pkt0
+note left: 分组损坏\n重传分组0\n[等待ACK或NAK 0]
+
+group 进入死锁
+        R -> S: NAK
+        note right: has_seq0\n发送NAK\n[等待来自下层的1]
+
+        S -> R: pkt0
+        note left: isNAK\n重传分组0\n[等待ACK或 NAK0]
+end
+@enduml
+
+@startuml
+skinparam BackgroundColor FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 696969
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 696969
+skinparam SequenceGroupBorderColor 696969
+skinparam SequenceGroupBorderThickness 1
+
+skinparam sequenceDivider {
+    BorderColor 454645
+    BorderThickness 1
+    FontColor 454645
+}
+
+skinparam participant {
+    BackgroundColor FF6347
+    BorderColor FF6F61
+    FontColor FFFFFF
+}
+
+skinparam database {
+    BackgroundColor 00FFFF
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam entity {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam note {
+    BackgroundColor 7FFFD4
+    BorderColor 7FFFD4
+    FontColor 454645
+}
+
+skinparam actor {
+    BackgroundColor 454645
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam boundary {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam control {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam collections {
+    BackgroundColor FF6347
+    BorderColor FFFFFF
+    FontColor 454645
+}
+skinparam defaultFontName "Sarasa Mono SC Nerd"
+participant 发送发 as S
+participant 接收方 as R
+S -> R: pkt0
+note left: 发送分组0\n[等待来自上层的调用0]→[等待ACK或NAK 0]
+
+R -[#red]> S: ACK(corrupt)
+note right: 接收分组0\n发送ACK\n[等待来自下层的0]→[等待来自下层的1]
+
+S -> R: pkt0
+note left: 分组损坏\n重传分组0\n[等待ACK或NAK 0]
+
+group 进入死锁
+        R -> S: NAK
+        note right: has_seq0\n发送NAK\n[等待来自下层的1]
+
+        S -> R: pkt0
+        note left: isNAK\n重传分组0\n[等待ACK或 NAK0]
+end
+@enduml
+
+PlantUML version 1.2021.9(Sun Jul 25 18:13:56 CST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: US-ASCII
+Language: zh
+Country: CN
+--></g></svg>

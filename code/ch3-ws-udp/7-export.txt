@@ -1,0 +1,17 @@
+No.     Time           Source                Destination           Protocol Length Info
+     15 8.628758       fe80::cab:21fb:bf60:9847 fe80::96e9:eeff:fe68:6c29 DNS      100    Standard query 0xf831 A bag.itunes.apple.com
+
+Frame 15: 100 bytes on wire (800 bits), 100 bytes captured (800 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00), Dst: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)
+Internet Protocol Version 6, Src: fe80::cab:21fb:bf60:9847, Dst: fe80::96e9:eeff:fe68:6c29
+User Datagram Protocol, Src Port: 57194, Dst Port: 53
+Domain Name System (query)
+
+No.     Time           Source                Destination           Protocol Length Info
+     18 8.689860       fe80::96e9:eeff:fe68:6c29 fe80::cab:21fb:bf60:9847 DNS      521    Standard query response 0xf831 A bag.itunes.apple.com CNAME init-cdn.itunes-apple.com.akadns.net CNAME init-china.itunes-apple.com.akadns.net CNAME init.itunes.apple.com.mwcname.com A 125.77.130.19 A 113.96.147.50 A 116.211.251.31 A 113.96.140.109 A 183.6.248.180 NS dns5.cdn30.org NS dns3.wscloudcdn.org NS dns1.wscloudcdn.org NS dns2.mwcloudcdn.info NS dns4.mwcloudcdn.info A 101.227.98.160 A 61.136.167.99 A 183.131.124.31 A 121.12.91.34 AAAA 240e:e1:9600:20c::33
+
+Frame 18: 521 bytes on wire (4168 bits), 521 bytes captured (4168 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29), Dst: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)
+Internet Protocol Version 6, Src: fe80::96e9:eeff:fe68:6c29, Dst: fe80::cab:21fb:bf60:9847
+User Datagram Protocol, Src Port: 53, Dst Port: 57194
+Domain Name System (response)

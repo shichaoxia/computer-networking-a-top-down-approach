@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="403px" preserveAspectRatio="none" style="width:341px;height:403px;background:#FFFFFF;" version="1.1" viewBox="0 0 341 403" width="341px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="249" x="47.5" y="29.4023">部署前端服务器并使用TCP分叉</text><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="92" x2="92" y1="71.6875" y2="367.5508"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="165" x2="165" y1="71.6875" y2="367.5508"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="259" x2="259" y1="71.6875" y2="367.5508"/><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="42" x="71" y="40.1992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="78" y="60.7344">主机</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="42" x="71" y="366.5508"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="78" y="387.0859">主机</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="84" x="123" y="40.1992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="130" y="60.7344">前端服务器</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="84" x="123" y="366.5508"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="130" y="387.0859">前端服务器</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="84" x="217" y="40.1992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="224" y="60.7344">后端服务器</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="84" x="217" y="366.5508"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="224" y="387.0859">后端服务器</text><polygon fill="#454645" points="153,83.6875,163,87.6875,153,91.6875,157,87.6875" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="92" x2="159" y1="87.6875" y2="87.6875"/><polygon fill="#454645" points="103,115.998,93,119.998,103,123.998,99,119.998" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="97" x2="164" y1="119.998" y2="119.998"/><path d="M13,104.1875 L13,137.1875 A3.5,3.5 0 0 0 16.5,140.6875 L83.5,140.6875 A3.5,3.5 0 0 0 87,137.1875 L87,110.6875 L77,100.6875 L16.5,100.6875 A3.5,3.5 0 0 0 13,104.1875 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M77,100.6875 L77,108.9375 A1.75,1.75 0 0 0 78.75,110.6875 L87,110.6875 L77,100.6875 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="19" y="118.2559">握手</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="19" y="133.5664">RTT_{FE}</text><polygon fill="#454645" points="153,158.9639,163,162.9639,153,166.9639,157,162.9639" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="92" x2="159" y1="162.9639" y2="162.9639"/><path d="M40,154.8086 L40,172.8086 A3.5,3.5 0 0 0 43.5,176.3086 L83.5,176.3086 A3.5,3.5 0 0 0 87,172.8086 L87,161.3086 L77,151.3086 L43.5,151.3086 A3.5,3.5 0 0 0 40,154.8086 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M77,151.3086 L77,159.5586 A1.75,1.75 0 0 0 78.75,161.3086 L87,161.3086 L77,151.3086 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="46" y="168.877">请求</text><polygon fill="#454645" points="247,194.2744,257,198.2744,247,202.2744,251,198.2744" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="165" x2="253" y1="198.2744" y2="198.2744"/><path d="M264,190.1191 L264,208.1191 A3.5,3.5 0 0 0 267.5,211.6191 L330.5,211.6191 A3.5,3.5 0 0 0 334,208.1191 L334,196.6191 L324,186.6191 L267.5,186.6191 A3.5,3.5 0 0 0 264,190.1191 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M324,186.6191 L324,194.8691 A1.75,1.75 0 0 0 325.75,196.6191 L334,196.6191 L324,186.6191 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="270" y="204.1875">T_{处理}</text><polygon fill="#454645" points="176,218.9297,166,222.9297,176,226.9297,172,222.9297" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="170" x2="258" y1="222.9297" y2="222.9297"/><path d="M128,239.4297 L128,257.4297 A3.5,3.5 0 0 0 131.5,260.9297 L198.5,260.9297 A3.5,3.5 0 0 0 202,257.4297 L202,245.9297 L192,235.9297 L131.5,235.9297 A3.5,3.5 0 0 0 128,239.4297 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M192,235.9297 L192,244.1797 A1.75,1.75 0 0 0 193.75,245.9297 L202,245.9297 L192,235.9297 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="134" y="253.498">RTT_{BE}</text><polygon fill="#454645" points="103,268.2402,93,272.2402,103,276.2402,99,272.2402" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="97" x2="164" y1="272.2402" y2="272.2402"/><polygon fill="#454645" points="153,282.2402,163,286.2402,153,290.2402,157,286.2402" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="92" x2="159" y1="286.2402" y2="286.2402"/><polygon fill="#454645" points="103,296.2402,93,300.2402,103,304.2402,99,300.2402" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="97" x2="164" y1="300.2402" y2="300.2402"/><polygon fill="#454645" points="153,310.2402,163,314.2402,153,318.2402,157,314.2402" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="92" x2="159" y1="314.2402" y2="314.2402"/><polygon fill="#454645" points="103,334.8955,93,338.8955,103,342.8955,99,338.8955" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="97" x2="164" y1="338.8955" y2="338.8955"/><path d="M5,330.7402 L5,348.7402 A3.5,3.5 0 0 0 8.5,352.2402 L83.5,352.2402 A3.5,3.5 0 0 0 87,348.7402 L87,337.2402 L77,327.2402 L8.5,327.2402 A3.5,3.5 0 0 0 5,330.7402 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M77,327.2402 L77,335.4902 A1.75,1.75 0 0 0 78.75,337.2402 L87,337.2402 L77,327.2402 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="11" y="344.8086">3RTT_{FE}</text><!--MD5=[4baa0779dfac44be35b61cc69257dca3]
+@startuml
+!theme vibrant
+title 部署前端服务器并使用TCP分叉
+participant 主机 as C
+participant 前端服务器 as FS
+participant 后端服务器 as BS
+
+C->FS
+FS->C
+note left: 握手\nRTT_{FE}
+
+C->FS
+note left: 请求
+
+FS->BS
+note right: T_{处理}
+BS->FS
+note over FS: RTT_{BE}
+
+FS->C
+
+C->FS
+FS->C
+C->FS
+FS->C
+note left: 3RTT_{FE}
+@enduml
+
+@startuml
+skinparam BackgroundColor FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 696969
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 696969
+skinparam SequenceGroupBorderColor 696969
+skinparam SequenceGroupBorderThickness 1
+
+skinparam sequenceDivider {
+    BorderColor 454645
+    BorderThickness 1
+    FontColor 454645
+}
+
+skinparam participant {
+    BackgroundColor FF6347
+    BorderColor FF6F61
+    FontColor FFFFFF
+}
+
+skinparam database {
+    BackgroundColor 00FFFF
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam entity {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam note {
+    BackgroundColor 7FFFD4
+    BorderColor 7FFFD4
+    FontColor 454645
+}
+
+skinparam actor {
+    BackgroundColor 454645
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam boundary {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam control {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam collections {
+    BackgroundColor FF6347
+    BorderColor FFFFFF
+    FontColor 454645
+}
+title 部署前端服务器并使用TCP分叉
+participant 主机 as C
+participant 前端服务器 as FS
+participant 后端服务器 as BS
+
+C->FS
+FS->C
+note left: 握手\nRTT_{FE}
+
+C->FS
+note left: 请求
+
+FS->BS
+note right: T_{处理}
+BS->FS
+note over FS: RTT_{BE}
+
+FS->C
+
+C->FS
+FS->C
+C->FS
+FS->C
+note left: 3RTT_{FE}
+@enduml
+
+PlantUML version 1.2021.9(Sun Jul 25 18:13:56 CST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: US-ASCII
+Language: zh
+Country: CN
+--></g></svg>

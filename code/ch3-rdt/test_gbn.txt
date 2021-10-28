@@ -1,0 +1,867 @@
+-----  Stop and Wait Network Simulator Version 1.1 -------- 
+
+Enter the number of messages to simulate: Enter  packet loss probability [enter 0.0 for no loss]:Enter packet corruption probability [0.0 for no corruption]:Enter average time between messages from sender's layer5 [ > 0.0]:Enter TRACE:
+>>> Layer5 ↓ A, Message: {data: aaaaaaaaaaaaaaaaaaaa}
+    Send Packet: {seqnum: 1, acknum: 0, checksum: 1941, payload: aaaaaaaaaaaaaaaaaaaa}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 1, acknum: 0, checksum: 1941, payload: aaaaaaaaaaaaaaaaaaaa}
+          TOLAYER3: packet being corrupted
+    B send ACK Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: bbbbbbbbbbbbbbbbbbbb}
+    Send Packet: {seqnum: 2, acknum: 0, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 2, acknum: 999999, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+    Ignore corrupt packet
+
+>>> A timeout
+    Resend Packet: {seqnum: 1, acknum: 0, checksum: 1941, payload: aaaaaaaaaaaaaaaaaaaa}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 2, acknum: 0, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+
+>>> Layer5 ↓ A, Message: {data: cccccccccccccccccccc}
+    Send Packet: {seqnum: 3, acknum: 0, checksum: 1983, payload: cccccccccccccccccccc}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 1, acknum: 0, checksum: 1941, payload: aaaaaaaaaaaaaaaaaaaa}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer5 ↓ A, Message: {data: dddddddddddddddddddd}
+    Send Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 2, acknum: 999999, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 3, acknum: 0, checksum: 1983, payload: Zccccccccccccccccccc}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer5 ↓ A, Message: {data: eeeeeeeeeeeeeeeeeeee}
+    Send Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+
+>>> Layer5 ↓ A, Message: {data: ffffffffffffffffffff}
+    Send Packet: {seqnum: 6, acknum: 0, checksum: 2046, payload: ffffffffffffffffffff}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer3 ↑ B, Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer5 ↓ A, Message: {data: gggggggggggggggggggg}
+    Send Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer3 ↑ B, Packet: {seqnum: 6, acknum: 0, checksum: 2046, payload: ffffffffffffffffffff}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer5 ↓ A, Message: {data: hhhhhhhhhhhhhhhhhhhh}
+    Send Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: Zhhhhhhhhhhhhhhhhhhh}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: iiiiiiiiiiiiiiiiiiii}
+    Send Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+          TOLAYER3: packet being corrupted
+
+>>> A timeout
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 2, acknum: 0, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 3, acknum: 0, checksum: 1983, payload: cccccccccccccccccccc}
+    Resend Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 6, acknum: 0, checksum: 2046, payload: ffffffffffffffffffff}
+    Resend Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: Ziiiiiiiiiiiiiiiiiii}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer5 ↓ A, Message: {data: jjjjjjjjjjjjjjjjjjjj}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer3 ↑ B, Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: kkkkkkkkkkkkkkkkkkkk}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer5 ↓ A, Message: {data: llllllllllllllllllll}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: mmmmmmmmmmmmmmmmmmmm}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: nnnnnnnnnnnnnnnnnnnn}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+*** Ack packet: 1
+
+>>> Layer5 ↓ A, Message: {data: oooooooooooooooooooo}
+    Refuse data
+
+>>> A timeout
+    Resend Packet: {seqnum: 2, acknum: 0, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 3, acknum: 0, checksum: 1983, payload: cccccccccccccccccccc}
+    Resend Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 6, acknum: 0, checksum: 2046, payload: ffffffffffffffffffff}
+    Resend Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 2, acknum: 0, checksum: 1962, payload: bbbbbbbbbbbbbbbbbbbb}
+    B send ACK Packet: {seqnum: 0, acknum: 2, checksum: 2, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 2, checksum: 2, payload: }
+*** Ack packet: 2
+
+>>> Layer5 ↓ A, Message: {data: pppppppppppppppppppp}
+    Send Packet: {seqnum: 10, acknum: 0, checksum: 2250, payload: pppppppppppppppppppp}
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 3, acknum: 0, checksum: 1983, payload: cccccccccccccccccccc}
+    B send ACK Packet: {seqnum: 0, acknum: 3, checksum: 3, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 4, acknum: 0, checksum: 2004, payload: dddddddddddddddddddd}
+    B send ACK Packet: {seqnum: 0, acknum: 4, checksum: 4, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 5, acknum: 0, checksum: 2025, payload: eeeeeeeeeeeeeeeeeeee}
+    B send ACK Packet: {seqnum: 0, acknum: 5, checksum: 5, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 3, checksum: 3, payload: }
+*** Ack packet: 3
+
+>>> Layer3 ↑ B, Packet: {seqnum: 6, acknum: 0, checksum: 2046, payload: ffffffffffffffffffff}
+          TOLAYER3: packet being lost
+    B send ACK Packet: {seqnum: 0, acknum: 6, checksum: 6, payload: }
+
+>>> Layer5 ↓ A, Message: {data: qqqqqqqqqqqqqqqqqqqq}
+    Send Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 4, checksum: 4, payload: }
+*** Ack packet: 4
+
+>>> Layer3 ↑ B, Packet: {seqnum: 7, acknum: 0, checksum: 2067, payload: gggggggggggggggggggg}
+    B send ACK Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 5, checksum: 5, payload: }
+*** Ack packet: 5
+
+>>> Layer3 ↑ B, Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: Zhhhhhhhhhhhhhhhhhhh}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: rrrrrrrrrrrrrrrrrrrr}
+    Send Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ B, Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: Zrrrrrrrrrrrrrrrrrrr}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: ssssssssssssssssssss}
+    Send Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer5 ↓ A, Message: {data: tttttttttttttttttttt}
+    Send Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+
+>>> Layer5 ↓ A, Message: {data: uuuuuuuuuuuuuuuuuuuu}
+    Send Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: Zuuuuuuuuuuuuuuuuuuu}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: vvvvvvvvvvvvvvvvvvvv}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: wwwwwwwwwwwwwwwwwwww}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: xxxxxxxxxxxxxxxxxxxx}
+    Refuse data
+
+>>> A timeout
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 10, acknum: 0, checksum: 2250, payload: pppppppppppppppppppp}
+    Resend Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+    Resend Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: Ziiiiiiiiiiiiiiiiiii}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: yyyyyyyyyyyyyyyyyyyy}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 10, acknum: 999999, checksum: 2250, payload: pppppppppppppppppppp}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer5 ↓ A, Message: {data: zzzzzzzzzzzzzzzzzzzz}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> A timeout
+    Resend Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+    Resend Packet: {seqnum: 10, acknum: 0, checksum: 2250, payload: pppppppppppppppppppp}
+    Resend Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer5 ↓ A, Message: {data: aaaaaaaaaaaaaaaaaaaa}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 8, acknum: 0, checksum: 2088, payload: hhhhhhhhhhhhhhhhhhhh}
+    B send ACK Packet: {seqnum: 0, acknum: 8, checksum: 8, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 7, checksum: 7, payload: }
+*** Ack packet: 7
+
+>>> Layer3 ↑ B, Packet: {seqnum: 9, acknum: 0, checksum: 2109, payload: iiiiiiiiiiiiiiiiiiii}
+          TOLAYER3: packet being corrupted
+    B send ACK Packet: {seqnum: 0, acknum: 9, checksum: 9, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 10, acknum: 0, checksum: 2250, payload: pppppppppppppppppppp}
+          TOLAYER3: packet being corrupted
+    B send ACK Packet: {seqnum: 0, acknum: 10, checksum: 10, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 8, checksum: 8, payload: }
+*** Ack packet: 8
+
+>>> Layer3 ↑ B, Packet: {seqnum: 11, acknum: 0, checksum: 2271, payload: qqqqqqqqqqqqqqqqqqqq}
+    B send ACK Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 9, checksum: 9, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: bbbbbbbbbbbbbbbbbbbb}
+    Send Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 999999, acknum: 10, checksum: 10, payload: }
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+*** Ack packet: 11
+
+>>> Layer5 ↓ A, Message: {data: cccccccccccccccccccc}
+    Send Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+*** Ack packet: 11
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+*** Ack packet: 11
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+*** Ack packet: 11
+
+>>> Layer5 ↓ A, Message: {data: dddddddddddddddddddd}
+    Send Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+          TOLAYER3: packet being corrupted
+
+>>> Layer5 ↓ A, Message: {data: eeeeeeeeeeeeeeeeeeee}
+    Send Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: Zddddddddddddddddddd}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: ffffffffffffffffffff}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+
+>>> Layer5 ↓ A, Message: {data: gggggggggggggggggggg}
+    Refuse data
+
+>>> A timeout
+    Resend Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 11, checksum: 11, payload: }
+*** Ack packet: 11
+
+>>> Layer3 ↑ B, Packet: {seqnum: 12, acknum: 0, checksum: 2292, payload: rrrrrrrrrrrrrrrrrrrr}
+    B send ACK Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer5 ↓ A, Message: {data: hhhhhhhhhhhhhhhhhhhh}
+    Send Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 999999, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: iiiiiiiiiiiiiiiiiiii}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: jjjjjjjjjjjjjjjjjjjj}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: Zeeeeeeeeeeeeeeeeeee}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: kkkkkkkkkkkkkkkkkkkk}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer5 ↓ A, Message: {data: llllllllllllllllllll}
+    Refuse data
+
+>>> A timeout
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: mmmmmmmmmmmmmmmmmmmm}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer5 ↓ A, Message: {data: nnnnnnnnnnnnnnnnnnnn}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: Zeeeeeeeeeeeeeeeeeee}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: oooooooooooooooooooo}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer5 ↓ A, Message: {data: pppppppppppppppppppp}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: qqqqqqqqqqqqqqqqqqqq}
+    Refuse data
+
+>>> A timeout
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: Zsssssssssssssssssss}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: rrrrrrrrrrrrrrrrrrrr}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> A timeout
+    Resend Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: ssssssssssssssssssss}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: tttttttttttttttttttt}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer5 ↓ A, Message: {data: uuuuuuuuuuuuuuuuuuuu}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer5 ↓ A, Message: {data: vvvvvvvvvvvvvvvvvvvv}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 13, acknum: 0, checksum: 2313, payload: ssssssssssssssssssss}
+    B send ACK Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 12, checksum: 12, payload: }
+*** Ack packet: 12
+
+>>> Layer3 ↑ B, Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: Zbbbbbbbbbbbbbbbbbbb}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: wwwwwwwwwwwwwwwwwwww}
+    Refuse data
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer5 ↓ A, Message: {data: xxxxxxxxxxxxxxxxxxxx}
+    Send Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer3 ↑ B, Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer5 ↓ A, Message: {data: yyyyyyyyyyyyyyyyyyyy}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: zzzzzzzzzzzzzzzzzzzz}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: aaaaaaaaaaaaaaaaaaaa}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: bbbbbbbbbbbbbbbbbbbb}
+    Refuse data
+
+>>> A timeout
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+
+>>> Layer5 ↓ A, Message: {data: cccccccccccccccccccc}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: dddddddddddddddddddd}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 999999, checksum: 2334, payload: tttttttttttttttttttt}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer3 ↑ B, Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ A, Packet: {seqnum: 999999, acknum: 13, checksum: 13, payload: }
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: Zddddddddddddddddddd}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+          TOLAYER3: packet being corrupted
+
+>>> Layer5 ↓ A, Message: {data: eeeeeeeeeeeeeeeeeeee}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer5 ↓ A, Message: {data: ffffffffffffffffffff}
+    Refuse data
+
+>>> Layer3 ↑ B, Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 13, checksum: 13, payload: }
+*** Ack packet: 13
+
+>>> Layer5 ↓ A, Message: {data: gggggggggggggggggggg}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: hhhhhhhhhhhhhhhhhhhh}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: iiiiiiiiiiiiiiiiiiii}
+    Refuse data
+
+>>> Layer5 ↓ A, Message: {data: jjjjjjjjjjjjjjjjjjjj}
+    Refuse data
+
+>>> A timeout
+    Resend Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    Resend Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+    Resend Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    Resend Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 14, acknum: 0, checksum: 2334, payload: tttttttttttttttttttt}
+    B send ACK Packet: {seqnum: 0, acknum: 14, checksum: 14, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 15, acknum: 0, checksum: 2355, payload: uuuuuuuuuuuuuuuuuuuu}
+          TOLAYER3: packet being lost
+    B send ACK Packet: {seqnum: 0, acknum: 15, checksum: 15, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 14, checksum: 14, payload: }
+*** Ack packet: 14
+
+>>> Layer3 ↑ B, Packet: {seqnum: 16, acknum: 0, checksum: 1976, payload: bbbbbbbbbbbbbbbbbbbb}
+    B send ACK Packet: {seqnum: 0, acknum: 16, checksum: 16, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 16, checksum: 16, payload: }
+*** Ack packet: 16
+
+>>> Layer5 ↓ A, Message: {data: kkkkkkkkkkkkkkkkkkkk}
+    Send Packet: {seqnum: 22, acknum: 0, checksum: 2162, payload: kkkkkkkkkkkkkkkkkkkk}
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 17, acknum: 0, checksum: 1997, payload: cccccccccccccccccccc}
+    B send ACK Packet: {seqnum: 0, acknum: 17, checksum: 17, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+          TOLAYER3: packet being corrupted
+    B send ACK Packet: {seqnum: 0, acknum: 18, checksum: 18, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 17, checksum: 17, payload: }
+*** Ack packet: 17
+
+>>> Layer5 ↓ A, Message: {data: llllllllllllllllllll}
+    Send Packet: {seqnum: 23, acknum: 0, checksum: 2183, payload: llllllllllllllllllll}
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 18, checksum: 18, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+          TOLAYER3: packet being lost
+    B send ACK Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+
+>>> Layer5 ↓ A, Message: {data: mmmmmmmmmmmmmmmmmmmm}
+    Send Packet: {seqnum: 24, acknum: 0, checksum: 2204, payload: mmmmmmmmmmmmmmmmmmmm}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: Zhhhhhhhhhhhhhhhhhhh}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer5 ↓ A, Message: {data: nnnnnnnnnnnnnnnnnnnn}
+    Send Packet: {seqnum: 25, acknum: 0, checksum: 2225, payload: nnnnnnnnnnnnnnnnnnnn}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 23, acknum: 0, checksum: 2183, payload: llllllllllllllllllll}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+          TOLAYER3: packet being lost
+
+>>> A timeout
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: dddddddddddddddddddd}
+    Resend Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    Resend Packet: {seqnum: 22, acknum: 0, checksum: 2162, payload: kkkkkkkkkkkkkkkkkkkk}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 23, acknum: 0, checksum: 2183, payload: llllllllllllllllllll}
+    Resend Packet: {seqnum: 24, acknum: 0, checksum: 2204, payload: mmmmmmmmmmmmmmmmmmmm}
+    Resend Packet: {seqnum: 25, acknum: 0, checksum: 2225, payload: nnnnnnnnnnnnnnnnnnnn}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 24, acknum: 0, checksum: 2204, payload: mmmmmmmmmmmmmmmmmmmm}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+
+>>> Layer3 ↑ B, Packet: {seqnum: 25, acknum: 0, checksum: 2225, payload: nnnnnnnnnnnnnnnnnnnn}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+*** Ack packet: 19
+
+>>> Layer5 ↓ A, Message: {data: oooooooooooooooooooo}
+    Send Packet: {seqnum: 26, acknum: 0, checksum: 2246, payload: oooooooooooooooooooo}
+          TOLAYER3: packet being corrupted
+
+>>> Layer3 ↑ B, Packet: {seqnum: 18, acknum: 0, checksum: 2018, payload: Zddddddddddddddddddd}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: Z}
+    Ignore corrupt packet
+
+>>> Layer3 ↑ B, Packet: {seqnum: 19, acknum: 0, checksum: 2039, payload: eeeeeeeeeeeeeeeeeeee}
+    Unexpected packet, resend last ACK, Packet: {seqnum: 0, acknum: 19, checksum: 19, payload: }
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being lost
+    B send ACK Packet: {seqnum: 0, acknum: 20, checksum: 20, payload: }
+
+>>> Layer5 ↓ A, Message: {data: pppppppppppppppppppp}
+    Send Packet: {seqnum: 27, acknum: 0, checksum: 2267, payload: pppppppppppppppppppp}
+          TOLAYER3: packet being lost
+
+>>> Layer3 ↑ B, Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    B send ACK Packet: {seqnum: 0, acknum: 21, checksum: 21, payload: }
+
+>>> A timeout
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 20, acknum: 0, checksum: 2100, payload: hhhhhhhhhhhhhhhhhhhh}
+    Resend Packet: {seqnum: 21, acknum: 0, checksum: 2421, payload: xxxxxxxxxxxxxxxxxxxx}
+    Resend Packet: {seqnum: 22, acknum: 0, checksum: 2162, payload: kkkkkkkkkkkkkkkkkkkk}
+    Resend Packet: {seqnum: 23, acknum: 0, checksum: 2183, payload: llllllllllllllllllll}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 24, acknum: 0, checksum: 2204, payload: mmmmmmmmmmmmmmmmmmmm}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 25, acknum: 0, checksum: 2225, payload: nnnnnnnnnnnnnnnnnnnn}
+          TOLAYER3: packet being lost
+    Resend Packet: {seqnum: 26, acknum: 0, checksum: 2246, payload: oooooooooooooooooooo}
+          TOLAYER3: packet being corrupted
+    Resend Packet: {seqnum: 27, acknum: 0, checksum: 2267, payload: pppppppppppppppppppp}
+
+>>> Layer3 ↑ B, Packet: {seqnum: 22, acknum: 0, checksum: 2162, payload: kkkkkkkkkkkkkkkkkkkk}
+          TOLAYER3: packet being lost
+    B send ACK Packet: {seqnum: 0, acknum: 22, checksum: 22, payload: }
+
+>>> Layer3 ↑ A, Packet: {seqnum: 0, acknum: 21, checksum: 21, payload: }
+*** Ack packet: 21
+>>> 20 messages were successfully transfered from sender to receiver

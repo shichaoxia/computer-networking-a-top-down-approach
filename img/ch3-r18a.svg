@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="312px" preserveAspectRatio="none" style="width:176px;height:312px;background:#FFFFFF;" version="1.1" viewBox="0 0 176 312" width="176px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="90" x="42.5" y="29.4023">不使用分叉</text><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="83" x2="83" y1="71.6875" y2="276.9297"/><line style="stroke:#696969;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="142" x2="142" y1="71.6875" y2="276.9297"/><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="42" x="62" y="40.1992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="69" y="60.7344">主机</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="42" x="62" y="275.9297"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="69" y="296.4648">主机</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="114" y="40.1992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="121" y="60.7344">服务器</text><rect fill="#FF6347" height="30.4883" rx="3.5" ry="3.5" style="stroke:#FF6F61;stroke-width:1.5;" width="56" x="114" y="275.9297"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="121" y="296.4648">服务器</text><polygon fill="#454645" points="130,83.6875,140,87.6875,130,91.6875,134,87.6875" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="83" x2="136" y1="87.6875" y2="87.6875"/><polygon fill="#454645" points="94,115.998,84,119.998,94,123.998,90,119.998" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="88" x2="141" y1="119.998" y2="119.998"/><path d="M31,104.1875 L31,137.1875 A3.5,3.5 0 0 0 34.5,140.6875 L74.5,140.6875 A3.5,3.5 0 0 0 78,137.1875 L78,110.6875 L68,100.6875 L34.5,100.6875 A3.5,3.5 0 0 0 31,104.1875 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M68,100.6875 L68,108.9375 A1.75,1.75 0 0 0 69.75,110.6875 L78,110.6875 L68,100.6875 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="37" y="118.2559">握手</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="37" y="133.5664">RTT</text><polygon fill="#454645" points="130,148.3086,140,152.3086,130,156.3086,134,152.3086" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="83" x2="136" y1="152.3086" y2="152.3086"/><polygon fill="#454645" points="94,162.3086,84,166.3086,94,170.3086,90,166.3086" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="88" x2="141" y1="166.3086" y2="166.3086"/><polygon fill="#454645" points="130,176.3086,140,180.3086,130,184.3086,134,180.3086" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="83" x2="136" y1="180.3086" y2="180.3086"/><polygon fill="#454645" points="94,190.3086,84,194.3086,94,198.3086,90,194.3086" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="88" x2="141" y1="194.3086" y2="194.3086"/><polygon fill="#454645" points="130,204.3086,140,208.3086,130,212.3086,134,208.3086" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="83" x2="136" y1="208.3086" y2="208.3086"/><polygon fill="#454645" points="94,236.6191,84,240.6191,94,244.6191,90,240.6191" style="stroke:#454645;stroke-width:1.0;"/><line style="stroke:#454645;stroke-width:1.0;" x1="88" x2="141" y1="240.6191" y2="240.6191"/><path d="M5,224.8086 L5,257.8086 A3.5,3.5 0 0 0 8.5,261.3086 L74.5,261.3086 A3.5,3.5 0 0 0 78,257.8086 L78,231.3086 L68,221.3086 L8.5,221.3086 A3.5,3.5 0 0 0 5,224.8086 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><path d="M68,221.3086 L68,229.5586 A1.75,1.75 0 0 0 69.75,231.3086 L78,231.3086 L68,221.3086 " fill="#7FFFD4" style="stroke:#7FFFD4;stroke-width:1.0;"/><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="11" y="238.877">交付响应</text><text fill="#454645" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="11" y="254.1875">3RTT</text><!--MD5=[7d0960101d74b04a61cffb7a4e173d9b]
+@startuml
+!theme vibrant
+title 不使用分叉
+participant 主机 as C
+participant 服务器 as S
+
+C->S
+S->C
+note left: 握手\nRTT
+
+C->S
+S->C
+C->S
+S->C
+C->S
+S->C
+note left: 交付响应\n3RTT
+@enduml
+
+@startuml
+skinparam BackgroundColor FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 696969
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 696969
+skinparam SequenceGroupBorderColor 696969
+skinparam SequenceGroupBorderThickness 1
+
+skinparam sequenceDivider {
+    BorderColor 454645
+    BorderThickness 1
+    FontColor 454645
+}
+
+skinparam participant {
+    BackgroundColor FF6347
+    BorderColor FF6F61
+    FontColor FFFFFF
+}
+
+skinparam database {
+    BackgroundColor 00FFFF
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam entity {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam note {
+    BackgroundColor 7FFFD4
+    BorderColor 7FFFD4
+    FontColor 454645
+}
+
+skinparam actor {
+    BackgroundColor 454645
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam boundary {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam control {
+    BackgroundColor FFE552
+    BorderColor 454645
+    FontColor 454645
+}
+
+skinparam collections {
+    BackgroundColor FF6347
+    BorderColor FFFFFF
+    FontColor 454645
+}
+title 不使用分叉
+participant 主机 as C
+participant 服务器 as S
+
+C->S
+S->C
+note left: 握手\nRTT
+
+C->S
+S->C
+C->S
+S->C
+C->S
+S->C
+note left: 交付响应\n3RTT
+@enduml
+
+PlantUML version 1.2021.9(Sun Jul 25 18:13:56 CST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: US-ASCII
+Language: zh
+Country: CN
+--></g></svg>

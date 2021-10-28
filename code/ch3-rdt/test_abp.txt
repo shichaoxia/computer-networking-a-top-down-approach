@@ -1,0 +1,468 @@
+-----  Stop and Wait Network Simulator Version 1.1 -------- 
+
+Enter the number of messages to simulate: Enter  packet loss probability [enter 0.0 for no loss]:Enter packet corruption probability [0.0 for no corruption]:Enter average time between messages from sender's layer5 [ > 0.0]:Enter TRACE:
+>>> layer5 ↓ A, message: {data: aaaaaaaaaaaaaaaaaaaa}
+    A state: WAIT_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1940, payload: aaaaaaaaaaaaaaaaaaaa}
+    A new state: WAIT_ACK_0
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 1940, payload: aaaaaaaaaaaaaaaaaaaa}
+    B state: WAIT_0
+          TOLAYER3: packet being corrupted
+    B ↑ layer5, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: Z}
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: bbbbbbbbbbbbbbbbbbbb}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1940, payload: aaaaaaaaaaaaaaaaaaaa}
+          TOLAYER3: packet being corrupted
+
+>>> layer5 ↓ A, message: {data: cccccccccccccccccccc}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 999999, checksum: 1940, payload: aaaaaaaaaaaaaaaaaaaa}
+    B state: WAIT_1
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_0
+    acked
+    A new state: WAIT_1
+    A收到B对第1个分组的确认
+
+>>> layer5 ↓ A, message: {data: dddddddddddddddddddd}
+          TOLAYER3: packet being lost
+    A state: WAIT_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2001, payload: dddddddddddddddddddd}
+    A new state: WAIT_ACK_1
+
+>>> layer5 ↓ A, message: {data: eeeeeeeeeeeeeeeeeeee}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2001, payload: dddddddddddddddddddd}
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2001, payload: dddddddddddddddddddd}
+    B state: WAIT_1
+          TOLAYER3: packet being lost
+    B ↑ layer5, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: ffffffffffffffffffff}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer5 ↓ A, message: {data: gggggggggggggggggggg}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2001, payload: dddddddddddddddddddd}
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2001, payload: dddddddddddddddddddd}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_1
+    acked
+    A new state: WAIT_0
+    A收到B对第2个分组的确认
+
+>>> layer5 ↓ A, message: {data: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+    A state: WAIT_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+    A new state: WAIT_ACK_0
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: Zhhhhhhhhhhhhhhhhhhh}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: iiiiiiiiiiiiiiiiiiii}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: jjjjjjjjjjjjjjjjjjjj}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+
+>>> layer5 ↓ A, message: {data: kkkkkkkkkkkkkkkkkkkk}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: Zhhhhhhhhhhhhhhhhhhh}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: llllllllllllllllllll}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+
+>>> layer5 ↓ A, message: {data: mmmmmmmmmmmmmmmmmmmm}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 999999, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: nnnnnnnnnnnnnnnnnnnn}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+          TOLAYER3: packet being corrupted
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: Zhhhhhhhhhhhhhhhhhhh}
+    B state: WAIT_0
+          TOLAYER3: packet being lost
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: oooooooooooooooooooo}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer5 ↓ A, message: {data: pppppppppppppppppppp}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+
+>>> layer5 ↓ A, message: {data: qqqqqqqqqqqqqqqqqqqq}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2080, payload: hhhhhhhhhhhhhhhhhhhh}
+    B state: WAIT_0
+    B ↑ layer5, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_0
+    acked
+    A new state: WAIT_1
+    A收到B对第3个分组的确认
+
+>>> layer5 ↓ A, message: {data: rrrrrrrrrrrrrrrrrrrr}
+    A state: WAIT_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2281, payload: rrrrrrrrrrrrrrrrrrrr}
+    A new state: WAIT_ACK_1
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2281, payload: rrrrrrrrrrrrrrrrrrrr}
+    B state: WAIT_1
+    B ↑ layer5, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: ssssssssssssssssssss}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_1
+    acked
+    A new state: WAIT_0
+    A收到B对第4个分组的确认
+
+>>> layer5 ↓ A, message: {data: tttttttttttttttttttt}
+    A state: WAIT_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2320, payload: tttttttttttttttttttt}
+    A new state: WAIT_ACK_0
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2320, payload: tttttttttttttttttttt}
+    B state: WAIT_0
+    B ↑ layer5, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer5 ↓ A, message: {data: uuuuuuuuuuuuuuuuuuuu}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_0
+    acked
+    A new state: WAIT_1
+    A收到B对第5个分组的确认
+
+>>> layer5 ↓ A, message: {data: vvvvvvvvvvvvvvvvvvvv}
+          TOLAYER3: packet being corrupted
+    A state: WAIT_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+    A new state: WAIT_ACK_1
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: Zvvvvvvvvvvvvvvvvvvv}
+    B state: WAIT_1
+          TOLAYER3: packet being lost
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer5 ↓ A, message: {data: wwwwwwwwwwwwwwwwwwww}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer5 ↓ A, message: {data: xxxxxxxxxxxxxxxxxxxx}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+          TOLAYER3: packet being corrupted
+
+>>> layer3 ↑ B, packet: {seqnum: 999999, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+    B state: WAIT_1
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_1
+    corrupt or ack0, ignore
+
+>>> layer5 ↓ A, message: {data: yyyyyyyyyyyyyyyyyyyy}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+    B state: WAIT_1
+          TOLAYER3: packet being lost
+    B ↑ layer5, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: zzzzzzzzzzzzzzzzzzzz}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer5 ↓ A, message: {data: aaaaaaaaaaaaaaaaaaaa}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2361, payload: vvvvvvvvvvvvvvvvvvvv}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_1
+    acked
+    A new state: WAIT_0
+    A收到B对第6个分组的确认
+
+>>> layer5 ↓ A, message: {data: bbbbbbbbbbbbbbbbbbbb}
+          TOLAYER3: packet being lost
+    A state: WAIT_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+    A new state: WAIT_ACK_0
+
+>>> layer5 ↓ A, message: {data: cccccccccccccccccccc}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer5 ↓ A, message: {data: dddddddddddddddddddd}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+    B state: WAIT_0
+          TOLAYER3: packet being lost
+    B ↑ layer5, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer5 ↓ A, message: {data: eeeeeeeeeeeeeeeeeeee}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer5 ↓ A, message: {data: ffffffffffffffffffff}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+          TOLAYER3: packet being lost
+
+>>> layer5 ↓ A, message: {data: gggggggggggggggggggg}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+
+>>> layer5 ↓ A, message: {data: hhhhhhhhhhhhhhhhhhhh}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 1960, payload: bbbbbbbbbbbbbbbbbbbb}
+    B state: WAIT_1
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_0
+    acked
+    A new state: WAIT_1
+    A收到B对第7个分组的确认
+
+>>> layer5 ↓ A, message: {data: iiiiiiiiiiiiiiiiiiii}
+    A state: WAIT_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2101, payload: iiiiiiiiiiiiiiiiiiii}
+    A new state: WAIT_ACK_1
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2101, payload: iiiiiiiiiiiiiiiiiiii}
+    B state: WAIT_1
+          TOLAYER3: packet being corrupted
+    B ↑ layer5, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: Z}
+    A state: WAIT_ACK_1
+    corrupt or ack0, ignore
+
+>>> layer5 ↓ A, message: {data: jjjjjjjjjjjjjjjjjjjj}
+    A state: WAIT_ACK_1, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2101, payload: iiiiiiiiiiiiiiiiiiii}
+          TOLAYER3: packet being corrupted
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2101, payload: Ziiiiiiiiiiiiiiiiiii}
+    B state: WAIT_0
+    corrupt or seq1, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: kkkkkkkkkkkkkkkkkkkk}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_1
+    acked
+    A new state: WAIT_0
+    A收到B对第8个分组的确认
+
+>>> layer5 ↓ A, message: {data: llllllllllllllllllll}
+    A state: WAIT_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+    A new state: WAIT_ACK_0
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+    B state: WAIT_0
+          TOLAYER3: packet being corrupted
+    B ↑ layer5, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: Z}
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: mmmmmmmmmmmmmmmmmmmm}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer5 ↓ A, message: {data: nnnnnnnnnnnnnnnnnnnn}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+          TOLAYER3: packet being corrupted
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: Zlllllllllllllllllll}
+    B state: WAIT_1
+          TOLAYER3: packet being corrupted
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer5 ↓ A, message: {data: oooooooooooooooooooo}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: Z}
+    A state: WAIT_ACK_0
+    corrupt or ack1, ignore
+
+>>> layer5 ↓ A, message: {data: pppppppppppppppppppp}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+
+>>> layer5 ↓ A, message: {data: qqqqqqqqqqqqqqqqqqqq}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+    B state: WAIT_1
+          TOLAYER3: packet being lost
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer5 ↓ A, message: {data: rrrrrrrrrrrrrrrrrrrr}
+    A state: WAIT_ACK_0, ignore
+
+>>> layer5 ↓ A, message: {data: ssssssssssssssssssss}
+    A state: WAIT_ACK_0, ignore
+
+>>> A timeout
+    A state: WAIT_ACK_0
+    A ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+
+>>> layer3 ↑ B, packet: {seqnum: 0, acknum: 0, checksum: 2160, payload: llllllllllllllllllll}
+    B state: WAIT_1
+    corrupt or seq0, send ACK0
+    B ↓ layer3, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 0, checksum: 0, payload: }
+    A state: WAIT_ACK_0
+    acked
+    A new state: WAIT_1
+    A收到B对第9个分组的确认
+
+>>> layer5 ↓ A, message: {data: tttttttttttttttttttt}
+    A state: WAIT_1
+    A ↓ layer3, packet: {seqnum: 1, acknum: 0, checksum: 2321, payload: tttttttttttttttttttt}
+    A new state: WAIT_ACK_1
+
+>>> layer5 ↓ A, message: {data: uuuuuuuuuuuuuuuuuuuu}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer3 ↑ B, packet: {seqnum: 1, acknum: 0, checksum: 2321, payload: tttttttttttttttttttt}
+    B state: WAIT_1
+    B ↑ layer5, send ACK1
+    B ↓ layer3, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+
+>>> layer5 ↓ A, message: {data: vvvvvvvvvvvvvvvvvvvv}
+    A state: WAIT_ACK_1, ignore
+
+>>> layer3 ↑ A, packet: {seqnum: 0, acknum: 1, checksum: 1, payload: }
+    A state: WAIT_ACK_1
+    acked
+    A new state: WAIT_0
+    A收到B对第10个分组的确认

@@ -1,0 +1,25 @@
+No.     Time           Source                Destination           Protocol Length Info
+     15 8.628758       fe80::cab:21fb:bf60:9847 fe80::96e9:eeff:fe68:6c29 DNS      100    Standard query 0xf831 A bag.itunes.apple.com
+
+Frame 15: 100 bytes on wire (800 bits), 100 bytes captured (800 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00), Dst: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)
+Internet Protocol Version 6, Src: fe80::cab:21fb:bf60:9847, Dst: fe80::96e9:eeff:fe68:6c29
+    0110 .... = Version: 6
+    .... 0000 0000 .... .... .... .... .... = Traffic Class: 0x00 (DSCP: CS0, ECN: Not-ECT)
+    .... .... .... 1111 0000 1101 0000 0000 = Flow Label: 0xf0d00
+    Payload Length: 46
+    Next Header: UDP (17)
+    Hop Limit: 64
+    Source Address: fe80::cab:21fb:bf60:9847
+    Destination Address: fe80::96e9:eeff:fe68:6c29
+    [Destination SA MAC: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)]
+User Datagram Protocol, Src Port: 57194, Dst Port: 53
+Domain Name System (query)
+
+0000  94 e9 ee 68 6c 29 00 1e 10 1f 00 00 86 dd 60 0f   ...hl)........`.
+0010  0d 00 00 2e 11 40 fe 80 00 00 00 00 00 00 0c ab   .....@..........
+0020  21 fb bf 60 98 47 fe 80 00 00 00 00 00 00 96 e9   !..`.G..........
+0030  ee ff fe 68 6c 29 df 6a 00 35 00 2e ea 8e f8 31   ...hl).j.5.....1
+0040  01 00 00 01 00 00 00 00 00 00 03 62 61 67 06 69   ...........bag.i
+0050  74 75 6e 65 73 05 61 70 70 6c 65 03 63 6f 6d 00   tunes.apple.com.
+0060  00 01 00 01                                       ....
