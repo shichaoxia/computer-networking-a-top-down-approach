@@ -6600,13 +6600,27 @@
 
     详述实现这种转发行为的s2中的流表项。
 
-    | 匹配                                 | 动作       |
-    |--------------------------------------+------------|
-    | Ingress Port = 3; IP Dst = 10.2.0.1; | Forward(2) |
-    | Ingress Port = 3; IP Dst = 10.2.0.2; | Forward(2) |
-    | Ingress Port = 3; IP Dst = 10.2.0.5; | Forward(2) |
-    | Ingress Port = 3; IP Dst = 10.2.0.6; | Forward(2) |
-    | Ingress Port = 4; IP Dst = 10.2.0.1; | Forward(1) |
-    | Ingress Port = 4; IP Dst = 10.2.0.2; | Forward(1) |
-    | Ingress Port = 4; IP Dst = 10.2.0.5; | Forward(1) |
-    | Ingress Port = 4; IP Dst = 10.2.0.6; | Forward(1) |
+    | 匹配                                | 动作       | 说明      |
+    |-------------------------------------+------------+-----------|
+    | Ingress Port = 3; IP Dst = 10.1.*.* | Forward(2) | h3->h1,h2 |
+    | Ingress Port = 3; IP Dst = 10.3.*.* | Forward(2) | h3->h5,h6 |
+    | Ingress Port = 4; IP Dst = 10.1.*.* | Forward(1) | h4->h1,h2 |
+    | Ingress Port = 4; IP Dst = 10.3.*.* | Forward(1) | h4->h5,h5 |
+
+*** P21
+
+    再次考虑上面P19的场景。给出分组交换机s1和s3的流表项，使得具有h3或h4源地址的任何到达数据报被路由到在IP数据报的目的地址字段中定义的目的主机。（提示：你的转发表规则应当包括如下情况，即到达的数据报被发往直接连接的主机，或应当转发到相邻路由器以便传递到最终主机。）
+
+    #+caption: s1的流表
+    | 匹配                                 | 动作       | 说明         |
+    |--------------------------------------+------------+--------------|
+    | IP Src = 10.2.*.*; IP Dst = 10.1.0.1 | Forward(2) | h3,h4->h1    |
+    | IP Src = 10.2.*.*; IP Dst = 10.1.0.2 | Forward(3) | h3,h4->h2    |
+    | IP Src = 10.2.*.*; IP Dst = 10.3.*.* | Forward(1) | h3,h4->h5,h6 |
+
+    #+caption: s3的流表
+    | 匹配                                 | 动作       | 说明         |
+    |--------------------------------------+------------+--------------|
+    | IP Src = 10.2.*.*; IP Dst = 10.1.0.5 | Forward(2) | h3,h4->h5    |
+    | IP Src = 10.2.*.*; IP Dst = 10.1.0.6 | Forward(1) | h3,h4->h6    |
+    | IP Src = 10.2.*.*; IP Dst = 10.1.*.* | Forward(3) | h3,h4->h1,h2 |
