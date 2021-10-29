@@ -6589,3 +6589,24 @@
     | Ingress Port = 2; IP Dst = 10.2.0.4;                   | Forward(4) |
     | Ingress Port = 3; IP Dst = 10.2.0.4;                   | Forward(4) |
     | Ingress Port = 4; IP Dst = 10.2.0.3;                   | Forward(3) |
+
+*** P20
+
+    再次考虑显示在图4-30中的SDN OpenFlow网络。假定在s2对于来自主机h3或h4的数据报的期望转发行为如下：
+
+    + 任何来自主机h3并且发往主机h1、h2、h5或h6的数据报应当在网络中以顺时针方向转发。
+    + 任何来自主机h4并且发往主机h1、h2、h5或h6的数据报应当在网络中以逆时针方向转发。
+
+
+    详述实现这种转发行为的s2中的流表项。
+
+    | 匹配                                 | 动作       |
+    |--------------------------------------+------------|
+    | Ingress Port = 3; IP Dst = 10.2.0.1; | Forward(2) |
+    | Ingress Port = 3; IP Dst = 10.2.0.2; | Forward(2) |
+    | Ingress Port = 3; IP Dst = 10.2.0.5; | Forward(2) |
+    | Ingress Port = 3; IP Dst = 10.2.0.6; | Forward(2) |
+    | Ingress Port = 4; IP Dst = 10.2.0.1; | Forward(1) |
+    | Ingress Port = 4; IP Dst = 10.2.0.2; | Forward(1) |
+    | Ingress Port = 4; IP Dst = 10.2.0.5; | Forward(1) |
+    | Ingress Port = 4; IP Dst = 10.2.0.6; | Forward(1) |
