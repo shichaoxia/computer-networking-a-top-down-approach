@@ -6587,8 +6587,8 @@
     | Ingress Port = 2; IP Dst = 10.2.0.3;                   | Forward(3) |
     | Ingress Port = 1; IP Dst = 10.2.0.4;                   | Forward(4) |
     | Ingress Port = 2; IP Dst = 10.2.0.4;                   | Forward(4) |
-    | Ingress Port = 3; IP Dst = 10.2.0.4;                   | Forward(4) |
-    | Ingress Port = 4; IP Dst = 10.2.0.3;                   | Forward(3) |
+    | Ingress Port = 3;                                      | Forward(4) |
+    | Ingress Port = 4;                                      | Forward(3) |
 
 *** P20
 
