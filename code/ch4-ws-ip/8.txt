@@ -1,0 +1,62 @@
+No.     Time           Source                Destination           Protocol Length Info
+      9 6.176826       10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded in transit)
+
+Frame 9: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
+Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
+Internet Protocol Version 4, Src: 10.216.228.1, Dst: 192.168.1.102
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0xc0 (DSCP: CS6, ECN: Not-ECT)
+    Total Length: 56
+    Identification: 0x9d7c (40316)
+    Flags: 0x00
+    Fragment Offset: 0
+    Time to Live: 255
+    Protocol: ICMP (1)
+    Header Checksum: 0x6ca0 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.216.228.1
+    Destination Address: 192.168.1.102
+Internet Control Message Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+     40 11.174495      10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded in transit)
+
+Frame 40: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
+Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
+Internet Protocol Version 4, Src: 10.216.228.1, Dst: 192.168.1.102
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0xc0 (DSCP: CS6, ECN: Not-ECT)
+    Total Length: 56
+    Identification: 0x9d98 (40344)
+    Flags: 0x00
+    Fragment Offset: 0
+    Time to Live: 255
+    Protocol: ICMP (1)
+    Header Checksum: 0x6c84 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.216.228.1
+    Destination Address: 192.168.1.102
+Internet Control Message Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+     65 16.179649      10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded in transit)
+
+Frame 65: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
+Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
+Internet Protocol Version 4, Src: 10.216.228.1, Dst: 192.168.1.102
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0xc0 (DSCP: CS6, ECN: Not-ECT)
+    Total Length: 56
+    Identification: 0x9db8 (40376)
+    Flags: 0x00
+    Fragment Offset: 0
+    Time to Live: 255
+    Protocol: ICMP (1)
+    Header Checksum: 0x6c64 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.216.228.1
+    Destination Address: 192.168.1.102
+Internet Control Message Protocol
