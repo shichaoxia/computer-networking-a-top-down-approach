@@ -6655,7 +6655,7 @@
 
    [[file:code/ch4-ws-ip/wireshark-ip-v7.0.pdf][Wireshark Lab: IP v7.0]]
 
-   traceroute[[file:code/ch4-ws-ip/my-trace.pcapng][结果]]不理想，采用实验附带的数据。
+   下面的traceroute[[file:code/ch4-ws-ip/my-trace.pcapng][结果]]不理想，采用实验附带的数据。
 
    #+begin_example
      ❯ traceroute -I -w 1 gaia.cs.umass.edu
@@ -6759,4 +6759,57 @@
 
       Identification会变化，TTL不变。
 
-   10.
+   10. Find the first ICMP Echo Request message that was sent by your computer after you changed the Packet Size in pingplotter to be 2000. Has that message been fragmented across more than one IP datagram?
+
+       #+include: "./code/ch4-ws-ip/10.txt" src c
+
+   11. \-
+
+       + Print out the first fragment of the fragmented IP datagram.
+
+         #+include: "./code/ch4-ws-ip/11.txt" src c
+
+       + What information in the IP header indicates that the datagram been fragmented?
+
+         Flags: 0x20, More fragments
+
+       + What information in the IP header indicates whether this is the first fragment versus a latter fragment?
+
+         Flags: 0x20, More fragments
+         Fragment Offset: 0
+
+       + How long is this IP datagram?
+
+         Total Length: 1500
+
+   12. \-
+       + Print out the second fragment of the fragmented IP datagram.
+
+         #+include: "./code/ch4-ws-ip/12.txt" src c
+
+       + What information in the IP header indicates that this is not the first datagram fragment?
+         Fragment Offset: 1480
+
+       + Are the more fragments?
+
+         No.
+
+       + How can you tell?
+
+          Flags: 0x00
+
+   13. What fields change in the IP header between the first and second fragment?
+
+       Total Length
+       Flags
+       Header Checksum
+
+   14. How many fragments were created from the original datagram?
+
+       #+include: "./code/ch4-ws-ip/14.txt" src c
+
+       3
+
+   15. What fields change in the IP header among the fragments?
+
+       Fragment Offset

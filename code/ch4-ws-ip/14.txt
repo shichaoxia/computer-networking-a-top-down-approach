@@ -1,0 +1,21 @@
+No.     Time           Source                Destination           Protocol Length Info
+    218 43.467629      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) request  id=0x0300, seq=40451/926, ttl=1 (no response found!)
+
+Frame 218: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
+Ethernet II, Src: Actionte_8a:70:1a (00:20:e0:8a:70:1a), Dst: LinksysG_da:af:73 (00:06:25:da:af:73)
+Internet Protocol Version 4, Src: 192.168.1.102, Dst: 128.59.23.100
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+    Total Length: 568
+    Identification: 0x3323 (13091)
+    Flags: 0x01
+    Fragment Offset: 2960
+    Time to Live: 1
+    Protocol: ICMP (1)
+    Header Checksum: 0x2983 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 192.168.1.102
+    Destination Address: 128.59.23.100
+    [3 IPv4 Fragments (3508 bytes): #216(1480), #217(1480), #218(548)]
+Internet Control Message Protocol
