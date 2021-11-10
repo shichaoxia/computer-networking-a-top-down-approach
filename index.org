@@ -6813,3 +6813,35 @@
    15. What fields change in the IP header among the fragments?
 
        Fragment Offset
+
+* 网络层：控制平面
+** 笔记
+
+#+ATTR_ORG: :width 300
+#+ATTR_HTML: :style width:100%; max-width:300px;
+[[file:img/fig5-3.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:470px;
+[[file:img/fig5-6.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:360px;
+[[file:img/fig5-7.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:480px;
+[[file:img/fig5-10.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:460px;
+[[file:img/fig5-12.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:370px;
+[[file:img/fig5-13.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:390px;
+[[file:img/fig5-16.png]]
+
