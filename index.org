@@ -6899,3 +6899,9 @@ t_{45}, y通知z, D_{z}(x) = min{c(z,x)+D_{x}(x), c(z,y)+D_{y}(x)} = min{50+0, 1
 #+ATTR_ORG: :width 350
 #+ATTR_HTML: :style width:100%; max-width:480px;
 [[file:img/ch5-r5.png]]
+
+*** R6
+
+每个自治系统使用相同的AS内部路由选择算法是必要的吗？说明其原因。
+
+不需要，每个AS对其内部的路由享有自治权。
