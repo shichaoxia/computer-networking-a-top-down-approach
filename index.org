@@ -7013,3 +7013,11 @@ p.268
 [[file:img/fig5-17.png]]
 
 服务抽象层允许内部网络服务应用程序相互通信。它允许控制器组件和应用程序互相调用对方的服务，并订阅它们产生的事件。该层还为通信层的具体底层通信协议提供统一的抽象接口，包括OpenFlow和SNMP。
+
+*** R19
+
+列举4种不同类型的ICMP报文。
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:476px;
+[[file:img/fig5-19.png]]
