@@ -6985,3 +6985,15 @@ NEXT-HOP属性表示沿着通告路径（在收到通告的AS之外）到一个�
 假定你要在SDN控制平面中实现一个新型路由选择协议。你将在哪个层次中实现该协议？解释理由。
 
 SDN网络控制应用程序层，因为这一层里的路由选择网络控制应用程序可以决定源和目的地之间的端到端路径。
+
+*** R16
+
+什么类型的报文流跨越SDN控制器的北向和南向API？谁是从控制器跨越南向接口发送的这些报文的接收者？谁是跨越北向接口从控制器发送的这些报文的接收者？
+
++ What types of messages flow across an SDN controller’s northbound and southbound APIs?
+
+  网络控制应用程序与控制器交互的报文通过北向API；受控交换机与控制器交互的报文通过南向API。
+
++ Who is the recipient of these messages sent from the controller across the southbound interface, and who sends messages to the controller across the northbound interface?
+
+  受控交换机；网络控制应用程序。
