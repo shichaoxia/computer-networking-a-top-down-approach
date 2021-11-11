@@ -7021,3 +7021,9 @@ p.268
 #+ATTR_ORG: :width 350
 #+ATTR_HTML: :style width:100%; max-width:476px;
 [[file:img/fig5-19.png]]
+
+*** R20
+
+在发送主机执行Traceroute程序，收到哪两种类型的ICMP报文？
+
+目的地之前的路由器发送的TTL过期（11,0）和目的主机发送的目的端口不可达（3,3）。
