@@ -6842,6 +6842,14 @@
 [[file:img/fig5-13.png]]
 
 #+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:370px;
+[[file:img/fig5-14.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:380px;
+[[file:img/fig5-15.png]]
+
+#+ATTR_ORG: :width 350
 #+ATTR_HTML: :style width:100%; max-width:390px;
 [[file:img/fig5-16.png]]
 
