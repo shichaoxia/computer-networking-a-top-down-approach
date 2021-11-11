@@ -6997,3 +6997,7 @@ SDN网络控制应用程序层，因为这一层里的路由选择网络控制�
 + Who is the recipient of these messages sent from the controller across the southbound interface, and who sends messages to the controller across the northbound interface?
 
   受控交换机；网络控制应用程序。
+
+*** R17
+
+描述两种从受控设备到控制器发送的OpenFlow报文类型的目的。描述两种从控制器到受控设备发送的OpenFlow报文类型的目的。
