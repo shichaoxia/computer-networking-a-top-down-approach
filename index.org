@@ -7055,3 +7055,53 @@ SNMP GetRequest和SetRequest报文的目的是什么？
 SNMP陷阱报文的目的是什么？
 
 通知管理服务器，一个异常情况已经导致了MIB对象值的改变。
+
+** 习题
+
+*** P1
+
+观察图5-3，列举从y到u不包含任何环路的路径。
+
+#+ATTR_ORG: :width 300
+#+ATTR_HTML: :style width:100%; max-width:300px;
+[[file:img/fig5-3.png]]
+
+#+begin_src plantuml :file img/ch5-p1.svg :cmdline -charset utf-8
+  @startmindmap
+  ,* y
+  ,** w
+  ,*** v
+  ,**** u
+  ,**** x
+  ,***** u
+  ,*** x
+  ,**** v
+  ,***** u
+  ,**** u
+  ,*** u
+  ,** x
+  ,*** v
+  ,**** u
+  ,*** u
+  ,*** w
+  ,**** v
+  ,***** u
+  ,**** u
+  ,** z
+  ,*** w
+  ,**** v
+  ,***** u
+  ,***** x
+  ,****** u
+  ,**** x
+  ,***** u
+  ,***** v
+  ,****** u
+  ,**** u
+  @endmindmap
+#+end_src
+
+#+ATTR_ORG: :width 200
+#+ATTR_HTML: :style width:100%; max-width:350px;
+#+RESULTS:
+[[file:img/ch5-p1.svg]]
