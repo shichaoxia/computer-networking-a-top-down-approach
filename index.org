@@ -7105,3 +7105,13 @@ SNMP陷阱报文的目的是什么？
 #+ATTR_HTML: :style width:100%; max-width:350px;
 #+RESULTS:
 [[file:img/ch5-p1.svg]]
+
+*** P2
+
+重复习题P1，列举从x到z、z到u以及z到w的不包含任何环路的路径。
+
+x到z:
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:600px;
+[[file:img/ch5-p2.png]]
