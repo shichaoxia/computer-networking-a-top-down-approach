@@ -7116,7 +7116,7 @@ x到z:
 #+ATTR_HTML: :style width:100%; max-width:600px;
 [[file:img/ch5-p2.png]]
 
-*** P3
+*** P3 Dijkstra最短路算法
 
 考虑下面的网络。对于标明的链路开销，用Dijkstra的最短路算法计算出从x到所有网络节点的最短路径。通过计算一个类似于表5-1的表，说明该算法是如何工作的。
 
