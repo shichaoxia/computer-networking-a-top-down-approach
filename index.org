@@ -7115,3 +7115,21 @@ x到z:
 #+ATTR_ORG: :width 350
 #+ATTR_HTML: :style width:100%; max-width:600px;
 [[file:img/ch5-p2.png]]
+
+*** P3
+
+考虑下面的网络。对于标明的链路开销，用Dijkstra的最短路算法计算出从x到所有网络节点的最短路径。通过计算一个类似于表5-1的表，说明该算法是如何工作的。
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:280px;
+[[file:img/ch5-p3.png]]
+
+| N'            | D(y),p(y) | D(z),p(z) | D(u),p(u) | D(v),p(v) | D(w),p(w) | D(t),p(t) |
+|---------------+-----------+-----------+-----------+-----------+-----------+-----------|
+| x             | 6,x       | 8,x       | ∞         | 3,x       | 6,x       | ∞         |
+| x,v           | 6,x       | 8,x       | 6,v       |           | 6,x       | 7,v       |
+| x,v,w         | 6,x       | 8,x       | 6,v       |           |           | 7,v       |
+| x,v,w,u       | 6,x       | 8,x       |           |           |           | 7,v       |
+| x,v,w,u,y     |           | 8,x       |           |           |           | 7,v       |
+| x,v,w,u,y,t   |           | 8,x       |           |           |           |           |
+| x,v,w,u,y,t,z |           |           |           |           |           |           |
