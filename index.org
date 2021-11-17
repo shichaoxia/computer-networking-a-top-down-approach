@@ -7325,3 +7325,22 @@ BGP路由器使用AS-PATH属性来检测和防止通告环路。如果一台路�
 BGP路由器将总是选择具有最短AS路径长度的无环路由吗？评估你的答案。
 
 不一定，在BGP的路由选择算法中本地偏好规则的优先级高于最短AS-PATH。
+
+*** P14 eBGP和iBGP
+
+考虑下图所示的网络。假定AS3和AS2正在运行OSPF作为其AS内部路由选择协议。假定AS1和AS4正在运行RIP作为其AS内部路由选择协议。假定AS间路由选择协议使用的是eBGP和iBGP。假定最初在AS2和AS4之间不存在物理链路。
+
+a. 路由器3c从下列哪个路由选择协议学习到了前缀x: OSPF、RIP、eBGP或iBGP？
+b. 路由器3a从哪个路由选择协议学习到了前缀x？
+c. 路由器1c从哪个路由选择协议学习到了前缀x？
+d. 路由器1d从哪个路由选择协议学习到了前缀x？
+
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:470px;
+[[file:img/ch5-p14.png]]
+
+a. eBGP
+b. iBGP
+c. eBGP
+d. iBGP
