@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-11-02 Tue 11:34 -->
+<!-- 2021-11-17 Wed 19:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算机网络：自顶向下方法 题解</title>
@@ -18,567 +18,1595 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org06fbdcf">1. Wireshark实验</a></li>
+<li><a href="#org257bc54">1. 网络层：控制平面</a>
+<ul>
+<li><a href="#org565d1f8">1.1. 笔记</a></li>
+<li><a href="#org3ee04e1">1.2. 复习题</a>
+<ul>
+<li><a href="#org0192e29">R1 每路由器控制</a></li>
+<li><a href="#org5399f6c">R2 逻辑集中式控制</a></li>
+<li><a href="#orgb363f90">R3 集中式和分散式路由选择算法</a></li>
+<li><a href="#orgb765afe">R4 链路状态和距离矢量路由选择选法</a></li>
+<li><a href="#orgb377fb3">R5 距离矢量路由选择中的无穷计数</a></li>
+<li><a href="#orgcf7031f">R6</a></li>
+<li><a href="#orgde67d15">R7 AS内部协议的必要性</a></li>
+<li><a href="#org086475f">R8</a></li>
+<li><a href="#org156785d">R9 OSPF AS中的区域</a></li>
+<li><a href="#org3da510f">R10 子网、前缀和BGP路由</a></li>
+<li><a href="#org3d45d9e">R11 AS-PATH NEXT-HOP</a></li>
+<li><a href="#org2844a99">R12 BGP策略</a></li>
+<li><a href="#org12e9280">R13</a></li>
+<li><a href="#org42a699f">R14</a></li>
+<li><a href="#org16112ed">R15</a></li>
+<li><a href="#org827ae37">R16</a></li>
+<li><a href="#org720cc29">R17</a></li>
+<li><a href="#orge87698e">R18</a></li>
+<li><a href="#orgecc52b7">R19</a></li>
+<li><a href="#org1589b1d">R20</a></li>
+<li><a href="#org7f95c05">R21</a></li>
+<li><a href="#org1860115">R22 SNMP报文</a></li>
+<li><a href="#org84642f7">R23</a></li>
+</ul>
+</li>
+<li><a href="#org2d026cf">1.3. 习题</a>
+<ul>
+<li><a href="#orga826fd3">P1 图中的路径</a></li>
+<li><a href="#org8e0b5f3">P2</a></li>
+<li><a href="#orgba6d393">P3 Dijkstra最短路算法</a></li>
+<li><a href="#org1378de3">P4</a></li>
+<li><a href="#orgc3a1bfb">P5 距离向量算法</a></li>
+<li><a href="#orgbb73a08">P6 距离向量算法收敛所需的迭代次数</a></li>
+<li><a href="#orge256489">P7</a></li>
+<li><a href="#orgf12b08d">P8</a></li>
+<li><a href="#org442a211">P9 无穷计数与链路开销减小</a></li>
+<li><a href="#org06a8c1a">P10 距离向量算法的收敛性</a></li>
+<li><a href="#orgd0f09e1">P11 距离向量算法的计算过程</a></li>
+<li><a href="#orgdc58e11">P12</a></li>
+<li><a href="#orgdb18310">P13</a></li>
+<li><a href="#org5d299d9">P14 eBGP和iBGP</a></li>
+<li><a href="#org04dda34">P15</a></li>
+<li><a href="#org253bde0">P16</a></li>
+<li><a href="#org08471fe">P17</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org06fbdcf" class="outline-2">
-<h2 id="org06fbdcf"><span class="section-number-2">1.</span> Wireshark实验</h2>
+<div id="outline-container-org257bc54" class="outline-2">
+<h2 id="org257bc54"><span class="section-number-2">1.</span> 网络层：控制平面</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-<a href="code/ch4-ws-ip/wireshark-ip-v7.0.pdf">Wireshark Lab: IP v7.0</a><br />
+</div>
+<div id="outline-container-org565d1f8" class="outline-3">
+<h3 id="org565d1f8"><span class="section-number-3">1.1.</span> 笔记</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<div id="orga14dce9" class="figure">
+<p><img src="img/fig5-3.png" alt="fig5-3.png" style="width:100%; max-width:300px;" /><br />
+</p>
+</div>
+
+
+<div id="org2d5f2cb" class="figure">
+<p><img src="img/fig5-6.png" alt="fig5-6.png" style="width:100%; max-width:470px;" /><br />
+</p>
+</div>
+
+
+<div id="org3d70dbc" class="figure">
+<p><img src="img/fig5-7.png" alt="fig5-7.png" style="width:100%; max-width:360px;" /><br />
+</p>
+</div>
+
+
+<div id="orgd282b4c" class="figure">
+<p><img src="img/fig5-10.png" alt="fig5-10.png" style="width:100%; max-width:480px;" /><br />
+</p>
+</div>
+
+
+<div id="org43d5943" class="figure">
+<p><img src="img/fig5-12.png" alt="fig5-12.png" style="width:100%; max-width:460px;" /><br />
+</p>
+</div>
+
+
+<div id="org2506dc7" class="figure">
+<p><img src="img/fig5-13.png" alt="fig5-13.png" style="width:100%; max-width:370px;" /><br />
+</p>
+</div>
+
+
+<div id="org59014c6" class="figure">
+<p><img src="img/fig5-14.png" alt="fig5-14.png" style="width:100%; max-width:370px;" /><br />
+</p>
+</div>
+
+
+<div id="org6bece53" class="figure">
+<p><img src="img/fig5-15.png" alt="fig5-15.png" style="width:100%; max-width:380px;" /><br />
+</p>
+</div>
+
+
+<div id="org9654da9" class="figure">
+<p><img src="img/fig5-16.png" alt="fig5-16.png" style="width:100%; max-width:390px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3ee04e1" class="outline-3">
+<h3 id="org3ee04e1"><span class="section-number-3">1.2.</span> 复习题</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org0192e29" class="outline-4">
+<h4 id="org0192e29">R1 每路由器控制</h4>
+<div class="outline-text-4" id="text-org0192e29">
+<ul class="org-ul">
+<li><p>
+基于每路由器控制的控制平面意味着什么？<br />
 </p>
 
 <p>
-下面的traceroute<a href="code/ch4-ws-ip/my-trace.pcapng">结果</a>不理想，采用实验附带的数据。<br />
+意味着在每台路由器中运行一种路由选择算法，每台路由器中都包含转发和路由选择功能。每台路由器有一个路由选择组件，用于与其他路由器中的路由选择组件通信，以计算其转发表的值。<br />
+</p></li>
+
+<li><p>
+在这种情况下，当我们说网络控制平面和数据平面是“整体地”实现时，是什么意思？<br />
 </p>
 
-<pre class="example" id="org452aaf5">
-❯ traceroute -I -w 1 gaia.cs.umass.edu
-traceroute to gaia.cs.umass.edu (128.119.245.12), 64 hops max, 72 byte packets
- 1  www.huaweimobilewifi.com (192.168.8.1)  19.915 ms  26.711 ms  29.840 ms
- 2  * * *
- 3  192.168.208.65 (192.168.208.65)  38.351 ms  39.267 ms  40.085 ms
- 4  192.168.191.77 (192.168.191.77)  39.732 ms  39.413 ms  39.948 ms
- 5  * * *
- 6  * * *
- 7  * * *
- 8  * * *
- 9  * * *
-10  * * *
-11  * * *
-12  * * *
-13  * * *
-14  * * *
-15  * * *
-16  * * *
-17  * * *
-18  * * *
-19  * * *
-20  * * *
-21  * * *
-22  * * *
-23  * * *
-24  * * *
-25  * * *
-26  * * *
-27  * * *
-28  gaia.cs.umass.edu (128.119.245.12)  280.594 ms  279.113 ms  299.696 ms
-</pre>
+<p>
+控制平面路由选择功能与数据平面转发功能位于同一台物理路由器中。<br />
+</p></li>
+</ul>
+</div>
+</div>
 
+<div id="outline-container-org5399f6c" class="outline-4">
+<h4 id="org5399f6c">R2 逻辑集中式控制</h4>
+<div class="outline-text-4" id="text-org5399f6c">
+<ul class="org-ul">
+<li><p>
+基于逻辑上集中控制的控制平面意味着什么？<br />
+</p>
+
+<p>
+逻辑集中式控制器计算并分发转发表以供每台路由 器使用。<br />
+</p></li>
+
+<li><p>
+在这种情况下，数据平面和控制平面是在相同的设备或在分离的设备中实现的吗？请解释。<br />
+</p>
+
+<p>
+数据平面和控制平面在不同的设备中实现。控制平面在一台或多台服务器中实现，而数据平面在每台路由器中实现。<br />
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb363f90" class="outline-4">
+<h4 id="orgb363f90">R3 集中式和分散式路由选择算法</h4>
+<div class="outline-text-4" id="text-orgb363f90">
+<p>
+比较和对照集中式和分布式路由选择算法的性质。给出一个路由选择协议的例子，该路由选择协议采用分布式方法和集中式方法。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">集中式</th>
+<th scope="col" class="org-left">分散式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">计算节点拥有的信息</td>
+<td class="org-left">完整的,全局的网络知识</td>
+<td class="org-left">与其直接相连链路的开销知识</td>
+</tr>
+
+<tr>
+<td class="org-left">计算过程</td>
+<td class="org-left">直接计算出从源到目的地之间的最低开销路径</td>
+<td class="org-left">通过迭代计算过程以及与相邻节点的信息交换，一个节点逐渐计算出到达某目的节点或一组目的节点的最低开销路径</td>
+</tr>
+
+<tr>
+<td class="org-left">例子</td>
+<td class="org-left">OSPF</td>
+<td class="org-left">BGP</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgb765afe" class="outline-4">
+<h4 id="orgb765afe">R4 链路状态和距离矢量路由选择选法</h4>
+<div class="outline-text-4" id="text-orgb765afe">
+<p>
+比较和对照链路状态和距离矢量这两种路由选择算法。<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">链路状态</th>
+<th scope="col" class="org-left">矢量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">通信对象</td>
+<td class="org-left">所有其他节点</td>
+<td class="org-left">直接相连的邻居</td>
+</tr>
+
+<tr>
+<td class="org-left">通信内容</td>
+<td class="org-left">与自己直接相连链路的开销</td>
+<td class="org-left">从自己到网络中所有其他节点的最低开销估计</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgb377fb3" class="outline-4">
+<h4 id="orgb377fb3">R5 距离矢量路由选择中的无穷计数</h4>
+<div class="outline-text-4" id="text-orgb377fb3">
+<p>
+在距离矢量路由选择中的“无穷计数”是什么意思？<br />
+</p>
+
+<p>
+t<sub>0</sub>,         D<sub>y</sub>(x) = 6<br />
+t<sub>1</sub>, y通知z, D<sub>z</sub>(x) = c(z,y) + D<sub>y</sub>(x) = 7<br />
+t<sub>2</sub>, z通知y, D<sub>y</sub>(x) = 8<br />
+t<sub>3</sub>, y通知z, D<sub>z</sub>(x) = 9<br />
+&#x2026;<br />
+t<sub>43</sub>, y通知z, D<sub>z</sub>(x) = 49<br />
+t<sub>44</sub>, z通知y, D<sub>y</sub>(x) = 50<br />
+t<sub>45</sub>, y通知z, D<sub>z</sub>(x) = min{c(z,x)+D<sub>x</sub>(x), c(z,y)+D<sub>y</sub>(x)} = min{50+0, 1+50} = 50<br />
+</p>
+
+
+<div id="org7b25114" class="figure">
+<p><img src="img/ch5-r5.png" alt="ch5-r5.png" style="width:100%; max-width:480px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf7031f" class="outline-4">
+<h4 id="orgcf7031f">R6</h4>
+<div class="outline-text-4" id="text-orgcf7031f">
+<p>
+每个自治系统使用相同的AS内部路由选择算法是必要的吗？说明其原因。<br />
+</p>
+
+<p>
+不需要，每个AS对其内部的路由享有自治权。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgde67d15" class="outline-4">
+<h4 id="orgde67d15">R7 AS内部协议的必要性</h4>
+<div class="outline-text-4" id="text-orgde67d15">
+<p>
+为什么在因特网中用到了不同的AS间与AS内部协议？<br />
+</p>
+
+<p>
+所有路由器执行相同的路由选择算法以计算穿越整个网络的路由选择路径会遇到两个问题：<br />
+</p>
 <ol class="org-ol">
-<li><p>
-Select the first ICMP Echo Request message sent by your computer, and expand the Internet Protocol part of the packet in the packet details window.<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-      8 6.163045       192.168.1.102         128.59.23.100         ICMP     98     Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=20483/848, <span class="org-variable-name">ttl</span>=1 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 8: 98 bytes on wire (784 bits), 98 bytes captured (784 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 84
-    Identification: 0x32d0 (13008)
-    Flags: 0x00
-    Fragment Offset: 0
-    Time to Live: 1
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x2d2c [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-Internet Control Message Protocol
-</pre>
-</div>
-
-<p>
-What is the IP address of your computer?<br />
-</p>
-
-<p>
-Source Address: 192.168.1.102<br />
-</p></li>
-
-<li><p>
-Within the IP packet header, what is the value in the upper layer protocol field?<br />
-</p>
-
-<p>
-Protocol: ICMP (1)<br />
-</p></li>
-
-<li>&#x00ad;<br />
-
-<ul class="org-ul">
-<li><p>
-How many bytes are in the IP header?<br />
-</p>
-
-<p>
-Header Length: 20 bytes<br />
-</p></li>
-
-<li><p>
-How many bytes are in the payload of the IP datagram? Explain how you determined the number of payload bytes.<br />
-</p>
-
-<p>
-Total Length: 84<br />
-</p>
-
-<p>
-payload length = 84 - 20 = 64 bytes<br />
-</p></li>
-</ul></li>
-
-<li><p>
-Has this IP datagram been fragmented? Explain how you determined whether or not the datagram has been fragmented.<br />
-</p>
-
-<p>
-没有被分片，More fragments: Not set<br />
-</p></li>
-
-<li><p>
-Which fields in the IP datagram always change from one datagram to the next within this series of ICMP messages sent by your computer?<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-    355 53.678468      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=49155/960, <span class="org-variable-name">ttl</span>=9 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 355: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x3346 (13126)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 9
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x2160 [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #353(1480), #354(1480), #355(548)]
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-    358 53.714979      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=49411/961, <span class="org-variable-name">ttl</span>=10 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 358: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x3347 (13127)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 10
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x205f [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #356(1480), #357(1480), #358(548)]
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-    361 53.728518      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=49667/962, <span class="org-variable-name">ttl</span>=11 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 361: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x3348 (13128)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 11
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x1f5e [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #359(1480), #360(1480), #361(548)]
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-    365 53.758584      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=49923/963, <span class="org-variable-name">ttl</span>=12 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 365: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x3349 (13129)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 12
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x1e5d [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #363(1480), #364(1480), #365(548)]
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-    368 53.778721      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=50179/964, <span class="org-variable-name">ttl</span>=13 (<span class="org-type">reply</span> <span class="org-variable-name">in</span> 380)
-
-Frame 368: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x334a (13130)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 13
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x1d5c [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #366(1480), #367(1480), #368(548)]
-Internet Control Message Protocol
-</pre>
-</div>
-
-<p>
-Identification<br />
-Time to Live<br />
-Header Checksum<br />
-</p></li>
-
-<li>Which fields stay constant? Which of the fields must stay constant? Which fields must change? Why?<br />
-
-<ul class="org-ul">
-<li>Stay constant:<br />
-Version<br />
-Header Length<br />
-Protocol<br />
-Source Address<br />
-Destination Address<br /></li>
-
-<li>Must stay constant:<br />
-Source Address<br />
-Destination Address<br />
-Protocol<br /></li>
-
-<li>Must change:<br />
-Identification<br />
-Time to Live<br /></li>
-</ul></li>
-
-<li><p>
-Describe the pattern you see in the values in the Identification field of the IP datagram<br />
-</p>
-
-<ol class="org-ol">
-<li>128.119.40.128<br /></li>
-<p>
-从13008开始，逐个IP数据报加一。<br />
-</p></li>
-
-<li><p>
-What is the value in the Identification field and the TTL field?<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-      9 6.176826       10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded <span class="org-type">in</span> <span class="org-variable-name">transit</span>)
-
-Frame 9: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: LinksysG_da:af:73 (00:06:25:da:af:73), <span class="org-function-name">Dst</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 10.216.228.1, <span class="org-variable-name">Dst</span>: 192.168.1.102
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0xc0 (DSCP: CS6, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 56
-    Identification: 0x9d7c (40316)
-    Flags: 0x00
-    Fragment Offset: 0
-    Time to Live: 255
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x6ca0 [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 10.216.228.1
-    Destination Address: 192.168.1.102
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-     40 11.174495      10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded <span class="org-type">in</span> <span class="org-variable-name">transit</span>)
-
-Frame 40: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: LinksysG_da:af:73 (00:06:25:da:af:73), <span class="org-function-name">Dst</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 10.216.228.1, <span class="org-variable-name">Dst</span>: 192.168.1.102
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0xc0 (DSCP: CS6, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 56
-    Identification: 0x9d98 (40344)
-    Flags: 0x00
-    Fragment Offset: 0
-    Time to Live: 255
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x6c84 [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 10.216.228.1
-    Destination Address: 192.168.1.102
-Internet Control Message Protocol
-
-No.     Time           Source                Destination           Protocol Length Info
-     65 16.179649      10.216.228.1          192.168.1.102         ICMP     70     Time-to-live exceeded (Time to live exceeded <span class="org-type">in</span> <span class="org-variable-name">transit</span>)
-
-Frame 65: 70 bytes on wire (560 bits), 70 bytes captured (560 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: LinksysG_da:af:73 (00:06:25:da:af:73), <span class="org-function-name">Dst</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 10.216.228.1, <span class="org-variable-name">Dst</span>: 192.168.1.102
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0xc0 (DSCP: CS6, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 56
-    Identification: 0x9db8 (40376)
-    Flags: 0x00
-    Fragment Offset: 0
-    Time to Live: 255
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x6c64 [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 10.216.228.1
-    Destination Address: 192.168.1.102
-Internet Control Message Protocol
-</pre>
-</div>
-
-<p>
-Identification: 0x9d7c (40316)<br />
-Time to Live: 255<br />
-</p></li>
-
-<li><p>
-Do these values remain unchanged for all of the ICMP TTL-exceeded replies sent to your computer by the nearest (first hop) router? Why?<br />
-</p>
-
-<p>
-Identification会变化，TTL不变。<br />
-</p></li>
-
-<li><p>
-Find the first ICMP Echo Request message that was sent by your computer after you changed the Packet Size in pingplotter to be 2000. Has that message been fragmented across more than one IP datagram?<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-     93 28.442185      192.168.1.102         128.59.23.100         ICMP     562    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=30467/887, <span class="org-variable-name">ttl</span>=1 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 93: 562 bytes on wire (4496 bits), 562 bytes captured (4496 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 548
-    Identification: 0x32f9 (13049)
-    Flags: 0x00
-        0... .... = Reserved bit: Not set
-        .0.. .... = Don<span class="org-warning">'</span>t fragment: Not set
-        ..0. .... = More fragments: Not set
-    Fragment Offset: 1480
-    Time to Live: 1
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x2a7a [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [2 IPv4 Fragments (2008 bytes): #92(1480), #93(528)]
-        [Frame: 92, payload: 0-1479 (1480 bytes)]
-        [Frame: 93, payload: 1480-2007 (528 bytes)]
-        [Fragment count: 2]
-        [Reassembled IPv4 length: 2008]
-        [Reassembled IPv4 data: 0800d0c603007703373620aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&#8230;]
-Internet Control Message Protocol
-</pre>
-</div></li>
-
-<li>&#x00ad;<br />
-
-<ul class="org-ul">
-<li><p>
-Print out the first fragment of the fragmented IP datagram.<br />
-</p>
-
-<p>
-⌈5e6/(1500-20TCP-20IP)⌉ = 3425<br />
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-     92 28.441511      192.168.1.102         128.59.23.100         IPv4     1514   Fragmented IP protocol (proto=ICMP 1, off=0, ID=32f9) [Reassembled in #93]
-
-Frame 92: 1514 bytes on wire (12112 bits), 1514 bytes captured (12112 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 1500
-    Identification: 0x32f9 (13049)
-    Flags: 0x20, <span class="org-variable-name">More</span> fragments
-        0... .... = Reserved bit: Not set
-        .0.. .... = Don<span class="org-warning">'</span>t fragment: Not set
-        ..1. .... = More fragments: Set
-    Fragment Offset: 0
-    Time to Live: 1
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x077b [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [Reassembled IPv4 in frame: 93]
-Data (1480 bytes)
-</pre>
-</div></li>
-
-<li><p>
-What information in the IP header indicates that the datagram been fragmented?<br />
-</p>
-
-<p>
-Flags: 0x20, More fragments<br />
-</p></li>
-
-<li><p>
-What information in the IP header indicates whether this is the first fragment versus a latter fragment?<br />
-</p>
-
-<p>
-Flags: 0x20, More fragments<br />
-Fragment Offset: 0<br />
-</p></li>
-
-<li><p>
-How long is this IP datagram?<br />
-</p>
-
-<p>
-Total Length: 1500<br />
-</p></li>
-</ul></li>
-
-<li>&#x00ad;<br />
-<ul class="org-ul">
-<li><p>
-Print out the second fragment of the fragmented IP datagram.<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-     93 28.442185      192.168.1.102         128.59.23.100         ICMP     562    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=30467/887, <span class="org-variable-name">ttl</span>=1 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 93: 562 bytes on wire (4496 bits), 562 bytes captured (4496 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 548
-    Identification: 0x32f9 (13049)
-    Flags: 0x00
-    Fragment Offset: 1480
-    Time to Live: 1
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x2a7a [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [2 IPv4 Fragments (2008 bytes): #92(1480), #93(528)]
-Internet Control Message Protocol
-</pre>
-</div></li>
-
-<li>What information in the IP header indicates that this is not the first datagram fragment?<br />
-Fragment Offset: 1480<br /></li>
-
-<li><p>
-Are the more fragments?<br />
-</p>
-
-<p>
-No.<br />
-</p></li>
-
-<li><p>
-How can you tell?<br />
-</p>
-
-<p>
-Flags: 0x00<br />
-</p></li>
-</ul></li>
-
-<li><p>
-What fields change in the IP header between the first and second fragment?<br />
-</p>
-
-<p>
-Total Length<br />
-Flags<br />
-Header Checksum<br />
-</p></li>
-
-<li><p>
-How many fragments were created from the original datagram?<br />
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">No.     Time           Source                Destination           Protocol Length Info
-    218 43.467629      192.168.1.102         128.59.23.100         ICMP     582    Echo (ping) <span class="org-type">request</span>  <span class="org-variable-name">id</span>=0x0300, <span class="org-variable-name">seq</span>=40451/926, <span class="org-variable-name">ttl</span>=1 (no <span class="org-type">response</span> <span class="org-variable-name">found</span><span class="org-negation-char">!</span>)
-
-Frame 218: 582 bytes on wire (4656 bits), 582 bytes captured (4656 bits)
-<span class="org-type">Ethernet</span> <span class="org-variable-name">II</span>, <span class="org-function-name">Src</span>: Actionte_8a:70:1a (00:20:e0:8a:70:1a), <span class="org-function-name">Dst</span>: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet <span class="org-type">Protocol</span> <span class="org-variable-name">Version</span> 4, <span class="org-variable-name">Src</span>: 192.168.1.102, <span class="org-variable-name">Dst</span>: 128.59.23.100
-    0100 .... = Version: 4
-    .... 0101 = Header Length: 20 bytes (5)
-    Differentiated <span class="org-type">Services</span> <span class="org-function-name">Field</span>: 0x00 (DSCP: CS0, ECN: Not-ECT)
-    <span class="org-type">Total</span> <span class="org-function-name">Length</span>: 568
-    Identification: 0x3323 (13091)
-    Flags: 0x01
-    Fragment Offset: 2960
-    Time to Live: 1
-    Protocol: ICMP (1)
-    <span class="org-type">Header</span> <span class="org-variable-name">Checksum</span>: 0x2983 [validation disabled]
-    [Header checksum status: Unverified]
-    Source Address: 192.168.1.102
-    Destination Address: 128.59.23.100
-    [3 IPv4 Fragments (3508 bytes): #216(1480), #217(1480), #218(548)]
-Internet Control Message Protocol
-</pre>
-</div>
-
-<p>
-3<br />
-</p></li>
+<li>随着路由器数目变得很大，涉及路由选择信息的通信、计算和存储的开销将高得不可实现。<br /></li>
+<li>一个组织应当能够按自己的愿望运行和管理其网络，还要能将其网络与其他外部网络连接起来。<br /></li>
 </ol>
+</div>
+</div>
+
+<div id="outline-container-org086475f" class="outline-4">
+<h4 id="org086475f">R8</h4>
+<div class="outline-text-4" id="text-org086475f">
+<p>
+是非判断题：当一台OSPF路由器发送它的链路状态信息时，它仅向那些直接相邻的节点发送。解释理由。<br />
+</p>
+
+<p>
+错误，它向自制系统内所有其他路由器广播链路状态信息。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org156785d" class="outline-4">
+<h4 id="org156785d">R9 OSPF AS中的区域</h4>
+<div class="outline-text-4" id="text-org156785d">
+<ul class="org-ul">
+<li><p>
+在OSPF自治系统中区域表示什么？<br />
+</p>
+
+<p>
+每个区域都运行自己的OSPF链路状态路由选择算法，在每个区域内，一台或多台区域边界路由器负责为流向该区域以外的分组提供路由选择。<br />
+</p></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+为什么引入区域的概念？<br />
+</p>
+
+<p>
+区域的概念是出于可扩展性的考虑而引入的，也就是说，我们希望为一个大规模的OSPF AS建立一个具有层次结构的路由，而区域是构成层次结构路由的一个重要构件。<br />
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3da510f" class="outline-4">
+<h4 id="org3da510f">R10 子网、前缀和BGP路由</h4>
+<div class="outline-text-4" id="text-org3da510f">
+<p>
+定义和对比下列术语：子网、前缀和BGP路由。<br />
+</p>
+
+<p>
+将每个接口从其主机或路由器分离出来，形成孤立的网络岛，接口是孤立网络的终点。这些孤立的网络中的每一个都被称为子网。<br />
+</p>
+
+<p>
+形式为a.b.c.d/x的地址的x最高比特构成了IP地址的网络部分，并且经常被称为该地址的前缀。<br />
+</p>
+
+<p>
+当路由器通过BGP连接通告前缀时，它在前缀中包括一些BGP属性。用BGP术语来说，前缀及其属性称为路由。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d45d9e" class="outline-4">
+<h4 id="org3d45d9e">R11 AS-PATH NEXT-HOP</h4>
+<div class="outline-text-4" id="text-org3d45d9e">
+<p>
+BGP是怎样使用NEXT-HOP展性的？它是怎样使用AS-PATH属性的？<br />
+</p>
+
+<p>
+BGP路由器使用AS-PATH属性<br />
+</p>
+<ol class="org-ol">
+<li>检测和防止通告环路；<br /></li>
+<li>在通往同一前缀的多个路径中进行选择。<br /></li>
+</ol>
+
+
+<p>
+NEXT-HOP属性表示沿着通告路径（在收到通告的AS之外）到一个给定前缀的第一个路由器的IP地址。当配置其转发表时，路由器使用NEXT-HOP属性。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2844a99" class="outline-4">
+<h4 id="org2844a99">R12 BGP策略</h4>
+<div class="outline-text-4" id="text-org2844a99">
+<p>
+描述一个较高层ISP的网络管理员在配置BGP时是如何实现策略的。<br />
+</p>
+
+<p>
+一个一级ISP B可能不会在另外两个一级ISP（例如A和C）之间传输流量。为了执行这一政策，ISP B不会向A通告经过C的路线；也不会向C通过经过A的路线。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org12e9280" class="outline-4">
+<h4 id="org12e9280">R13</h4>
+<div class="outline-text-4" id="text-org12e9280">
+<p>
+是非判断题：当BGP路由器从它的邻居接收到一条通告的路径时，它必须对接收路径增加上它自己的标识，然后向其所有邻居发送该新路径。解释理由。<br />
+</p>
+
+<p>
+错误。AS将其ASN加入AS-PATH中的现有列表并发送给邻居意味着该AS向外宣告有一条经过自己的路径。是否这么做取决于AS想实现怎样的BGP策略。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org42a699f" class="outline-4">
+<h4 id="org42a699f">R14</h4>
+<div class="outline-text-4" id="text-org42a699f">
+<p>
+描述在SDN控制器中的通信层、网络范围状态管理层和网络控制应用程序层的主要任务。<br />
+</p>
+
+<ol class="org-ol">
+<li>传送控制器与交换机、主机或其他设备之间的信息。<br /></li>
+<li>维护网络范围状态信息。<br /></li>
+<li>使用由SDN控制器提供的API来定义和控制网络设备中的数据平面。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org16112ed" class="outline-4">
+<h4 id="org16112ed">R15</h4>
+<div class="outline-text-4" id="text-org16112ed">
+<p>
+假定你要在SDN控制平面中实现一个新型路由选择协议。你将在哪个层次中实现该协议？解释理由。<br />
+</p>
+
+<p>
+SDN网络控制应用程序层，因为这一层里的路由选择网络控制应用程序可以决定源和目的地之间的端到端路径。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org827ae37" class="outline-4">
+<h4 id="org827ae37">R16</h4>
+<div class="outline-text-4" id="text-org827ae37">
+<p>
+什么类型的报文流跨越SDN控制器的北向和南向API？谁是从控制器跨越南向接口发送的这些报文的接收者？谁是跨越北向接口从控制器发送的这些报文的接收者？<br />
+</p>
+
+<ul class="org-ul">
+<li><p>
+What types of messages flow across an SDN controller’s northbound and southbound APIs?<br />
+</p>
+
+<p>
+网络控制应用程序与控制器交互的报文通过北向API；受控交换机与控制器交互的报文通过南向API。<br />
+</p></li>
+
+<li><p>
+Who is the recipient of these messages sent from the controller across the southbound interface, and who sends messages to the controller across the northbound interface?<br />
+</p>
+
+<p>
+受控交换机；网络控制应用程序。<br />
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org720cc29" class="outline-4">
+<h4 id="org720cc29">R17</h4>
+<div class="outline-text-4" id="text-org720cc29">
+<p>
+描述两种从受控设备到控制器发送的OpenFlow报文类型的目的。描述两种从控制器到受控设备发送的OpenFlow报文类型的目的。<br />
+</p>
+
+<p>
+p.268<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge87698e" class="outline-4">
+<h4 id="orge87698e">R18</h4>
+<div class="outline-text-4" id="text-orge87698e">
+<p>
+在OpenDaylight SDN控制器中服务抽象层的目的是什么？<br />
+</p>
+
+
+<div id="org5a7119f" class="figure">
+<p><img src="img/fig5-17.png" alt="fig5-17.png" style="width:100%; max-width:570px;" /><br />
+</p>
+</div>
+
+<p>
+服务抽象层允许内部网络服务应用程序相互通信。它允许控制器组件和应用程序互相调用对方的服务，并订阅它们产生的事件。该层还为通信层的具体底层通信协议提供统一的抽象接口，包括OpenFlow和SNMP。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgecc52b7" class="outline-4">
+<h4 id="orgecc52b7">R19</h4>
+<div class="outline-text-4" id="text-orgecc52b7">
+<p>
+列举4种不同类型的ICMP报文。<br />
+</p>
+
+
+<div id="org9311000" class="figure">
+<p><img src="img/fig5-19.png" alt="fig5-19.png" style="width:100%; max-width:476px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1589b1d" class="outline-4">
+<h4 id="org1589b1d">R20</h4>
+<div class="outline-text-4" id="text-org1589b1d">
+<p>
+在发送主机执行Traceroute程序，收到哪两种类型的ICMP报文？<br />
+</p>
+
+<p>
+目的地之前的路由器发送的TTL过期（11,0）和目的主机发送的目的端口不可达（3,3）。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7f95c05" class="outline-4">
+<h4 id="org7f95c05">R21</h4>
+<div class="outline-text-4" id="text-org7f95c05">
+<p>
+在SNMP环境中定义下列术语：管理服务器、被管设备、网络管理代理和MIB。<br />
+</p>
+
+
+<div id="org15d4673" class="figure">
+<p><img src="img/fig5-20.png" alt="fig5-20.png" style="width:100%; max-width:600px;" /><br />
+</p>
+</div>
+
+<p>
+管理服务器是一个应用程序，它运行在网络运营中心的集中式网络管理工作站上。管理服务器是执行网络管理活动的地方，它控制网络管理信息的收集、处理、分析和显示。<br />
+</p>
+
+<p>
+被管设备是网络装备的一部分（包括它的软件），位于被管理的网络中。<br />
+</p>
+
+<p>
+网络管理代理是运行在被管设备中的一个进程，该进程与管理服务器通信，在管理服务器的命令和控制下在被管设备中采取本地动作。<br />
+</p>
+
+<p>
+管理信息库 (Management Information Base, MIB) 收集被管设备中的每个被管对象的关联信<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1860115" class="outline-4">
+<h4 id="org1860115">R22 SNMP报文</h4>
+<div class="outline-text-4" id="text-org1860115">
+<p>
+SNMP GetRequest和SetRequest报文的目的是什么？<br />
+</p>
+
+<p>
+请求或设置位于被管设备中的一个或多个MIB对象的值。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84642f7" class="outline-4">
+<h4 id="org84642f7">R23</h4>
+<div class="outline-text-4" id="text-org84642f7">
+<p>
+SNMP陷阱报文的目的是什么？<br />
+</p>
+
+<p>
+通知管理服务器，一个异常情况已经导致了MIB对象值的改变。<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2d026cf" class="outline-3">
+<h3 id="org2d026cf"><span class="section-number-3">1.3.</span> 习题</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orga826fd3" class="outline-4">
+<h4 id="orga826fd3">P1 图中的路径</h4>
+<div class="outline-text-4" id="text-orga826fd3">
+<p>
+观察图5-3，列举从y到u不包含任何环路的路径。<br />
+</p>
+
+
+<div id="org2209ba1" class="figure">
+<p><img src="img/fig5-3.png" alt="fig5-3.png" style="width:100%; max-width:300px;" /><br />
+</p>
+</div>
+
+
+<div id="orgb542989" class="figure">
+<p><img src="img/ch5-p1.svg" alt="ch5-p1.svg" class="org-svg" style="width:100%; max-width:350px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e0b5f3" class="outline-4">
+<h4 id="org8e0b5f3">P2</h4>
+<div class="outline-text-4" id="text-org8e0b5f3">
+<p>
+重复习题P1，列举从x到z、z到u以及z到w的不包含任何环路的路径。<br />
+</p>
+
+<p>
+x到z:<br />
+</p>
+
+
+<div id="org6007456" class="figure">
+<p><img src="img/ch5-p2.png" alt="ch5-p2.png" style="width:100%; max-width:600px;" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba6d393" class="outline-4">
+<h4 id="orgba6d393">P3 Dijkstra最短路算法</h4>
+<div class="outline-text-4" id="text-orgba6d393">
+<p>
+考虑下面的网络。对于标明的链路开销，用Dijkstra的最短路算法计算出从x到所有网络节点的最短路径。通过计算一个类似于表5-1的表，说明该算法是如何工作的。<br />
+</p>
+
+
+<div id="org26024b2" class="figure">
+<p><img src="img/ch5-p3.png" alt="ch5-p3.png" style="width:100%; max-width:280px;" /><br />
+</p>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">N'</th>
+<th scope="col" class="org-left">D(y),p(y)</th>
+<th scope="col" class="org-left">D(z),p(z)</th>
+<th scope="col" class="org-left">D(u),p(u)</th>
+<th scope="col" class="org-left">D(v),p(v)</th>
+<th scope="col" class="org-left">D(w),p(w)</th>
+<th scope="col" class="org-left">D(t),p(t)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">x</td>
+<td class="org-left">6,x</td>
+<td class="org-left">8,x</td>
+<td class="org-left">∞</td>
+<td class="org-left">3,x</td>
+<td class="org-left">6,x</td>
+<td class="org-left">∞</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v</td>
+<td class="org-left">6,x</td>
+<td class="org-left">8,x</td>
+<td class="org-left">6,v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">6,x</td>
+<td class="org-left">7,v</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v,w</td>
+<td class="org-left">6,x</td>
+<td class="org-left">8,x</td>
+<td class="org-left">6,v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">7,v</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v,w,u</td>
+<td class="org-left">6,x</td>
+<td class="org-left">8,x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">7,v</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v,w,u,y</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">8,x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">7,v</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v,w,u,y,t</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">8,x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">x,v,w,u,y,t,z</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1378de3" class="outline-4">
+<h4 id="org1378de3">P4</h4>
+<div class="outline-text-4" id="text-org1378de3">
+<p>
+考虑习题P3中所示的网络。使用Dijkstra算法和一个类似于表5-1的表来说明你做的工作：<br />
+</p>
+
+<ol class="org-ol">
+<li>计算出从t到所有网络节点的最短路径。<br /></li>
+<li>计算出从u到所有网络节点的最短路径。<br /></li>
+<li>计算出从v到所有网络节点的最短路径。<br /></li>
+<li>计算出从w到所有网络节点的最短路径。<br /></li>
+<li>计算出从y到所有网络节点的最短路径。<br /></li>
+<li>计算出从z到所有网络节点的最短路径。<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li><p>
+&#x00ad;<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">N'</th>
+<th scope="col" class="org-left">D(x),p(x)</th>
+<th scope="col" class="org-left">D(y),p(y)</th>
+<th scope="col" class="org-left">D(z),p(z)</th>
+<th scope="col" class="org-left">D(u),p(u)</th>
+<th scope="col" class="org-left">D(v),p(v)</th>
+<th scope="col" class="org-left">D(w),p(w)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">t</td>
+<td class="org-left">∞</td>
+<td class="org-left">7,t</td>
+<td class="org-left">∞</td>
+<td class="org-left">2,t</td>
+<td class="org-left">4,t</td>
+<td class="org-left">∞</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u</td>
+<td class="org-left">∞</td>
+<td class="org-left">7,t</td>
+<td class="org-left">∞</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">4,t</td>
+<td class="org-left">5,u</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u,v</td>
+<td class="org-left">7,v</td>
+<td class="org-left">7,t</td>
+<td class="org-left">∞</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">5,u</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u,v,w</td>
+<td class="org-left">7,v</td>
+<td class="org-left">7,t</td>
+<td class="org-left">∞</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u,v,w,y</td>
+<td class="org-left">7,v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">19,y</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u,v,w,y,v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">19,y</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">t,u,v,w,y,v,z</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgc3a1bfb" class="outline-4">
+<h4 id="orgc3a1bfb">P5 距离向量算法</h4>
+<div class="outline-text-4" id="text-orgc3a1bfb">
+<p>
+考虑下图所示的网络，假设每个节点初始时知道到它的每个邻居的开销。考虑距离向量算法，并显示在节点z中的距离表表项。<br />
+</p>
+
+
+<div id="org00c0e54" class="figure">
+<p><img src="img/ch5-p5.png" alt="ch5-p5.png" style="width:100%; max-width:240px;" /><br />
+</p>
+</div>
+
+<p>
+单元中如果有两项，前一项表示节点收到的距离向量，后一项是计算后更新的距离。<br />
+</p>
+
+<p>
+迭代1：计算初始距离向量，然后交换接收<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">z</td>
+<td class="org-right">u</td>
+<td class="org-right">v</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">0</td>
+<td class="org-right">7</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+<td class="org-right">7</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+迭代2：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-left">z</td>
+<td class="org-right">u</td>
+<td class="org-right">v</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">3</td>
+<td class="org-left">2</td>
+<td class="org-right">∞,4</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-left">∞,5</td>
+<td class="org-right">2</td>
+<td class="org-right">∞,3</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">2</td>
+<td class="org-right">∞,5</td>
+<td class="org-left">0</td>
+<td class="org-right">∞,7</td>
+<td class="org-right">6,5</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">∞,4</td>
+<td class="org-right">2</td>
+<td class="org-left">∞,7</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-right">3</td>
+<td class="org-right">∞,3</td>
+<td class="org-left">6,5</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+迭代3：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">z</td>
+<td class="org-right">u</td>
+<td class="org-right">v</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">0</td>
+<td class="org-right">7,6</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+<td class="org-right">7,6</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgbb73a08" class="outline-4">
+<h4 id="orgbb73a08">P6 距离向量算法收敛所需的迭代次数</h4>
+<div class="outline-text-4" id="text-orgbb73a08">
+<p>
+考虑一个一般性拓扑（即不是以上所显示的特定网络）和一个同步版本的距离向量算法。假设每次迭代时，一个节点与其邻居交换其距离向量并接收它们的距离向量。假定算法开始时，每个节点只知道到其直接邻居的开销，在该分布式算法收敛前所需的最大迭代次数是多少？评估你的答案。<br />
+</p>
+
+<p>
+在每一次迭代中，一个节点与它的邻居交换距离表。因此，如果你是节点A，而你的邻居是B，B的所有邻居在一次迭代后将知道到你的一跳或两跳的最低开销路径。<br />
+</p>
+
+<p>
+设d为网络的直径——网络中任何两个节点之间无循环的最长路径的长度。利用上述推理，经过d-1次迭代，所有节点都将知道到所有其他节点的最短路径开销为d或更少的跳数。由于任何大于d跳的路径都会有环路，该算法将在最多d-1次迭代后收敛。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge256489" class="outline-4">
+<h4 id="orge256489">P7</h4>
+<div class="outline-text-4" id="text-orge256489">
+<p>
+考虑下图所示的网络段。x只有两个相连邻居w与y。w有一条通向目的地u（没有显示）的最低开销路径，其值为5，y有一条通向目的地u的最低开销路径，其值为6。从w与y到u（以及w与y之间）的完整路径未显示出来。网络中所有链路开销皆为正整数值。<br />
+</p>
+
+
+<div id="org33d43e8" class="figure">
+<p><img src="img/ch5-p7.png" alt="ch5-p7.png" style="width:100%; max-width:230px;" /><br />
+</p>
+</div>
+
+<ol class="org-ol">
+<li>给出x对目的地w、y和u的距离向量。<br /></li>
+<li>给出对于c(x,w)或c(x,y)的链路开销的变化，使得执行了距离向量算法后，x将通知其邻居有一条通向u的新最低开销路径。<br /></li>
+<li>给出对c(x,w)或c(x,y)的链路开销的变化，使得执行了距离向拭算法后，x将不通知其邻居有一条通向x的新最低开销路径。<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li><p>
+&#x00ad;<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">w</td>
+<td class="org-right">y</td>
+<td class="org-right">u</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">∞</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">∞</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">w</td>
+<td class="org-right">y</td>
+<td class="org-right">u</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">∞,7</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">∞,7</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table></li>
+
+<li><p>
+Dx(U) = min{Dy(U)+c(x,y), Dw(U)+c(x,w)}<br />
+</p>
+
+<p>
+c(x,w)或c(x,y)的链路开销变化以后如果影响上式就会使得x计算出新的到u的最低开销路径。<br />
+</p></li>
+
+<li>同上。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgf12b08d" class="outline-4">
+<h4 id="orgf12b08d">P8</h4>
+<div class="outline-text-4" id="text-orgf12b08d">
+<p>
+考虑如图5-6中所示3个节点的拓扑。不使用显示在图5-6中的开销值，链路开销值现在是c(x,y)=3，c(y,z)=6，c(z,x)=4。在距离向量表初始化后和在同步版本的距离向量算法每次迭代后，计算它的距离向量表（如我们以前对图5-6讨论时所做的那样）。<br />
+</p>
+
+<pre class="example" id="org13ccc45">
+    y
+   / \
+3 /   \ 6
+ /  4  \
+x-------z
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">z</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">0</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">4</td>
+<td class="org-right">6</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org442a211" class="outline-4">
+<h4 id="org442a211">P9 无穷计数与链路开销减小</h4>
+<div class="outline-text-4" id="text-org442a211">
+<ul class="org-ul">
+<li><p>
+考虑距离向量路由选择中的无穷计数问题。如果我们减小一条链路的开销，将会出现无穷计数问题吗？<br />
+</p>
+
+<p>
+不会。<br />
+</p></li>
+
+<li><p>
+为什么？<br />
+</p>
+
+<p>
+因为链路开销减小不会造成环路。<br />
+</p></li>
+
+<li><p>
+如果我们将没有链路的两个节点连接起来，会出现什么情况？<br />
+</p>
+
+<p>
+将没有链路的两个节点连接起来，相当于将链路开销从无限大减少到有限大。<br />
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org06a8c1a" class="outline-4">
+<h4 id="org06a8c1a">P10 距离向量算法的收敛性</h4>
+<div class="outline-text-4" id="text-org06a8c1a">
+<p>
+讨论图5-6中的距离向量算法，距离向量D(x)中的每个值不是递增的并且最终将在有限步中稳定下来。<br />
+</p>
+
+<p>
+在每一次迭代中，节点基于Bellman-Ford方程更新（减少）距离向量中的一些值，在这一过程中没有数值的增加。如果没有更新，那么就不会有消息被发送出去。因此，D(x)是非递增的。由于这些路径的开销是有限的，那么最终距离向量将在有限的步骤中得到稳定。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd0f09e1" class="outline-4">
+<h4 id="orgd0f09e1">P11 距离向量算法的计算过程</h4>
+<div class="outline-text-4" id="text-orgd0f09e1">
+<p>
+考虑图5-7。假定有另一台路由器w，与路由器y和z连接。所有链路的开销给定如下：c(x,y)=4, c(x,z)=50, c(y,w)=1, c(z,w)=1, c(y,z)=3。假设在距离向量路由选择算法中使用了毒性逆转。<br />
+</p>
+
+<pre class="example" id="orgf481225">
+    y
+   /|\
+ 4/ | \1
+ /  |  \
+x   |3  w
+ \  |  /
+50\ | / 1
+   \|/
+    z
+</pre>
+
+<ol class="org-ol">
+<li>当距离向量路由选择稳定时，路由器w、y和z向x通知它们之间的距离。它们告诉彼此什么样的距离值？<br /></li>
+<li>现在假设x和y之间的链路开销增加到60。如果使用了毒性逆转，将会存在无穷计数问题吗？为什么？如果存在无穷计数问题，距离向量路由选择需要多少次迭代才能再次到达稳定状态？评估你的答案。<br /></li>
+<li>如果c(y,x)从4变化到60，怎样修改c(y,z)使得不存在无穷计数问题。<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li>&#x00ad;<br /></li>
+
+<li><p>
+&#x00ad;<br />
+</p>
+
+<pre class="example" id="orgccf5792">
+    y
+   /|\
+60/ | \1
+ /  |  \
+x   |3  w
+ \  |  /
+50\ | / 1
+   \|/
+    z
+</pre>
+
+<p>
+<a href="img/ch5-p11.pdf">img/ch5-p11.pdf</a><br />
+</p></li>
+
+<li>去掉y与z之间的链路。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgdc58e11" class="outline-4">
+<h4 id="orgdc58e11">P12</h4>
+<div class="outline-text-4" id="text-orgdc58e11">
+<p>
+描述在BGP中是如何检测路径中的环路的。<br />
+</p>
+
+<p>
+BGP路由器使用AS-PATH属性来检测和防止通告环路。如果一台路由器在路径列表中看到包含了它自己的AS，它将拒绝该通告。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdb18310" class="outline-4">
+<h4 id="orgdb18310">P13</h4>
+<div class="outline-text-4" id="text-orgdb18310">
+<p>
+BGP路由器将总是选择具有最短AS路径长度的无环路由吗？评估你的答案。<br />
+</p>
+
+<p>
+不一定，在BGP的路由选择算法中本地偏好规则的优先级高于最短AS-PATH。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d299d9" class="outline-4">
+<h4 id="org5d299d9">P14 eBGP和iBGP</h4>
+<div class="outline-text-4" id="text-org5d299d9">
+<p>
+考虑下图所示的网络。假定AS3和AS2正在运行OSPF作为其AS内部路由选择协议。假定AS1和AS4正在运行RIP作为其AS内部路由选择协议。假定AS间路由选择协议使用的是eBGP和iBGP。假定最初在AS2和AS4之间不存在物理链路。<br />
+</p>
+
+<ol class="org-ol">
+<li>路由器3c从下列哪个路由选择协议学习到了前缀x: OSPF、RIP、eBGP或iBGP？<br /></li>
+<li>路由器3a从哪个路由选择协议学习到了前缀x？<br /></li>
+<li>路由器1c从哪个路由选择协议学习到了前缀x？<br /></li>
+<li>路由器1d从哪个路由选择协议学习到了前缀x？<br /></li>
+</ol>
+
+
+
+<div id="orgd69fcca" class="figure">
+<p><img src="img/ch5-p14.png" alt="ch5-p14.png" style="width:100%; max-width:470px;" /><br />
+</p>
+</div>
+
+<ol class="org-ol">
+<li>eBGP<br /></li>
+<li>iBGP<br /></li>
+<li>eBGP<br /></li>
+<li>iBGP<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org04dda34" class="outline-4">
+<h4 id="org04dda34">P15</h4>
+<div class="outline-text-4" id="text-org04dda34">
+<p>
+参考前面习题P14，一旦路由器1d知道了x的情况，它将一个表项(x, I)放入它的转发表中。<br />
+</p>
+
+<ol class="org-ol">
+<li>对这个表项而言，I将等于I<sub>1</sub>还是I<sub>2</sub>？用一句话解释其原因。<br /></li>
+<li>现在假定在AS2和AS4之间有一条物理链路，显示为图中的虚线。假定路由器1d知道经AS2以及经AS3能够访问到x。I将设登为I<sub>1</sub>还是I<sub>2</sub>？用一句话解释其原因。<br /></li>
+<li>现在假定有另一个AS，它称为AS5，其位于路径AS2和AS4之间（没有显示在图中）。假定路由器1d知道经AS2 AS5 AS4以及经过AS3 AS4能够访问到x。I将设置为I<sub>1</sub>还是I<sub>2</sub>？用一句话解释其原因。<br /></li>
+</ol>
+
+
+<ol class="org-ol">
+<li>I<sub>1</sub>，因为这是到网关1c的最低开销路径。<br /></li>
+<li>I<sub>2</sub>，根据热土豆算法选择网关1b。<br /></li>
+<li>I<sub>1</sub>，根据最短AS-PATH。<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org253bde0" class="outline-4">
+<h4 id="org253bde0">P16</h4>
+<div class="outline-text-4" id="text-org253bde0">
+<p>
+考虑下面的网络。ISP B为地区ISP A提供国家级主干服务。ISP C为地区ISP D提供国家级主干服务。每个ISP由一个AS组成。B和C使用BGP，在两个地方互相对等。考虑从A到D的流量。B愿意将流量交给C传给西海岸（使得C将承载跨越整个国家的流量开销），而C愿意经其东海<br />
+岸与B对等的站点得到这些流量（使得B将承载跨越整个国家的流量）。C可能会使用什么样的BGP机制，使得B将通过东海岸对等点传递A到D的流量？要回答这个问题，你需要钻研BGP规范。<br />
+</p>
+
+
+<div id="orgaacff67" class="figure">
+<p><img src="img/ch5-p16.png" alt="ch5-p16.png" style="width:100%; max-width:320px;" /><br />
+</p>
+</div>
+
+<p>
+C只通告通过东海岸的对等点到D的路径。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org08471fe" class="outline-4">
+<h4 id="org08471fe">P17</h4>
+<div class="outline-text-4" id="text-org08471fe">
+<p>
+在图5-13中，考虑到达桩网络W、X和Y的路径信息。基于W与X处的可用信息，它们分别看到的网络拓扑是什么？评估你的答案。Y所见的拓扑视图如下图所示。<br />
+</p>
+
+
+<div id="orge18f1e3" class="figure">
+<p><img src="img/fig5-13.png" alt="fig5-13.png" style="width:100%; max-width:340px;" /><br />
+</p>
+</div>
+
+
+<div id="orgfde22ff" class="figure">
+<p><img src="img/ch5-p17.png" alt="ch5-p17.png" style="width:100%; max-width:340px;" /><br />
+</p>
+</div>
+
+
+<div id="org56d08d1" class="figure">
+<p><img src="img/ch5-p17a.png" alt="ch5-p17a.png" style="width:100%; max-width:270px;" /><br />
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Shi-Chao Xia</p>
-<p class="date">Created: 2021-11-02 Tue 11:34</p>
+<p class="date">Created: 2021-11-17 Wed 19:23</p>
 </div>
 </body>
 </html>

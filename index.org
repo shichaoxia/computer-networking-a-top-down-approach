@@ -7368,3 +7368,19 @@ c. I_{1}，根据最短AS-PATH。
 [[file:img/ch5-p16.png]]
 
 C只通告通过东海岸的对等点到D的路径。
+
+*** P17
+
+在图5-13中，考虑到达桩网络W、X和Y的路径信息。基于W与X处的可用信息，它们分别看到的网络拓扑是什么？评估你的答案。Y所见的拓扑视图如下图所示。
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:340px;
+[[file:img/fig5-13.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:340px;
+[[file:img/ch5-p17.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:270px;
+[[file:img/ch5-p17a.png]]
