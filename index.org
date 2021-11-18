@@ -7394,3 +7394,15 @@ BitTorrent file sharing and Skype P2P applications.
 
 Consider a BitTorrent file sharing network in which peer 1, 2, and 3 are in stub networks W, X, and Y respectively. Due the mechanism of BitTorrent’s file sharing, it is quire possible that peer 2 gets data chunks from peer 1 and then forwards those data chunks to 3. This is equivalent to B forwarding data that is finally destined to stub network Y.
 #+end_quote
+
+*** P19
+
+在图5-13中，假定有另一个桩网络V，它为ISP A的客户。假设B和C具有对等关系，并且A是B和C的客户。假设A希望让发向W的流量仅来自B，并且发向V的流量来自B或C。A如何向B和C通告其路由？C收到什么样的AS路由？
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:250px;
+[[file:img/ch5-p19.png]]
+
+A向B通告：AW、AV
+A向C通告：AV
+C收到的AS路由：AV、BAV、BAW
