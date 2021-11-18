@@ -7389,6 +7389,10 @@ C只通告通过东海岸的对等点到D的路径。
 
 考虑图5-13。B将不会基于BGP路由选择，经过X以Y为目的地转发流量。但是有某些极为流行的应用程序，其数据分组先朝向X，然后再流向Y。指出一种这样的应用程序，描述数据分组是如何沿着这条未由BGP路由选择所给定的路径流动的。
 
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:340px;
+[[file:img/fig5-13.png]]
+
 #+begin_quote
 BitTorrent file sharing and Skype P2P applications.
 
