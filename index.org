@@ -7384,3 +7384,13 @@ C只通告通过东海岸的对等点到D的路径。
 #+ATTR_ORG: :width 350
 #+ATTR_HTML: :style width:100%; max-width:270px;
 [[file:img/ch5-p17a.png]]
+
+*** P18 P2P与BGP
+
+考虑图5-13。B将不会基于BGP路由选择，经过X以Y为目的地转发流量。但是有某些极为流行的应用程序，其数据分组先朝向X，然后再流向Y。指出一种这样的应用程序，描述数据分组是如何沿着这条未由BGP路由选择所给定的路径流动的。
+
+#+begin_quote
+BitTorrent file sharing and Skype P2P applications.
+
+Consider a BitTorrent file sharing network in which peer 1, 2, and 3 are in stub networks W, X, and Y respectively. Due the mechanism of BitTorrent’s file sharing, it is quire possible that peer 2 gets data chunks from peer 1 and then forwards those data chunks to 3. This is equivalent to B forwarding data that is finally destined to stub network Y.
+#+end_quote
