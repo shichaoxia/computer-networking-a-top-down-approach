@@ -7410,3 +7410,9 @@ Consider a BitTorrent file sharing network in which peer 1, 2, and 3 are in stub
 A向B通告：AW、AV
 A向C通告：AV
 C收到的AS路由：AV、BAV、BAW
+
+*** P20 BGP通告与策略
+
+假定AS X和Z不直接连接，但与AS Y连接。进一步假定X与Y具有对等协定，Y与Z具有对等协定。最后，假定Z要传送所有Y的流量但不传送X的流量。BGP允许Z实现这种策略吗？
+
+Z如果要传送Y的流量，那么就要向其通告，这样Y可以选择Z这条路径传送分组。在这之后Y可以将通过Z的路由信息通告给X，Z对Y的这种行为是无能为力的。
