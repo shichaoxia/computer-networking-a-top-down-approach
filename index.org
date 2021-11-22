@@ -7443,3 +7443,9 @@ TCP相较于UDP提供了差错控制、报文按序和拥塞控制功能，但�
 
 [[http://web.deu.edu.tr/doc/oreily/networking/tcpip/ch11_09.htm][TCP/IP Network Administration]]
 [[https://datatracker.ietf.org/doc/html/rfc1448#section-2.6][RFC1448#Transport Mappings]]
+
+** 套接字编程作业 ICMP ping
+
+[[file:code/ch5-icmp-ping/socket5-icmppinger.pdf][Socket Programming Assignment 5: ICMP Pinger]]
+
+#+INCLUDE: "code/ch5-icmp-ping/ping.py" src python
