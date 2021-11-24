@@ -7448,3 +7448,7 @@ TCP相较于UDP提供了差错控制、报文按序和拥塞控制功能，但�
 [[file:code/ch5-icmp-ping/socket5-icmppinger.pdf][Socket Programming Assignment 5: ICMP Pinger]]
 
 #+INCLUDE: "code/ch5-icmp-ping/ping.py" src python
+
+** 编程作业 分布式异步距离向量路由选择算法
+
+[[http://lass.cs.umass.edu/~shenoy/courses/spring00/653/homeworks/prog1.html][Implemented a distributed, asynchronous distance vector routing algorithm]]
