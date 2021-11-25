@@ -7475,3 +7475,16 @@ TCP相较于UDP提供了差错控制、报文按序和拥塞控制功能，但�
 总共发送了32个报文完成了计算。
 
 #+INCLUDE: "code/ch5-distance-vector/basic/a.txt" src shell :lines "734-737"
+
+*** Advanced
+
+#+CAPTION: node.c
+#+INCLUDE: "code/ch5-distance-vector/advanced/node.c" src c :lines "75-118"
+
+#+CAPTION: node.c
+#+INCLUDE: "code/ch5-distance-vector/advanced/node.c" src c :lines "153-166"
+
+最终结果：
+
+#+CAPTION: a.txt
+#+INCLUDE: "code/ch5-distance-vector/advanced/a.txt" src shell :lines "1982-2018"
