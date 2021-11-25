@@ -7452,3 +7452,26 @@ TCP相较于UDP提供了差错控制、报文按序和拥塞控制功能，但�
 ** 编程作业 分布式异步距离向量路由选择算法
 
 [[http://lass.cs.umass.edu/~shenoy/courses/spring00/653/homeworks/prog1.html][Implemented a distributed, asynchronous distance vector routing algorithm]]
+
+*** Basic
+
+关键代码如下：
+
+#+CAPTION: node.c
+#+INCLUDE: "code/ch5-distance-vector/basic/node.c" src c :lines "19-111"
+
+#+CAPTION: node0.c
+#+INCLUDE: "code/ch5-distance-vector/basic/node0.c" src c :lines "4-19"
+
+下面的输出展示了节点3收到节点0的distance vector后更新自己的distance table，然后向邻居发送的过程：
+
+#+CAPTION: a.txt
+#+INCLUDE: "code/ch5-distance-vector/basic/a.txt" src shell :lines "31-67"
+
+最终的路由表如下所示：
+
+#+INCLUDE: "code/ch5-distance-vector/basic/a.txt" src shell :lines "512-519"
+
+总共发送了32个报文完成了计算。
+
+#+INCLUDE: "code/ch5-distance-vector/basic/a.txt" src shell :lines "734-737"

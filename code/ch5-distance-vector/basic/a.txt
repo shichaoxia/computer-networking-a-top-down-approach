@@ -1,0 +1,736 @@
+Enter TRACE:Router0 init
+    current dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|  999   999   999   999
+         2|  999   999   999   999
+         3|  999   999   999   999
+Router0 send {0 1 3 7} to router1 router2 router3
+Router1 init
+    current dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|  999   999   999   999
+    from 1|    1     0     1   999
+         2|  999   999   999   999
+         3|  999   999   999   999
+Router1 send {1 0 1 999} to router0 router2
+Router2 init
+    current dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|  999   999   999   999
+    from 1|  999   999   999   999
+         2|    3     1     0     2
+         3|  999   999   999   999
+Router2 send {3 1 0 2} to router0 router1 router3
+Router3 init
+    current dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|  999   999   999   999
+    from 1|  999   999   999   999
+         2|  999   999   999   999
+         3|    7   999     2     0
+Router3 send {7 999 2 0} to router0 router2
+MAIN: rcv event, t=0.420, at 3 src: 0, dest: 3, contents:   0   1   3   7
+Router3 receive rtpkt: {sourceid: 0, destid: 3, mincost: 0 1 3 7}
+    recalculate cost to router0
+    current cost is 7
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 1001
+    no better cost
+    recalculate cost to router1
+    current cost is 999
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 1001
+    update cost to router1 from 999 to 8
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|  999   999   999   999
+         2|  999   999   999   999
+         3|    7     8     2     0
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 10
+    via 2 to 2 cost is 1001
+    no better cost
+Router3 send {7 8 2 0} to router0 router2
+MAIN: rcv event, t=0.689, at 3 src: 2, dest: 3, contents:   3   1   0   2
+Router3 receive rtpkt: {sourceid: 2, destid: 3, mincost: 3 1 0 2}
+    recalculate cost to router0
+    current cost is 7
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 5
+    update cost to router0 from 7 to 5
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|  999   999   999   999
+         2|    3     1     0     2
+         3|    5     8     2     0
+    recalculate cost to router1
+    current cost is 8
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 3
+    update cost to router1 from 8 to 3
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|  999   999   999   999
+         2|    3     1     0     2
+         3|    5     3     2     0
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 10
+    via 2 to 2 cost is 2
+    no better cost
+Router3 send {5 3 2 0} to router0 router2
+MAIN: rcv event, t=0.697, at 1 src: 0, dest: 1, contents:   0   1   3   7
+Router1 receive rtpkt: {sourceid: 0, destid: 1, mincost: 0 1 3 7}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 1000
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 4
+    via 2 to 2 cost is 1000
+    no better cost
+    recalculate cost to router3
+    current cost is 999
+    via 0 to 3 cost is 8
+    via 2 to 3 cost is 1000
+    update cost to router3 from 999 to 8
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|    1     0     1     8
+         2|  999   999   999   999
+         3|  999   999   999   999
+Router1 send {1 0 1 8} to router0 router2
+MAIN: rcv event, t=0.980, at 0 src: 1, dest: 0, contents:   1   0   1 999
+Router0 receive rtpkt: {sourceid: 1, destid: 0, mincost: 1 0 1 999}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 1002
+    via 3 to 1 cost is 1006
+    no better cost
+    recalculate cost to router2
+    current cost is 3
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 1002
+    via 3 to 2 cost is 1006
+    update cost to router2 from 3 to 2
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     2     7
+    from 1|    1     0     1   999
+         2|  999   999   999   999
+         3|  999   999   999   999
+    recalculate cost to router3
+    current cost is 7
+    via 1 to 3 cost is 1000
+    via 2 to 3 cost is 1002
+    via 3 to 3 cost is 1006
+    no better cost
+Router0 send {0 1 2 7} to router1 router2 router3
+MAIN: rcv event, t=1.270, at 2 src: 0, dest: 2, contents:   0   1   3   7
+Router2 receive rtpkt: {sourceid: 0, destid: 2, mincost: 0 1 3 7}
+    recalculate cost to router0
+    current cost is 3
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 1000
+    via 3 to 0 cost is 1001
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1000
+    via 3 to 1 cost is 1001
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 1000
+    via 3 to 3 cost is 1001
+    no better cost
+MAIN: rcv event, t=1.532, at 1 src: 2, dest: 1, contents:   3   1   0   2
+Router1 receive rtpkt: {sourceid: 2, destid: 1, mincost: 3 1 0 2}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 4
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 4
+    via 2 to 2 cost is 1
+    no better cost
+    recalculate cost to router3
+    current cost is 8
+    via 0 to 3 cost is 8
+    via 2 to 3 cost is 3
+    update cost to router3 from 8 to 3
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|    1     0     1     3
+         2|    3     1     0     2
+         3|  999   999   999   999
+Router1 send {1 0 1 3} to router0 router2
+MAIN: rcv event, t=2.007, at 2 src: 1, dest: 2, contents:   1   0   1 999
+Router2 receive rtpkt: {sourceid: 1, destid: 2, mincost: 1 0 1 999}
+    recalculate cost to router0
+    current cost is 3
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 1001
+    update cost to router0 from 3 to 2
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     3     7
+    from 1|    1     0     1   999
+         2|    2     1     0     2
+         3|  999   999   999   999
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 1001
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 1000
+    via 3 to 3 cost is 1001
+    no better cost
+Router2 send {2 1 0 2} to router0 router1 router3
+MAIN: rcv event, t=2.147, at 0 src: 2, dest: 0, contents:   3   1   0   2
+Router0 receive rtpkt: {sourceid: 2, destid: 0, mincost: 3 1 0 2}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 1006
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 1006
+    no better cost
+    recalculate cost to router3
+    current cost is 7
+    via 1 to 3 cost is 1000
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 1006
+    update cost to router3 from 7 to 5
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     2     5
+    from 1|    1     0     1   999
+         2|    3     1     0     2
+         3|  999   999   999   999
+Router0 send {0 1 2 5} to router1 router2 router3
+MAIN: rcv event, t=2.336, at 1 src: 0, dest: 1, contents:   0   1   2   7
+Router1 receive rtpkt: {sourceid: 0, destid: 1, mincost: 0 1 2 7}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 4
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 3
+    via 2 to 2 cost is 1
+    no better cost
+    recalculate cost to router3
+    current cost is 3
+    via 0 to 3 cost is 8
+    via 2 to 3 cost is 3
+    no better cost
+MAIN: rcv event, t=2.786, at 3 src: 0, dest: 3, contents:   0   1   2   7
+Router3 receive rtpkt: {sourceid: 0, destid: 3, mincost: 0 1 2 7}
+    recalculate cost to router0
+    current cost is 5
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 5
+    no better cost
+    recalculate cost to router1
+    current cost is 3
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 9
+    via 2 to 2 cost is 2
+    no better cost
+MAIN: rcv event, t=3.045, at 0 src: 3, dest: 0, contents:   7 999   2   0
+Router0 receive rtpkt: {sourceid: 3, destid: 0, mincost: 7 999 2 0}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 1006
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 5
+    via 1 to 3 cost is 1000
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=3.485, at 1 src: 2, dest: 1, contents:   2   1   0   2
+Router1 receive rtpkt: {sourceid: 2, destid: 1, mincost: 2 1 0 2}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 3
+    via 2 to 2 cost is 1
+    no better cost
+    recalculate cost to router3
+    current cost is 3
+    via 0 to 3 cost is 8
+    via 2 to 3 cost is 3
+    no better cost
+MAIN: rcv event, t=3.488, at 1 src: 0, dest: 1, contents:   0   1   2   5
+Router1 receive rtpkt: {sourceid: 0, destid: 1, mincost: 0 1 2 5}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 3
+    via 2 to 2 cost is 1
+    no better cost
+    recalculate cost to router3
+    current cost is 3
+    via 0 to 3 cost is 6
+    via 2 to 3 cost is 3
+    no better cost
+MAIN: rcv event, t=3.613, at 2 src: 3, dest: 2, contents:   7 999   2   0
+Router2 receive rtpkt: {sourceid: 3, destid: 2, mincost: 7 999 2 0}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 9
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 1001
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 1000
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=4.725, at 3 src: 2, dest: 3, contents:   2   1   0   2
+Router3 receive rtpkt: {sourceid: 2, destid: 3, mincost: 2 1 0 2}
+    recalculate cost to router0
+    current cost is 5
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 4
+    update cost to router0 from 5 to 4
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     2     7
+    from 1|  999   999   999   999
+         2|    2     1     0     2
+         3|    4     3     2     0
+    recalculate cost to router1
+    current cost is 3
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 9
+    via 2 to 2 cost is 2
+    no better cost
+Router3 send {4 3 2 0} to router0 router2
+MAIN: rcv event, t=4.940, at 0 src: 3, dest: 0, contents:   7   8   2   0
+Router0 receive rtpkt: {sourceid: 3, destid: 0, mincost: 7 8 2 0}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 15
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 5
+    via 1 to 3 cost is 1000
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=5.234, at 2 src: 3, dest: 2, contents:   7   8   2   0
+Router2 receive rtpkt: {sourceid: 3, destid: 2, mincost: 7 8 2 0}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 9
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 1000
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=5.264, at 0 src: 3, dest: 0, contents:   5   3   2   0
+Router0 receive rtpkt: {sourceid: 3, destid: 0, mincost: 5 3 2 0}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 5
+    via 1 to 3 cost is 1000
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=6.173, at 3 src: 0, dest: 3, contents:   0   1   2   5
+Router3 receive rtpkt: {sourceid: 0, destid: 3, mincost: 0 1 2 5}
+    recalculate cost to router0
+    current cost is 4
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 4
+    no better cost
+    recalculate cost to router1
+    current cost is 3
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 9
+    via 2 to 2 cost is 2
+    no better cost
+MAIN: rcv event, t=6.887, at 0 src: 1, dest: 0, contents:   1   0   1   8
+Router0 receive rtpkt: {sourceid: 1, destid: 0, mincost: 1 0 1 8}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 5
+    via 1 to 3 cost is 9
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=6.921, at 0 src: 1, dest: 0, contents:   1   0   1   3
+Router0 receive rtpkt: {sourceid: 1, destid: 0, mincost: 1 0 1 3}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 5
+    via 1 to 3 cost is 4
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    update cost to router3 from 5 to 4
+    now dt is
+                    to            
+          |    0     1     2     3
+      ----|-----------------------
+         0|    0     1     2     4
+    from 1|    1     0     1     3
+         2|    3     1     0     2
+         3|    5     3     2     0
+Router0 send {0 1 2 4} to router1 router2 router3
+MAIN: rcv event, t=6.969, at 3 src: 0, dest: 3, contents:   0   1   2   4
+Router3 receive rtpkt: {sourceid: 0, destid: 3, mincost: 0 1 2 4}
+    recalculate cost to router0
+    current cost is 4
+    via 0 to 0 cost is 7
+    via 2 to 0 cost is 4
+    no better cost
+    recalculate cost to router1
+    current cost is 3
+    via 0 to 1 cost is 8
+    via 2 to 1 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 0 to 2 cost is 9
+    via 2 to 2 cost is 2
+    no better cost
+MAIN: rcv event, t=7.168, at 2 src: 3, dest: 2, contents:   5   3   2   0
+Router2 receive rtpkt: {sourceid: 3, destid: 2, mincost: 5 3 2 0}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 7
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 1000
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=8.227, at 1 src: 0, dest: 1, contents:   0   1   2   4
+Router1 receive rtpkt: {sourceid: 0, destid: 1, mincost: 0 1 2 4}
+    recalculate cost to router0
+    current cost is 1
+    via 0 to 0 cost is 1
+    via 2 to 0 cost is 3
+    no better cost
+    recalculate cost to router2
+    current cost is 1
+    via 0 to 2 cost is 3
+    via 2 to 2 cost is 1
+    no better cost
+    recalculate cost to router3
+    current cost is 3
+    via 0 to 3 cost is 5
+    via 2 to 3 cost is 3
+    no better cost
+MAIN: rcv event, t=8.244, at 0 src: 2, dest: 0, contents:   2   1   0   2
+Router0 receive rtpkt: {sourceid: 2, destid: 0, mincost: 2 1 0 2}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 4
+    via 1 to 3 cost is 4
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=9.069, at 2 src: 1, dest: 2, contents:   1   0   1   8
+Router2 receive rtpkt: {sourceid: 1, destid: 2, mincost: 1 0 1 8}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 7
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 9
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=9.320, at 0 src: 3, dest: 0, contents:   4   3   2   0
+Router0 receive rtpkt: {sourceid: 3, destid: 0, mincost: 4 3 2 0}
+    recalculate cost to router1
+    current cost is 1
+    via 1 to 1 cost is 1
+    via 2 to 1 cost is 4
+    via 3 to 1 cost is 10
+    no better cost
+    recalculate cost to router2
+    current cost is 2
+    via 1 to 2 cost is 2
+    via 2 to 2 cost is 3
+    via 3 to 2 cost is 9
+    no better cost
+    recalculate cost to router3
+    current cost is 4
+    via 1 to 3 cost is 4
+    via 2 to 3 cost is 5
+    via 3 to 3 cost is 7
+    no better cost
+MAIN: rcv event, t=11.022, at 2 src: 0, dest: 2, contents:   0   1   2   7
+Router2 receive rtpkt: {sourceid: 0, destid: 2, mincost: 0 1 2 7}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 7
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 9
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=12.792, at 2 src: 1, dest: 2, contents:   1   0   1   3
+Router2 receive rtpkt: {sourceid: 1, destid: 2, mincost: 1 0 1 3}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 7
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 10
+    via 1 to 3 cost is 4
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=13.977, at 2 src: 0, dest: 2, contents:   0   1   2   5
+Router2 receive rtpkt: {sourceid: 0, destid: 2, mincost: 0 1 2 5}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 7
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 8
+    via 1 to 3 cost is 4
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=15.855, at 2 src: 3, dest: 2, contents:   4   3   2   0
+Router2 receive rtpkt: {sourceid: 3, destid: 2, mincost: 4 3 2 0}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 6
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 8
+    via 1 to 3 cost is 4
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=17.443, at 2 src: 0, dest: 2, contents:   0   1   2   4
+Router2 receive rtpkt: {sourceid: 0, destid: 2, mincost: 0 1 2 4}
+    recalculate cost to router0
+    current cost is 2
+    via 0 to 0 cost is 3
+    via 1 to 0 cost is 2
+    via 3 to 0 cost is 6
+    no better cost
+    recalculate cost to router1
+    current cost is 1
+    via 0 to 1 cost is 4
+    via 1 to 1 cost is 1
+    via 3 to 1 cost is 5
+    no better cost
+    recalculate cost to router3
+    current cost is 2
+    via 0 to 3 cost is 7
+    via 1 to 3 cost is 4
+    via 3 to 3 cost is 2
+    no better cost
+MAIN: rcv event, t=10000.000, at -1MAIN: rcv event, t=20000.000, at 0
+Total message sent: 32
+Simulator terminated at t=20000.000000, no packets in medium
