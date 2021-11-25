@@ -74,7 +74,7 @@ void rtupdate(int node,
         /*2.2.比较是否需要更新*/
         qsort(candidates, neighbor_num, sizeof(int), compare);
 
-        if (candidates[0] < current_cost) {
+        if (candidates[0] != current_cost) {
             printf("    update cost to router%d from %d to %d\n", i, current_cost, candidates[0]);
             dt->costs[node][i] = candidates[0];
             printf("    now dt is\n");
