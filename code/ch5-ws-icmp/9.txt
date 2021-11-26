@@ -1,0 +1,22 @@
+No.     Time           Source                Destination           Protocol Length Info
+    167 44.847336      128.93.162.83         192.168.8.100         ICMP     86     Echo (ping) reply    id=0xb3dd, seq=53/13568, ttl=47 (request in 166)
+
+Frame 167: 86 bytes on wire (688 bits), 86 bytes captured (688 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29), Dst: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)
+Internet Protocol Version 4, Src: 128.93.162.83, Dst: 192.168.8.100
+Internet Control Message Protocol
+    Type: 0 (Echo (ping) reply)
+    Code: 0
+    Checksum: 0x4bed [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 46045 (0xb3dd)
+    Identifier (LE): 56755 (0xddb3)
+    Sequence Number (BE): 53 (0x0035)
+    Sequence Number (LE): 13568 (0x3500)
+    [Request frame: 166]
+    [Response time: 299.016 ms]
+    Data (44 bytes)
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00               ............

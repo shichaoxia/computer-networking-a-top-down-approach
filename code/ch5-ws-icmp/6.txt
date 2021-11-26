@@ -1,0 +1,11 @@
+No.     Time           Source                Destination           Protocol Length Info
+      3 0.124183       192.168.8.100         128.93.162.83         UDP      66     45897 → 33435 Len=24
+      4 0.145618       192.168.8.1           192.168.8.100         ICMP     94     Time-to-live exceeded (Time to live exceeded in transit)
+      7 0.176555       192.168.8.100         128.93.162.83         UDP      66     45897 → 33436 Len=24
+      8 0.205526       192.168.8.1           192.168.8.100         ICMP     94     Time-to-live exceeded (Time to live exceeded in transit)
+      9 0.205729       192.168.8.100         128.93.162.83         UDP      66     45897 → 33437 Len=24
+     10 0.235273       192.168.8.1           192.168.8.100         ICMP     94     Time-to-live exceeded (Time to live exceeded in transit)
+     11 0.235383       192.168.8.100         128.93.162.83         UDP      66     45897 → 33438 Len=24
+     14 1.236027       192.168.8.100         128.93.162.83         UDP      66     45897 → 33439 Len=24
+     16 2.241239       192.168.8.100         128.93.162.83         UDP      66     45897 → 33440 Len=24
+     18 3.242600       192.168.8.100         128.93.162.83         UDP      66     45897 → 33441 Len=24

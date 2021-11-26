@@ -7488,3 +7488,117 @@ TCP相较于UDP提供了差错控制、报文按序和拥塞控制功能，但�
 
 #+CAPTION: a.txt
 #+INCLUDE: "code/ch5-distance-vector/advanced/a.txt" src shell :lines "1982-2018"
+
+** Wireshark实验：ICMP
+
+[[file:code/ch5-ws-icmp/wireshark-icmp-v7.0.pdf][Wireshark Lab: ICMP v7.0]]
+*** ICMP and Ping
+
+#+INCLUDE: code/ch5-ws-icmp/1.txt src c
+
+1. What is the IP address of your host? What is the IP address of the destination host?
+   192.168.8.100 143.89.12.134
+
+2. Why is it that an ICMP packet does not have source and destination port numbers?
+
+   #+begin_quote
+   The ICMP packet does not have source and destination port numbers because it was designed to communicate network-layer information between hosts and routers, not between application layer processes.
+
+   Each ICMP packet has a "Type" and a "Code". The Type/Code combination identifies the specific message being received. Since the network software itself interprets all ICMP messages, no port numbers are needed to direct the ICMP message to an application layer process.
+
+   -- [[https://www.howtouselinux.com/post/icmp-port-number][Exploring ICMP Port Number with Example]]
+   #+end_quote
+
+3. Examine one of the ping request packets sent by your host.
+
+   + What are the ICMP type and code numbers?
+
+     Type: 8 (Echo (ping) request)
+     Code: 0
+
+   + What other fields does this ICMP packet have?
+
+     Checksum: 0xb065 [correct]
+     Identifier (BE): 29997 (0x752d)
+     Identifier (LE): 11637 (0x2d75)
+     Sequence Number (BE): 0 (0x0000)
+     Sequence Number (LE): 0 (0x0000)
+     Timestamp from icmp data: Nov 26, 2021 10:05:36.214230000 CST
+
+     [[https://osqa-ask.wireshark.org/questions/3172/icmp-sequence-number-be-vs-le/][ICMP Sequence Number (BE) vs (LE)]]
+
+   + How many bytes are the checksum, sequence number and identifier fields?
+
+     2, 2, 2.
+
+4. Examine the corresponding ping reply packet.
+
+   + What are the ICMP type and code numbers?
+
+     Type: 0 (Echo (ping) reply)
+     Code: 0
+
+   + What other fields does this ICMP packet have?
+
+     Checksum: 0xb865 [correct]
+     Identifier (BE): 29997 (0x752d)
+     Identifier (LE): 11637 (0x2d75)
+     Sequence Number (BE): 0 (0x0000)
+     Sequence Number (LE): 0 (0x0000)
+     Timestamp from icmp data: Nov 26, 2021 10:05:36.214230000 CST
+
+   + How many bytes are the checksum, sequence number and identifier fields?
+
+     2, 2, 2.
+
+*** ICMP and Traceroute
+
+#+INCLUDE: code/ch5-ws-icmp/5.txt src c
+
+5. [@5]What is the IP address of your host? What is the IP address of the target destination host?
+
+   192.168.8.100 128.93.162.83
+
+6. If ICMP sent UDP packets instead (as in Unix/Linux), would the IP protocol number still be 01 for the probe packets? If not, what would it be?
+
+   #+INCLUDE: code/ch5-ws-icmp/6.txt src c
+
+   从33435开始递增。
+
+   #+begin_quote
+   On a typical *nix system it uses UDP and sends traffic to port 33434 by default.
+   -- [[https://www.redhat.com/sysadmin/ping-traceroute-netstat][Ping, traceroute, and netstat]]
+   #+end_quote
+
+7. Examine the ICMP echo packet in your screenshot. Is this different from the ICMP ping query packets in the first half of this lab? If yes, how so?
+
+   traceroute发送的ICMP echo与ping的区别：
+   1. 没有包含发送的时间戳。
+   2. Sequence Number不再是0。
+   3. Data没有包含数据（全是0）。
+
+8. Examine the ICMP error packet in your screenshot. It has more fields than the ICMP echo packet. What is included in those fields?
+
+   #+INCLUDE: code/ch5-ws-icmp/8.txt src c
+
+   包含了导致ICMP error报文的IP首部和ICMP报文。
+
+9. Examine the last three ICMP packets received by the source host. How are these packets different from the ICMP error packets? Why are they different?
+
+   #+INCLUDE: code/ch5-ws-icmp/9.txt src c
+
+   ICMP error的Type和Code是11、0（TTL过期），最后源主机收到的ICMP报文的Type和Code是0、0（回显回答）。
+
+10. Within the tracert measurements, is there a link whose delay is significantly longer than others? Refer to the screenshot in Figure 4, is there a link whose delay is significantly longer than others? On the basis of the router names, can you guess the location of the two routers on the end of this link?
+
+    第10跳的时延显著增大。
+    奥贝维埃（法语：Aubervilliers）是法国法兰西岛大区塞纳-圣但尼省的一个镇，位于巴黎郊区。
+    巴尼奥莱（法语：Bagnolet）是法国法兰西岛大区塞纳-圣但尼省的一个市镇。
+
+*** Extra Credit
+
+This ping program, unlike the standard ping program, sends UDP probe packets rather than ICMP probe packets.
+
+#+INCLUDE: code/ch5-ws-icmp/ec.txt src c
+
+第一个 UDP 报文从端口 54265 发往端口 12000，载荷是自定义的 ping 消息 “Ping 03 13:54:31.197064”。接收到的 UDP 报文回显了发送过去的消息。

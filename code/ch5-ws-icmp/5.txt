@@ -1,0 +1,116 @@
+No.     Time           Source                Destination           Protocol Length Info
+     13 1.729387       192.168.8.100         128.93.162.83         ICMP     86     Echo (ping) request  id=0xb3dd, seq=1/256, ttl=1 (no response found!)
+
+Frame 13: 86 bytes on wire (688 bits), 86 bytes captured (688 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00), Dst: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)
+Internet Protocol Version 4, Src: 192.168.8.100, Dst: 128.93.162.83
+Internet Control Message Protocol
+    Type: 8 (Echo (ping) request)
+    Code: 0
+    Checksum: 0x4421 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 46045 (0xb3dd)
+    Identifier (LE): 56755 (0xddb3)
+    Sequence Number (BE): 1 (0x0001)
+    Sequence Number (LE): 256 (0x0100)
+    [No response seen]
+    Data (44 bytes)
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     14 1.757246       192.168.8.1           192.168.8.100         ICMP     114    Time-to-live exceeded (Time to live exceeded in transit)
+
+Frame 14: 114 bytes on wire (912 bits), 114 bytes captured (912 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29), Dst: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)
+Internet Protocol Version 4, Src: 192.168.8.1, Dst: 192.168.8.100
+Internet Control Message Protocol
+    Type: 11 (Time-to-live exceeded)
+    Code: 0 (Time to live exceeded in transit)
+    Checksum: 0xf4ff [correct]
+    [Checksum Status: Good]
+    Unused: 00000000
+    Internet Protocol Version 4, Src: 192.168.8.100, Dst: 128.93.162.83
+    Internet Control Message Protocol
+        Type: 8 (Echo (ping) request)
+        Code: 0
+        Checksum: 0x4421 [unverified] [in ICMP error packet]
+        [Checksum Status: Unverified]
+        Identifier (BE): 46045 (0xb3dd)
+        Identifier (LE): 56755 (0xddb3)
+        Sequence Number (BE): 1 (0x0001)
+        Sequence Number (LE): 256 (0x0100)
+        Data (44 bytes)
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     21 1.847671       192.168.8.100         128.93.162.83         ICMP     86     Echo (ping) request  id=0xb3dd, seq=4/1024, ttl=2 (no response found!)
+
+Frame 21: 86 bytes on wire (688 bits), 86 bytes captured (688 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00), Dst: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)
+Internet Protocol Version 4, Src: 192.168.8.100, Dst: 128.93.162.83
+Internet Control Message Protocol
+    Type: 8 (Echo (ping) request)
+    Code: 0
+    Checksum: 0x441e [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 46045 (0xb3dd)
+    Identifier (LE): 56755 (0xddb3)
+    Sequence Number (BE): 4 (0x0004)
+    Sequence Number (LE): 1024 (0x0400)
+    [No response seen]
+    Data (44 bytes)
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     32 4.856018       192.168.8.100         128.93.162.83         ICMP     86     Echo (ping) request  id=0xb3dd, seq=7/1792, ttl=3 (no response found!)
+
+Frame 32: 86 bytes on wire (688 bits), 86 bytes captured (688 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00), Dst: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)
+Internet Protocol Version 4, Src: 192.168.8.100, Dst: 128.93.162.83
+Internet Control Message Protocol
+    Type: 8 (Echo (ping) request)
+    Code: 0
+    Checksum: 0x441b [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 46045 (0xb3dd)
+    Identifier (LE): 56755 (0xddb3)
+    Sequence Number (BE): 7 (0x0007)
+    Sequence Number (LE): 1792 (0x0700)
+    [No response seen]
+    Data (44 bytes)
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     33 4.917614       192.168.208.129       192.168.8.100         ICMP     70     Time-to-live exceeded (Time to live exceeded in transit)
+
+Frame 33: 70 bytes on wire (560 bits), 70 bytes captured (560 bits) on interface en4, id 0
+Ethernet II, Src: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29), Dst: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)
+Internet Protocol Version 4, Src: 192.168.208.129, Dst: 192.168.8.100
+Internet Control Message Protocol
+    Type: 11 (Time-to-live exceeded)
+    Code: 0 (Time to live exceeded in transit)
+    Checksum: 0xf4ff [correct]
+    [Checksum Status: Good]
+    Unused: 00000000
+    Internet Protocol Version 4, Src: 192.168.8.100, Dst: 128.93.162.83
+    Internet Control Message Protocol
+        Type: 8 (Echo (ping) request)
+        Code: 0
+        Checksum: 0x441b [unverified] [in ICMP error packet]
+        [Checksum Status: Unverified]
+        Identifier (BE): 46045 (0xb3dd)
+        Identifier (LE): 56755 (0xddb3)
+        Sequence Number (BE): 7 (0x0007)
+        Sequence Number (LE): 1792 (0x0700)
