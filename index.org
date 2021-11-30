@@ -7602,3 +7602,132 @@ This ping program, unlike the standard ping program, sends UDP probe packets rat
 #+INCLUDE: code/ch5-ws-icmp/ec.txt src c
 
 第一个 UDP 报文从端口 54265 发往端口 12000，载荷是自定义的 ping 消息 “Ping 03 13:54:31.197064”。接收到的 UDP 报文回显了发送过去的消息。
+
+** Wireshark 实验：DHCP
+
+[[file:code/ch5-ws-dhcp/wireshark-dhcp-v7.0.pdf][Wireshark Lab: DHCP v7.0]]
+
+macOS 对应实验中 Windows 系统的操作是（在设置→网络，每一步需要点击应用保存修改）：
+
+1. 配置 IPv4: 关闭
+2. Begin Wireshark packet capture.
+3. 配置 IPv4: 使用 DHCP
+4. 高级 → DHCP 续租
+5. 配置 IPv4: 关闭
+6. 配置 IPv4: 使用 DHCP
+7. Stop Wireshark packet capture.
+
+
+实验中提供的[[file:code/ch5-ws-dhcp/dhcp-ethereal-trace-1][trace]]，实验得到的[[file:code/ch5-ws-dhcp/dhcp.pcapng][trace]]。
+
+
+1. Are DHCP messages sent over UDP or TCP?
+
+   UDP
+
+   #+ATTR_ORG: :width 350
+   #+ATTR_HTML: :style width:100%; max-width:900px;
+   [[file:img/ch5-ws-dhcp-1.png]]
+
+2. \-
+
+   #+INCLUDE: code/ch5-ws-dhcp/2.txt src shell
+
+   + Draw a timing datagram illustrating the sequence of the first four-packet Discover/Offer/Request/ACK DHCP exchange between the client and server. For each packet, indicated the source and destination port numbers.
+
+     #+ATTR_ORG: :width 350
+     #+ATTR_HTML: :style width:100%; max-width:540px;
+     [[file:img/ch5-ws-dhcp-2.png]]
+
+   + Are the port numbers the same as in the example given in this lab assignment?
+
+     相同
+
+3. What is the link-layer (e.g., Ethernet) address of your host?
+
+   Client MAC address: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)
+
+4. What values in the DHCP discover message differentiate this message from the DHCP request message?
+
+   Option: (53) DHCP Message Type
+
+   这两种消息不同的字段如下：
+
+   |                                     | discover |       request |
+   |-------------------------------------+----------+---------------|
+   | Seconds elapsed                     | 0        |             1 |
+   | Option: (53) DHCP Message Type      | Discover |       Request |
+   | Option: (51) IP Address Lease Time  | 90 days  |             / |
+   | Option: (50) Requested IP Address   | /        | 192.168.8.120 |
+   | Option: (54) DHCP Server Identifier | /        |   192.168.8.1 |
+
+5. \-
+   + What is the value of the Transaction-ID in each of the first four (Discover/Offer/Request/ACK) DHCP messages?
+
+     Transaction ID: 0x2bacfd62
+
+   + What are the values of the Transaction-ID in the second set (Request/ACK) set of DHCP messages?
+
+     Transaction ID: 0x2bacfd63
+
+   + What is the purpose of the Transaction-ID field?
+
+     Transaction ID, a random number chosen by the client, used by the client and server to associate messages and responses between a client and a server.
+
+6. A host uses DHCP to obtain an IP address, among other things. But a host’s IP address is not confirmed until the end of the four-message exchange! If the IP address is not set until the end of the four-message exchange, then what values are used in the IP datagrams in the four-message exchange? For each of the four DHCP messages (Discover/Offer/Request/ACK DHCP), indicate the source and destination IP addresses that are carried in the encapsulating IP datagram.
+
+   |          |         Src |             Dst |
+   |----------+-------------+-----------------|
+   | Discover |     0.0.0.0 | 255.255.255.255 |
+   | Offer    | 192.168.8.1 |   192.168.8.120 |
+   | Request  |     0.0.0.0 | 255.255.255.255 |
+   | ACK      | 192.168.8.1 |   192.168.8.120 |
+
+7. What is the IP address of your DHCP server?
+
+   192.168.8.1
+
+8. What IP address is the DHCP server offering to your host in the DHCP Offer message? Indicate which DHCP message contains the offered DHCP address.
+
+   Your (client) IP address: 192.168.8.120
+
+9. In the example screenshot in this assignment, there is no relay agent between the host and the DHCP server. What values in the trace indicate the absence of a relay agent? Is there a relay agent in your experiment? If so what is the IP address of the agent?
+
+   Relay agent IP address: 0.0.0.0
+
+10. Explain the purpose of the router and subnet mask lines in the DHCP offer message.
+
+    The subnet mask line tells the client which subnet mask to use.
+
+    The router line indicates where the client should send messages by default.
+
+11. In the DHCP trace file noted in footnote 2, the DHCP server offers a specific IP address to the client (see also question 8. above). In the client’s response to the first server OFFER message, does the client accept this IP address? Where in the client’s RESPONSE is the client’s requested address?
+
+    Yes.
+    Option: (50) Requested IP Address (192.168.1.101)
+
+12. Explain the purpose of the lease time. How long is the lease time in your experiment?
+
+    This option is used in a client request (DHCPDISCOVER or DHCPREQUEST) to allow the client to request a lease time for the IP address.  In a server reply (DHCPOFFER), a DHCP server uses this option to specify the lease time it is willing to offer.
+
+    Option: (51) IP Address Lease Time
+      Length: 4
+      IP Address Lease Time: (86400s) 1 day
+
+13. What is the purpose of the DHCP release message? Does the DHCP server issue an acknowledgment of receipt of the client’s DHCP request? What would happen if the client’s DHCP release message is lost?
+
+    If the client no longer requires use of its assigned network address (e.g., the client is gracefully shut down), the client sends a DHCPRELEASE message to the server.
+
+14. Clear the bootp filter from your Wireshark window. Were any ARP packets sent or received during the DHCP packet-exchange period? If so, explain the purpose of those ARP packets.
+
+    The client collects DHCPOFFER messages over a period of time, selects one DHCPOFFER message from the incoming DHCPOFFER messages.
+
+    The client may perform a check on the suggested address to ensure that the address is not already in use.
+
+    For example, if the client is on a network that supports ARP, the client may issue an ARP request for the suggested request.  When broadcasting an ARP request for the suggested address, the client must fill in its own hardware address as the sender's hardware address, and 0 as the sender's IP address, to avoid confusing ARP caches in other hosts on the same subnet.
+
+    Once the DHCPACK message from the server arrives, the client is initialized and moves to BOUND state. The client SHOULD broadcast an ARP reply to announce the client's new IP address and clear any outdated ARP cache entries in hosts on the client's subnet.
+
+    #+ATTR_ORG: :width 350
+    #+ATTR_HTML: :style width:100%; max-width:900px;
+    [[file:img/ch5-ws-dhcp-14.png]]
