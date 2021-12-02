@@ -7731,3 +7731,30 @@ macOS 对应实验中 Windows 系统的操作是（在设置→网络，每一�
     #+ATTR_ORG: :width 350
     #+ATTR_HTML: :style width:100%; max-width:900px;
     [[file:img/ch5-ws-dhcp-14.png]]
+
+* 链路层和局域网
+** 笔记
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:700px;
+[[file:img/fig6-12.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:620px;
+[[file:img/fig6-15.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:440px;
+[[file:img/fig6-17.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:700px;
+[[file:img/fig6-19.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:540px;
+[[file:img/fig6-24.png]]
+
+#+ATTR_ORG: :width 350
+#+ATTR_HTML: :style width:100%; max-width:490px;
+[[file:img/fig6-30.png]]
