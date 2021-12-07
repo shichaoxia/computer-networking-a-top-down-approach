@@ -1,6 +1,7 @@
 = 计算网络: 自顶向下方法: 笔记与题解
 :imagesdir: ./img
 :toc: left
+:stem: latexmath
 
 link:legacy.html[1~5章]
 
