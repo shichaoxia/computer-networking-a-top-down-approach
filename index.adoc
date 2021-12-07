@@ -3,6 +3,7 @@
 :toc: left
 :toclevels: 3
 :stem: latexmath
+:sectlinks:
 
 link:legacy.html[1~5章]
 
