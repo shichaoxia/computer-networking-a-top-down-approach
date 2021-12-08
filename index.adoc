@@ -4,6 +4,7 @@
 :toclevels: 3
 :stem: latexmath
 :sectlinks:
+:favicon:
 
 link:legacy.html[1~5章]
 
