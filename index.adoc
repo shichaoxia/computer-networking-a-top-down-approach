@@ -1,10 +1,12 @@
 = 计算网络: 自顶向下方法: 笔记与题解
 :imagesdir: ./img
 :toc: left
-:toclevels: 3
+:toclevels: 4
 :stem: latexmath
 :sectlinks:
 :favicon:
+:sectnums:
+:sectnumlevels: 3
 
 link:legacy.html[1~5章]
 
