@@ -324,4 +324,33 @@ ARP查询为什么要在广播帧中发送呢？ARP响应为什么要在一个�
 说明（举一个不同于图6-5的例子）二维奇偶校验能够纠正和检测单比特差错。说明（举一个例子）某些双比特差错能够被检测但不能纠正。
 
 image:ch6-p2.png[]
+
+==== P3 因特网检验和的计算
+
+假设某分组的信息部分（图6-3中的D）包含10字节，它由字符串"Networking"的8比特无符号二进制ASCII表示组成。对该数据计算因特网检验和。
+
+检验和的计算在p.133。
+
+[%autowidth, cols="2*"]
+|===
+|发送方
+a|. 按16比特回卷求和
+. 求反
+|接收方
+|所有比特（包括检验和）回卷求和，结果全是1就没有错误
+|===
+
+Networking的ASCII表示：
+4E 65 74 77 6F 72 6B 69 6E 67
+
+按16比特回卷求和得到：
+0x0C20
+
+求反得到：
+0xF3DF (1111 0011 1101 1111)
+
+最后发送方发送的数据以及检验和是：
+4E 65 74 77 6F 72 6B 69 6E 67 F3 DF
+
+有关ones' complement、two's complement和有符号数的表示见link:https://en.wikipedia.org/wiki/Signed_number_representations[Signed number representations]。
 :sectnums:
