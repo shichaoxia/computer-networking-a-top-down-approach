@@ -798,3 +798,36 @@ S不变时，k随着帧长度变大而变大，因此
 \lim_{k\to \infty}\frac{k}{k+e-1} = 1
 \end{align*}
 ++++
+
+==== P21 以太网帧转发的MAC和IP地址
+
+现在考虑习题P14中的图6-33。对主机A、两台路由器和主机F的各个接口提供MAC地址和IP地址。假定主机A向主机F发送一个数据报。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边的路由器；（ii）从左边的路由器到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中的源和目的IP地址。
+
+image::fig6-33.png[width=320]
+
+路由器从左往右依次是R1、R2，路由器的接口从左往右依次是a、b。
+
+[%autowidth]
+|===
+| |i |ii |iii
+
+|SRC MAC
+|A的MAC地址
+|R1b的MAC地址
+|R2b的MAC地址
+
+|DST MAC
+|R1a的MAC地址
+|R2a的MAC地址
+|F的MAC地址
+
+|SRC IP
+|A的IP地址
+|A的IP地址
+|A的IP地址
+
+|DST IP
+|F的IP地址
+|F的IP地址
+|F的IP地址
+|===
