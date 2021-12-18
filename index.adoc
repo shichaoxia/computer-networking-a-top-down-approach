@@ -831,3 +831,34 @@ image::fig6-33.png[width=320]
 |F的IP地址
 |F的IP地址
 |===
+
+==== P22
+
+现在假定在图6-33最左边的路由器被一台交换机替换。主机A、B、C和D和右边的路由器以星形方式与这台交换机相连。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边交换机；（ii）从左边交换机到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中源和目的IP地址。
+
+image::ch6-p22.png[width=400]
+
+[%autowidth]
+|===
+| |i |ii |iii
+
+|SRC MAC
+|A的MAC地址
+|A的MAC地址
+|Rb的MAC地址
+
+|DST MAC
+|Ra的MAC地址
+|Ra的MAC地址
+|F的MAC地址
+
+|SRC IP
+|A的IP地址
+|A的IP地址
+|A的IP地址
+
+|DST IP
+|F的IP地址
+|F的IP地址
+|F的IP地址
+|===
