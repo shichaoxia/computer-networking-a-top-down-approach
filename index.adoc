@@ -884,3 +884,117 @@ image::fig6-15.png[width=600]
 假定在图6-15中的所有交换机用集线器来代替。所有链路是100Mbps。现在回答在习题P23中提出的问题。
 
 11个终端位于同一个碰撞域内，所以聚合吞吐量是100Mbps。
+
+==== P26
+
+在某网络中标识为A到F的6个节点以星形与一台交换机连接，考虑在该网络环境中某个正在学习的交换机的运行情况。假定：（i）B向E发送一个帧；（ii）E向B回答一个帧；（iii）A向B发送一个帧；（iv）B向A回答一个帧；该交换机表初始为空。显示在这些事件的前后该交换机表的状态。对于每个事件，指出在其上面转发传输的帧的链路，并简要地评价你的答案。
+
+假设A到F与交换机连接的接口为a到f；A到F的MAC地址为MA到MF。
+
+[%autowidth]
+|===
+|事件 |表项操作 |转发操作
+
+|i
+|新增表项MB,b
+|转发到a,c,d,e
+
+|ii
+|新增表项ME,e
+|转发到b
+
+|iii
+|新增表项MA,a
+|转发到b
+
+|iv
+|/
+|转发到a
+|===
+
+==== P27 小分组的时延
+
+在这个习题中，我们探讨用于IP语音应用的小分组。小分组长度的一个主要缺点是链路带宽的较大比例被首部字节所消耗。基于此，假定分组是由P字节和5字节首部组成。
+
+a. 考虑直接发送一个数字编码语音源。假定该源以128kbps的恒定速率进行编码。假设每个源向网络发送分组之前每个分组被完全填充。填充一个分组所需的时间是分组化时延（packetization delay）。根据L，确定分组化时延（以毫秒计）。
+b. 大于20毫秒的分组化时延会导致一个明显的、令人不快的回音。对于L=1500字节（大致对应于一个最大长度的以太网分组）和L=50字节（对应于一个ATM信元），确定该分组化时延。
+c. 对R=622Mbps的链路速率以及L=1500字节和L=50字节，计算单台交换机的存储转发时延。
+d. 对使用小分组长度的优点进行评述。
+
+===== a
+
+d~pkt~(L) = L Byte ÷ 128kbps = 0.0625L ms
+
+===== b
+
+d~pkt~(1500) = 93.75ms
+
+d~pkt~(50) = 3.125ms
+
+===== c
+
+d~trans~(L) = (L+5) Byte ÷ 622Mbps
+
+d~trans~(1500) = 19.36μs
+
+d~trans~(50) = 0.71μs
+
+===== d
+
+使用小分组具有更小的分组时延和存储转发时延。
+
+==== P28 VLAN转发
+
+考虑图6-25中的单个交换VLAN，假定一台外部路由器与交换机端口1相连。为EE和CS的主机和路由器接口分配IP地址。跟踪从EE主机向CS主机传送一个数据报时网络层和链路层所采取的步骤（提示：重读课文中对图6-19的讨论）。
+
+image::fig6-25.png[width=320]
+
+----
+The IP addresses for those three computers (from left to right) in EE department are: 111.111.1.1, 111.111.1.2, 111.111.1.3. The subnet mask is 111.111.1/24.
+
+The IP addresses for those three computers (from left to right) in CS department are: 111.111.2.1, 111.111.2.2, 111.111.2.3. The subnet mask is 111.111.2/24.
+
+The router's interface card that connects to port 1 can be configured to contain two subinterface IP addresses: 111.111.1.0 and 111.111.2.0. The first one is for the subnet of EE department, and the second one is for the subnet of CS department. Each IP address is associated with a VLAN ID. Suppose 111.111.1.0 is associated with VLAN 11, and 111.111.2.0 is associated with VLAN 12. This means that each frame that comes from subnet 111.111.1/24 will be added an 802.1q tag with VLAN ID 11, and each frame that comes from 111.111.2/24 will be added an 802.1q tag with VLAN ID 12.
+
+Suppose that host A in EE department with IP address 111.111.1.1 would like to send an IP datagram to host B (111.111.2.1) in CS department. Host A first encapsulates the IP datagram (destined to 111.111.2.1) into a frame with a destination MAC address equal to the MAC address of the router's interface card that connects to port 1 of the switch. Once the router receives the frame, then it passes it up to IP layer, which decides that the IP datagram should be forwarded to subnet 111.111.2/24 via sub-interface 111.111.2.0. Then the router encapsulates the IP datagram into a frame and sends it to port 1. Note that this frame has an 802.1q tag VLAN ID 12. Once the switch receives the frame port 1, it knows that this frame is destined to VLAN with ID 12, so the switch will send the frame to Host B which is in CS department. Once Host B receives this frame, it will remove the 802.1q tag.
+----
+
+==== P29 MPLS与流量工程
+
+考虑显示在图6-29中的MPLS网络，假定路由器R5和R6现在是MPLS使能的。假定我们要执行流量工程，使从R6发往A的分组要经R6-R4-R3-R1交换到A，从R5发向A的分组要过R5-R4-R2-R1交换。给出R5和R6中的MPLS表以及在R4中修改的表，使得这些成为可能。
+
+image::fig6-29.png[width=510]
+
+[%autowidth]
+.R6
+|===
+|入标签 |出标签 |目的地 |出接口
+
+| |7 |A |0
+|===
+
+[%autowidth]
+.R5
+|===
+|入标签 |出标签 |目的地 |出接口
+
+| |5 |A |0
+|===
+
+[%autowidth]
+.R4
+|===
+|入标签 |出标签 |目的地 |出接口
+
+|7 |10 |A |0
+|  |12 |D |0
+|5 |8  |A |1
+|===
+
+==== P30
+
+再次考虑上一个习题中相同的场景，但假定从R6发往D的分组经R6-R4-R3交换，而从R5发往D的分组经R4-R2-R1-R3交换。说明为使这些成为可能在所有路由器中的MPLS表。
+
+忽略与A相关的表项。
+
+image::ch6-p30.png[width=550]
