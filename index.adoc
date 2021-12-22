@@ -1041,3 +1041,183 @@ stem:[0.1\%^2=0.0001\%]
 
 机架1到3分配给电子邮件应用，机架5到7分配给视频分发应用，机架4被两个应用共享使用。邮件应用与机架4在同一个二层交换机下，所以带宽是足够的。视频应用使用机架4时，机架4到7共享A-B的40Gbps链路，带宽也是足够的。邮件与视频应用同时使用机架4的概率为0.0001%，小于0.001%，满足要求。
 
+=== Wireshark实验 Ethernet and ARP
+
+link:code/ch6-wireshark-ethernet-arp/wireshark-ethernet-arp.pdf[Wireshark Lab: Ethernet and ARP v7.0]
+
+link:https://datatracker.ietf.org/doc/html/rfc826[RFC826 An Ethernet Address Resolution Protocol]
+
+link:code/ch6-wireshark-ethernet-arp/ethernet-ethereal-trace-1[ethernet-ethereal-trace-1]
+
+==== Capturing and analyzing Ethernet frames
+
+link:code/ch6-wireshark-ethernet-arp/ethernet.pcapng[ethernet.pcapng]
+
+Answer the following questions, based on the contents of the Ethernet frame containing the HTTP GET message.
+
+. What is the 48-bit Ethernet address of your computer?
++
+image::ch6-wireshark-ethernet-arp/1.png[width=500]
++
+我的电脑的48位以太网地址是
+``Source: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)``。
+
+
+. What is the 48-bit destination address in the Ethernet frame? Is this the Ethernet address of gaia.cs.umass.edu? (Hint: the answer is no). What device has this as its Ethernet address?
++
+image::ch6-wireshark-ethernet-arp/2.png[width=500]
++
+以太网帧的48位目的地址是
+``Destination: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)``。
+这不是``gaia.cs.umass.edu``的以太网地址。
+本地局域网的网关路由器具有这个以太网地址。
+
+. Give the hexadecimal value for the two-byte Frame type field. What upper layer protocol does this correspond to?
++
+image::ch6-wireshark-ethernet-arp/3.png[width=500]
++
+2字节帧类型字段的16进制值是0x0800。
+对应的上层协议是IPv4。
+
+. How many bytes from the very start of the Ethernet frame does the ASCII “G” in “GET” appear in the Ethernet frame?
++
+image::ch6-wireshark-ethernet-arp/4.png[width=500]
++
+"GET"中的ASCII字符"G"在从以太网帧的开始数第67（0x43）个字节的位置。
+
+Answer the following questions, based on the contents of the Ethernet frame containing the first byte of the HTTP response message.
+
+[start=5]
+. What is the value of the Ethernet source address? Is this the address of your computer, or of gaia.cs.umass.edu. What device has this as its Ethernet address?
++
+image::ch6-wireshark-ethernet-arp/5.png[width=500]
++
+以太网源地址的值是
+``Source: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)``。
+这既不是我电脑的地址，也不是``gaia.cs.umass.edu``的地址。
+本地局域网的网关路由器具有这个以太网地址。
+
+. What is the destination address in the Ethernet frame? Is this the Ethernet address of your computer?
++
+image::ch6-wireshark-ethernet-arp/6.png[width=500]
++
+该以太网帧的目的地址是
+``Destination: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)``。
+这是我电脑的以太网地址。
+
+. Give the hexadecimal value for the two-byte Frame type field. What upper layer protocol does this correspond to?
++
+image::ch6-wireshark-ethernet-arp/7.png[width=500]
++
+2字节帧类型字段的16进制值是0x0800。
+对应的上层协议是IPv4。
+
+. How many bytes from the very start of the Ethernet frame does the ASCII “O” in “OK” (i.e., the HTTP response code) appear in the Ethernet frame?
++
+image::ch6-wireshark-ethernet-arp/8.png[width=500]
++
+"OK"中的ASCII字符"O"在从以太网帧开始往后数第79（0x4F）个字节的位置。
+
+==== The Address Resolution Protocol
+
+link:code/ch6-wireshark-ethernet-arp/arp.pcapng[arp.pcapng]
+
+[start=9]
+. Write down the contents of your computer's ARP cache. What is the meaning of each column value?
++
+----
+> arp -a
+www.huaweimobilewifi.com (192.168.8.1) at 94:e9:ee:68:6c:29 on en4 ifscope [ethernet]
+ (192.168.8.124) at c6:3c:c1:f1:14:94 on en4 ifscope [ethernet]
+chaus-mbp (192.168.8.126) at 0:1e:10:1f:0:0 on en4 ifscope permanent [ethernet]
+? (224.0.0.251) at 1:0:5e:0:0:fb on en4 ifscope permanent [ethernet]
+? (239.255.255.250) at 1:0:5e:7f:ff:fa on en4 ifscope permanent [ethernet]
+----
++
+每个字段的含义见link:https://stackoverflow.com/a/49309763/10422197[stackoverflow]。
++
+``arp``命令的link:https://www.geeksforgeeks.org/arp-command-in-linux-with-examples/[使用]。
+
+. What are the hexadecimal values for the source and destination addresses in the Ethernet frame containing the ARP request message?
++
+image::ch6-wireshark-ethernet-arp/10.png[width=500]
+
+. Give the hexadecimal value for the two-byte Ethernet Frame type field. What upper layer protocol does this correspond to?
++
+image::ch6-wireshark-ethernet-arp/11.png[width=500]
+
+. A readable, detailed discussion of ARP is also at http://www.erg.abdn.ac.uk/users/gorry/course/inet-pages/arp.html.
+.. How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?
++
+image::ch6-wireshark-ethernet-arp/12a1.png[width=500]
++
+ARP opcode字段在整个以太网帧中占据第21、22字节。去掉以太网帧的首部的14字节，该字段在以太网payload中是第7、8个字节，如下图所示。
++
+image::ch6-wireshark-ethernet-arp/12a2.png[width=300]
+
+.. What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP request is made?
++
+以太网帧中包含的ARP请求的opcode字段的值是
+``Opcode: request (1)``
+
+.. Does the ARP message contain the IP address of the sender?
++
+image::ch6-wireshark-ethernet-arp/12c.png[width=500]
++
+ARP报文中包含发送方的IP地址。
+
+.. Where in the ARP request does the “question” appear - the Ethernet address of the machine whose corresponding IP address is being queried?
++
+image::ch6-wireshark-ethernet-arp/12d.png[width=500]
++
+ARP请求中``Target IP address: 192.168.8.1``指明了查询哪个IP地址的MAC地址。
+
+. Now find the ARP reply that was sent in response to the ARP request.
+.. How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?
++
+image::ch6-wireshark-ethernet-arp/13a.png[width=500]
++
+第21、22字节。
+
+.. What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP response is made?
++
+``Opcode: reply (2)``
+
+.. Where in the ARP message does the “answer” to the earlier ARP request appear - the IP address of the machine having the Ethernet address whose corresponding IP address is being queried?
++
+image::ch6-wireshark-ethernet-arp/13c.png[width=500]
++
+``Sender MAC address: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)``
+
+. What are the hexadecimal values for the source and destination addresses in the Ethernet frame containing the ARP reply message?
++
+image::ch6-wireshark-ethernet-arp/14.png[width=500]
+
+. Open the ethernet-ethereal-trace-1 trace file in http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip. The first and second ARP packets in this trace correspond to an ARP request sent by the computer running Wireshark, and the ARP reply sent to the computer running Wireshark by the computer with the ARP-requested Ethernet address. But there is yet another computer on this network, as indicated by packet 6 - another ARP request. Why is there no ARP reply (sent in response to the ARP request in packet 6) in the packet trace?
++
+image::ch6-wireshark-ethernet-arp/15.png[width=500]
++
+同一子网的另一台主机CnetTech广播查询谁的IP是192.168.1.117，但是此时局域网里没有主机是这个IP地址，所以没有主机会回应这个ARP请求。
+
+===== Extra Credit
+
+. The arp command:
++
+`arp -s InetAddr EtherAddr`
++
+allows you to manually add an entry to the ARP cache that resolves the IP address InetAddr to the physical address EtherAddr. What would happen if, when you manually added an entry, you entered the correct IP address, but the wrong Ethernet address for that remote interface?
++
+向正确的IP地址加入错误的MAC地址会导致以太网帧被发往错误的MAC地址，从而传输失败；
+进而导致该帧包含的IP数据报传输失败；
+进一步导致TCP报文段传输失败，TCP协议会一直重传超时的报文段。
+
+. What is the default amount of time that an entry remains in your ARP cache before being removed. You can determine this empirically (by monitoring the cache contents) or by looking this up in your operation system documentation. Indicate how/where you determined this value.
++
+macOS的``arp``工具来自于BSD：
++
+[quote, arp(4)]
+____
+These routes time out periodically (normally 20 minutes after validated; entries are not validated when not in use).
+
+Manually added entries may be temporary, static or permanent. A static entry will not time out, but may be overwritten by network traffic, while a permanent entry will not time out and cannot be overwritten.
+____
