@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>计算网络 自顶向下方法:笔记与题解</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<title>计算网络: 自顶向下方法: 笔记与题解</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,17 +437,135 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+    p,
+    blockquote,
+    dt,
+    td.content,
+    span.alt,
+    summary {
+        font-size: 1rem
+    }
+
+    .quoteblock blockquote,
+    .quoteblock p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    pre code,
+    pre pre {
+        font-size: 0.8rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    #toctitle,
+    .sidebarblock>.content>.title,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
+    }
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>计算网络 自顶向下方法:笔记与题解</h1>
+<h1>计算网络: 自顶向下方法: 笔记与题解</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_链路层和局域网">链路层和局域网</a>
+<li><a href="#_网络层控制平面">1. 网络层：控制平面</a>
 <ul class="sectlevel2">
-<li><a href="#_笔记">笔记</a></li>
-<li><a href="#_复习题">复习题</a></li>
+<li><a href="#_wireshark实验_nat">1.1. Wireshark实验 NAT</a>
+<ul class="sectlevel3">
+<li><a href="#_nat_measurement_scenario">NAT Measurement Scenario</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_链路层和局域网">2. 链路层和局域网</a>
+<ul class="sectlevel2">
+<li><a href="#_链路层概述">2.1. 链路层概述</a></li>
+<li><a href="#_差错检测和纠正技术">2.2. 差错检测和纠正技术</a></li>
+<li><a href="#_多路访问链路和协议">2.3. 多路访问链路和协议</a></li>
+<li><a href="#_交换局域网">2.4. 交换局域网</a>
+<ul class="sectlevel3">
+<li><a href="#_mac地址和ip地址的比较">MAC地址和IP地址的比较</a></li>
+<li><a href="#_需要mac地址的原因">需要MAC地址的原因</a></li>
+<li><a href="#_dns和arp的比较">DNS和ARP的比较</a></li>
+<li><a href="#_arp协议">ARP协议</a></li>
+<li><a href="#_基于交换机的以太局域网没有必要使用mac协议">基于交换机的以太局域网没有必要使用MAC协议</a></li>
+<li><a href="#_以太局域网基于交换机与基于总线或集线器的区别">以太局域网基于交换机与基于总线或集线器的区别</a></li>
+<li><a href="#_交换机与路由器的比较">交换机与路由器的比较</a></li>
+<li><a href="#_交换机等级结构的特点">交换机等级结构的特点</a></li>
+</ul>
+</li>
+<li><a href="#_复习题">2.5. 复习题</a>
+<ul class="sectlevel3">
+<li><a href="#_r1">R1</a></li>
+<li><a href="#_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</a></li>
+<li><a href="#_r3_链路层提供的服务与iptcp">R3 链路层提供的服务与IP、TCP</a></li>
+<li><a href="#_r4">R4</a></li>
+<li><a href="#_r5">R5</a></li>
+<li><a href="#_r6_二进制指数后退算法的计算">R6 二进制指数后退算法的计算</a></li>
+<li><a href="#_r7">R7</a></li>
+<li><a href="#_r8">R8</a></li>
+<li><a href="#_r9">R9</a></li>
+<li><a href="#_r10">R10</a></li>
+<li><a href="#_r11">R11</a></li>
+<li><a href="#_r12">R12</a></li>
+<li><a href="#_r13">R13</a></li>
+<li><a href="#_r14">R14</a></li>
+<li><a href="#_r15">R15</a></li>
+<li><a href="#_r16">R16</a></li>
+</ul>
+</li>
+<li><a href="#_习题">2.6. 习题</a>
+<ul class="sectlevel3">
+<li><a href="#_p1_二维奇偶校验的计算">P1 二维奇偶校验的计算</a></li>
+<li><a href="#_p2_二维奇偶校验的能力">P2 二维奇偶校验的能力</a></li>
+<li><a href="#_p3_因特网检验和的计算">P3 因特网检验和的计算</a></li>
+<li><a href="#_p4">P4</a></li>
+<li><a href="#_p5">P5</a></li>
+<li><a href="#_p6">P6</a></li>
+<li><a href="#_p7">P7</a></li>
+<li><a href="#_p8_时隙aloha效率推导">P8 时隙ALOHA效率推导</a></li>
+<li><a href="#_p9">P9</a></li>
+<li><a href="#_p10_节点吞吐量与重传概率">P10 节点吞吐量与重传概率</a></li>
+<li><a href="#_p11_时隙aloha的概率问题">P11 时隙ALOHA的概率问题</a></li>
+<li><a href="#_p12_画图对比时隙和纯aloha的效率">P12 画图对比时隙和纯ALOHA的效率</a></li>
+<li><a href="#_p13">P13</a></li>
+<li><a href="#_p14">P14</a></li>
+<li><a href="#_p15_交换机转发">P15 交换机转发</a></li>
+<li><a href="#_p16">P16</a></li>
+<li><a href="#_p17_后退时间">P17 后退时间</a></li>
+<li><a href="#_p18_csmacd误检测">P18 CSMA/CD误检测</a></li>
+<li><a href="#_p19_csmacd过程">P19 CSMA/CD过程</a></li>
+<li><a href="#_p20_csmacd效率推导">P20 CSMA/CD效率推导</a></li>
+<li><a href="#_p21_以太网帧转发的mac和ip地址">P21 以太网帧转发的MAC和IP地址</a></li>
+<li><a href="#_p22">P22</a></li>
+<li><a href="#_p23_交换机与集线器的总聚合带宽">P23 交换机与集线器的总聚合带宽</a></li>
+<li><a href="#_p24">P24</a></li>
+<li><a href="#_p25">P25</a></li>
+<li><a href="#_p26">P26</a></li>
+<li><a href="#_p27_小分组的时延">P27 小分组的时延</a></li>
+<li><a href="#_p28_vlan转发">P28 VLAN转发</a></li>
+<li><a href="#_p29_mpls与流量工程">P29 MPLS与流量工程</a></li>
+<li><a href="#_p30">P30</a></li>
+<li><a href="#_p31_web页面请求的历程">P31 Web页面请求的历程</a></li>
+<li><a href="#_p32_等级拓扑与高度互联拓扑">P32 等级拓扑与高度互联拓扑</a></li>
+<li><a href="#_p33">P33</a></li>
+</ul>
+</li>
+<li><a href="#_wireshark实验_ethernet_and_arp">2.7. Wireshark实验 Ethernet and ARP</a>
+<ul class="sectlevel3">
+<li><a href="#_capturing_and_analyzing_ethernet_frames">Capturing and analyzing Ethernet frames</a></li>
+<li><a href="#_the_address_resolution_protocol">The Address Resolution Protocol</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -461,62 +580,309 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_链路层和局域网">链路层和局域网</h2>
+<h2 id="_网络层控制平面"><a class="link" href="#_网络层控制平面">1. 网络层：控制平面</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_笔记">笔记</h3>
+<h3 id="_wireshark实验_nat"><a class="link" href="#_wireshark实验_nat">1.1. Wireshark实验 NAT</a></h3>
+<div class="paragraph">
+<p><a href="code/ch5-wireshark-nat/wireshark-nat.pdf">Wireshark Lab: NAT v7.0</a></p>
+</div>
+<div class="paragraph">
+<p><a href="code/ch5-wireshark-nat/NAT_home_side.pcap">NAT_home_side.pcap</a></p>
+</div>
+<div class="paragraph">
+<p><a href="code/ch5-wireshark-nat/NAT_ISP_side.pcap">NAT_ISP_side.pcap</a></p>
+</div>
 <div class="sect3">
-<h4 id="_多路访问链路和协议">多路访问链路和协议</h4>
+<h4 id="_nat_measurement_scenario"><a class="link" href="#_nat_measurement_scenario">NAT Measurement Scenario</a></h4>
+<div class="paragraph">
+<p>Open the NAT_home_side file and answer the following questions.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="./img/ch6-3a.svg" alt="ch6 3a" width="834" height="615">
+<img src="./img/ch5-wireshark-nat/home.png" alt="home" width="500">
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>What is the IP address of the client?</p>
+<div class="paragraph">
+<p>192.168.1.100</p>
+</div>
+</li>
+<li>
+<p>The client actually communicates with several different Google servers in order to implement “safe browsing.” (See extra credit section at the end of this lab). The main Google server that will serve up the main Google web page has IP address 64.233.169.104. In order to display only those frames containing HTTP messages that are sent to/from this Google, server, enter the expression “http &amp;&amp; ip.addr == 64.233.169.104” (without quotes) into the Filter: field in Wireshark .</p>
+</li>
+<li>
+<p>Consider now the HTTP GET sent from the client to the Google server (whose IP address is IP address 64.233.169.104) at time 7.109267. What are the source and destination IP addresses and TCP source and destination ports on the IP datagram carrying this HTTP GET?</p>
+<div class="paragraph">
+<p>192.168.1.100 → 64.233.169.104<br>
+4335 → 80</p>
+</div>
+</li>
+<li>
+<p>At what time is the corresponding 200 OK HTTP message received from the Google server? What are the source and destination IP addresses and TCP source and destination ports on the IP datagram carrying this HTTP 200 OK message?</p>
+<div class="paragraph">
+<p>7.158797<br>
+64.233.169.104 → 192.168.1.100<br>
+80 → 4335</p>
+</div>
+</li>
+<li>
+<p>Recall that before a GET command can be sent to an HTTP server, TCP must first set up a connection using the three-way SYN/ACK handshake.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>At what time is the client-to-server TCP SYN segment sent that sets up the connection used by the GET sent at time 7.109267?</p>
+<div class="paragraph">
+<p>7.075657</p>
+</div>
+</li>
+<li>
+<p>What are the source and destination IP addresses and source and destination ports for the TCP SYN segment?</p>
+<div class="paragraph">
+<p>192.168.1.100 → 64.233.169.104<br>
+4335 → 80</p>
+</div>
+</li>
+<li>
+<p>What are the source and destination IP addresses and source and destination ports of the ACK sent in response to the SYN.</p>
+<div class="paragraph">
+<p>64.233.169.104 → 192.168.1.100<br>
+80 → 4335</p>
+</div>
+</li>
+<li>
+<p>At what time is this ACK received at the client?</p>
+<div class="paragraph">
+<p>7.108986</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Open the NAT_ISP_side.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch5-wireshark-nat/isp.png" alt="isp" width="500">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>In the NAT_ISP_side trace file, find the HTTP GET message was sent from the client to the Google server at time 7.109267 (where t=7.109267 is time at which this was sent as recorded in the NAT_home_side trace file).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>At what time does this message appear in the NAT_ISP_side trace file?</p>
+<div class="paragraph">
+<p>6.069168</p>
+</div>
+</li>
+<li>
+<p>What are the source and destination IP addresses and TCP source and destination ports on the IP datagram carrying this HTTP GET (as recording in the NAT_ISP_side trace file)?</p>
+<div class="paragraph">
+<p>71.192.34.104 → 64.233.169.104<br>
+4335 → 80</p>
+</div>
+</li>
+<li>
+<p>Which of these fields are the same, and which are different, than in your answer to question 3 above?</p>
+<div class="paragraph">
+<p>向外发送的分组，NAT路由器将源IP地址从主机的修改为自己的；其余相同。</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Are any fields in the HTTP GET message changed? Which of the following fields in the IP datagram carrying the HTTP GET are changed: Version, Header Length, Flags, Checksum. If any of these fields have changed, give a reason (in one sentence) stating why this field needed to change.</p>
+<div class="paragraph">
+<p>HTTP GET报文没有改变。<br>
+IP数据报的Checksum字段由0xa94a变为0x022f，改变的原因是因为源IP地址变了。</p>
+</div>
+</li>
+<li>
+<p>In the NAT_ISP_side trace file,</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>at what time is the first 200 OK HTTP message received from the Google server?</p>
+<div class="paragraph">
+<p>6.117570</p>
+</div>
+</li>
+<li>
+<p>What are the source and destination IP addresses and TCP source and destination ports on the IP datagram carrying this HTTP 200 OK message?</p>
+<div class="paragraph">
+<p>64.233.169.104 → 71.192.34.104<br>
+80 → 4335</p>
+</div>
+</li>
+<li>
+<p>Which of these fields are the same, and which are different than your answer to question 4 above?</p>
+<div class="paragraph">
+<p>由外向内发送的分组，NAT路由器将分组的目的IP由自己的改为主机的，其余不变。</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>In the NAT_ISP_side trace file,</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>at what time were the client-to-server TCP SYN segment and the server-to-client TCP ACK segment corresponding to the segments in question 5 above captured?</p>
+<div class="paragraph">
+<p>SYN: 6.035475<br>
+SYN ACK: 6.067775</p>
+</div>
+</li>
+<li>
+<p>What are the source and destination IP addresses and source and destination ports for these two segments?</p>
+<div class="paragraph">
+<p>SYN: 71.192.34.104 → 64.233.169.104, 4335 → 80<br>
+SYN ACK: 64.233.169.104 71.192.34.104, 80 → 4335</p>
+</div>
+</li>
+<li>
+<p>Which of these fields are the same, and which are different than your answer to question 5 above?</p>
+<div class="paragraph">
+<p>SYN报文段的源IP地址不同，NAT路由器将主机的IP修改为自己的IP，IP数据报的首部检验和也要改变。SYN ACK报文段的目的IP地址不同，NAT收到该报文段之后将目的地址改为主机的IP地址。</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using your answers to 1-8 above, fill in the NAT translation table entries for HTTP connection considered in questions 1-8 above.</p>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">NAT转换表</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">WAN端</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">LAN端</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">71.192.34.104, 4335</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.100, 4335</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_extra_credit"><a class="link" href="#_extra_credit">Extra Credit</a></h5>
+<div class="paragraph">
+<p>In the NAT_home_side trace file, consider the client-to-server GET at time 1.572315, and the GET at time 7.573305. Research the use of these two HTTP messages and write a half page explanation of the purpose of each of these messages.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch5-wireshark-nat/e1.png" alt="e1" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>这些请求和响应是有关<a href="https://developers.google.com/safe-browsing/v4">Safe Browsing</a>的。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+The Safe Browsing APIs (v4) let your client applications check URLs against Google&#8217;s constantly updated lists of unsafe web resources. Examples of unsafe web resources are social engineering sites (phishing and deceptive sites) and sites that host malware or unwanted software. Any URL found on a Safe Browsing list is considered unsafe.
+</blockquote>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch5-wireshark-nat/e2.png" alt="e2" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>这个请求和响应是有关<a href="https://www.chromium.org/chromium-os/chromiumos-design-docs/network-portal-detection">Network Portal Detection</a>的。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Shill, the connection manager for Chromium OS, attempts to detect services that are within a captive portal whenever a service transitions to the ready state.  This determination of being in a captive portal or being online is done by attempting to retrieve the webpage <a href="http://clients3.google.com/generate_204" class="bare">http://clients3.google.com/generate_204</a>.  This well known URL is known to return an empty page with an HTTP status 204.  If for any reason the web page is not returned, or an HTTP response other than 204 is received, then shill marks the service as being in the portal state.
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_链路层和局域网"><a class="link" href="#_链路层和局域网">2. 链路层和局域网</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_链路层概述"><a class="link" href="#_链路层概述">2.1. 链路层概述</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_差错检测和纠正技术"><a class="link" href="#_差错检测和纠正技术">2.2. 差错检测和纠正技术</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_多路访问链路和协议"><a class="link" href="#_多路访问链路和协议">2.3. 多路访问链路和协议</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-3a.svg" alt="ch6 3a" width="830" height="615">
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 1. 信道划分协议的比较</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col>
+<col>
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"></th>
-<th class="tableblock halign-center valign-middle">TDM</th>
-<th class="tableblock halign-center valign-middle">FDM</th>
-<th class="tableblock halign-center valign-middle">CDMA</th>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">TDM</th>
+<th class="tableblock halign-left valign-top">FDM</th>
+<th class="tableblock halign-left valign-top">CDMA</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">信道划分</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">时间</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">频率</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">编码</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">信道划分</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">时间</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">频率</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">编码</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">优点</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">优点</p></td>
 <td class="tableblock halign-center valign-middle" colspan="3"><p class="tableblock">消除碰撞且公平</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock">缺点</p></td>
-<td class="tableblock halign-center valign-middle" colspan="3"><p class="tableblock">节点被限制于R/Nbps平均速率</p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">缺点</p></td>
+<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock">节点被限制于R/Nbps平均速率</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">节点必须总是等待它在传输序列中的轮次</p></td>
-<td class="tableblock halign-center valign-middle"></td>
-<td class="tableblock halign-center valign-middle"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">节点必须总是等待它在传输序列中的轮次</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 2. 随机接入协议的比较</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col>
+<col>
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
@@ -597,12 +963,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="title">Figure 1. 从适配器角度总结CSMA/CD的运行</div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 3. 轮流协议的比较</caption>
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
@@ -637,13 +1003,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 4. 多路访问协议的比较</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col>
+<col>
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
@@ -704,9 +1070,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_交换局域网"><a class="link" href="#_交换局域网">2.4. 交换局域网</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="./img/fig6-12.png" alt="fig6 12" width="560">
+<img src="./img/ch6-4a.svg" alt="ch6 4a" width="481" height="360">
 </div>
 </div>
 <div class="imageblock">
@@ -714,59 +1083,2208 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="./img/fig6-15.png" alt="fig6 15" width="500">
 </div>
 </div>
+<div class="sect3">
+<h4 id="_mac地址和ip地址的比较"><a class="link" href="#_mac地址和ip地址的比较">MAC地址和IP地址的比较</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">MAC地址</th>
+<th class="tableblock halign-left valign-top">IP地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有扁平结构</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有层次结构（一个网络部分和一个主机部分）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不论到哪里都不会变化</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当主机移动时需要改变</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_需要mac地址的原因"><a class="link" href="#_需要mac地址的原因">需要MAC地址的原因</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目的</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">为了使网络体系结构中各层次成为极为独立的构建模块，不同的层次需要有它们自己的寻址方案</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">通用</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">局域网是为任意网络层协议而设计的，而不只是用于IP和因特网。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">易用</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果适配器使用网络层地址而不是MAC地址的话，网络层地址必须存储在适配器的RAM中，并且在每次适配器移动（或加电）时要重新配置。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">效率</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果不使用MAC地址，主机将被局域网上发送的每个帧中断，包括被目的地是在相同广播局域网上的其他节点的帧中断。</p></td>
+</tr>
+</tbody>
+</table>
 <div class="imageblock">
 <div class="content">
 <img src="./img/fig6-17.png" alt="fig6 17" width="360">
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_dns和arp的比较"><a class="link" href="#_dns和arp的比较">DNS和ARP的比较</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">为在因特网中任何地方的主机解析主机名</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">只为在同一个子网上的主机和路由器接口解析IP地址</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_arp协议"><a class="link" href="#_arp协议">ARP协议</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">查询ARP报文是在广播帧中发送的，而响应报文是在一个标准帧中发送</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARP是即插即用的</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARP分组同时包含链路层地址和网络层地址，可以看成是跨越链路层和网络层边界两边的协议</p></td>
+</tr>
+</tbody>
+</table>
 <div class="imageblock">
 <div class="content">
 <img src="./img/fig6-19.png" alt="fig6 19" width="560">
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_基于交换机的以太局域网没有必要使用mac协议"><a class="link" href="#_基于交换机的以太局域网没有必要使用mac协议">基于交换机的以太局域网没有必要使用MAC协议</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">交换机协调其传输，在任何时候决不会向相同的接口转发超过一个帧</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">现代交换机是全双工的，这使得一台交换机和一个节点能够在同时向对方发送帧而没有干扰</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_以太局域网基于交换机与基于总线或集线器的区别"><a class="link" href="#_以太局域网基于交换机与基于总线或集线器的区别">以太局域网基于交换机与基于总线或集线器的区别</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">项目</th>
+<th class="tableblock halign-left valign-top">原因</th>
+<th class="tableblock halign-left valign-top">应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">消除碰撞</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">交换机缓存帧并且不会在网段上同时传输多于一个帧</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">性能提高</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">异质的链路</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">交换机将链路彼此隔离</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>不同链路运行在不同媒体上</p>
+</li>
+<li>
+<p>新旧设备混用</p>
+</li>
+<li>
+<p>个别线缆损坏不影响整个链路</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">管理</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">总线和集线器仅仅是物理层设备，而交换机可以被配置</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>检测并断开异常适配器</p>
+</li>
+<li>
+<p>收集链路信息</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="imageblock">
 <div class="content">
 <img src="./img/fig6-24.png" alt="fig6 24" width="430">
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_交换机与路由器的比较"><a class="link" href="#_交换机与路由器的比较">交换机与路由器的比较</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">交换机</th>
+<th class="tableblock halign-left valign-top">路由器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">本质</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用MAC地址转发分组</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用网络层地址转发分组</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">优点</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>即插即用</p>
+</li>
+<li>
+<p>具有相对高的分组过滤和转发速率</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>链路拓扑结构丰富</p>
+</li>
+<li>
+<p>对第二层的广播风暴提供了防火墙保护</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">缺点</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>交换网络的活跃拓扑限制为一颗生成树</p>
+</li>
+<li>
+<p>生成可观的ARP流量和处理量</p>
+</li>
+<li>
+<p>对广播风暴不提供保护措施</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>不是即插即用的，路由器和连接到它们的主机都需要认为地配置IP地址</p>
+</li>
+<li>
+<p>对每个分组的处理时间比交换机更长</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用场景</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">几百台主机组成的小网络，不要求IP地址的任何配置就能使流量局部化并增加总计吞吐量</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">由几千台主机组成的更大网络中，路由器提供了更健壮的流量隔离方式和对广播风暴的控制，并在网络的主机之间使用更智能的路由</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_交换机等级结构的特点"><a class="link" href="#_交换机等级结构的特点">交换机等级结构的特点</a></h4>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">优点</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">等级结构把组流量局域化到一个单一交换机中</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">缺点</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>广播流量必须跨越整个机构网络，影响局域网性能</p>
+</li>
+<li>
+<p>如果每个组都较小，交换机就不能被充分使用</p>
+</li>
+<li>
+<p>雇员在小组间移动需要改变物理布线，而且不能同时接入两个组</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="imageblock">
 <div class="content">
 <img src="./img/fig6-30.png" alt="fig6 30" width="390">
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-32.png" alt="fig6 32" width="500">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_复习题">复习题</h3>
+<h3 id="_复习题"><a class="link" href="#_复习题">2.5. 复习题</a></h3>
 <div class="sect3">
-<h4 id="_r1">R1</h4>
+<h4 id="_r1"><a class="link" href="#_r1">R1</a></h4>
 <div class="paragraph">
-<p>考虑在 6.1 节（p.286）中的运输类比。如果一个乘客类比为一个数据报，什么类比于链路层帧？</p>
+<p>考虑在6.1节（p.286）中的运输类比。如果一个乘客类比为一个数据报，什么类比于链路层帧？</p>
 </div>
 <div class="paragraph">
 <p>乘客和乘客乘乘坐的交通工具（轿车、飞机、火车）一起构成一个链路层帧。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</h4>
+<h4 id="_r2_链路层的可靠交付服务与tcp可靠传输服务"><a class="link" href="#_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</a></h4>
 <div class="paragraph">
-<p>如果在因特网中的所有链路都提供可靠的交付服务，TCP 可靠传输服务将是多余的吗？为什么？</p>
+<p>如果在因特网中的所有链路都提供可靠的交付服务，TCP可靠传输服务将是多余的吗？为什么？</p>
 </div>
 <div class="paragraph">
-<p>TCP 可靠传输服务确保传输数据比特不会收到损坏或丢失，且按序交付。而链路层提供的可靠交付服务是面向链路层帧的，这就不能保证数据按序交付。此外，由于路由环路或设备故障，IP 可能会丢失数据包。所以 TCP 可靠传输服务不是多余的。</p>
+<p>TCP可靠传输服务确保传输数据比特不会收到损坏或丢失，且按序交付。而链路层提供的可靠交付服务是面向链路层帧的，这就不能保证数据按序交付。此外，由于路由环路或设备故障，IP可能会丢失数据包。所以TCP可靠传输服务不是多余的。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r3_链路层提供的服务与iptcp">R3 链路层提供的服务与IP、TCP</h4>
+<h4 id="_r3_链路层提供的服务与iptcp"><a class="link" href="#_r3_链路层提供的服务与iptcp">R3 链路层提供的服务与IP、TCP</a></h4>
 <div class="paragraph">
-<p>链路层协议能够向网络层提供哪些可能的服务？在这些链路层服务中，哪些在 IP 中有对应的服务？哪些在 TCP 中有对应的服务？</p>
+<p>链路层协议能够向网络层提供哪些可能的服务？在这些链路层服务中，哪些在IP中有对应的服务？哪些在TCP中有对应的服务？</p>
 </div>
 <div class="paragraph">
-<p>链路层协议向网络层提供的服务：
-1. 成帧。TCP同样将应用层报文分段，将其封装成运输层报文段。IP将运输层报文段（分片并）用网络层数据报封装起来。
-2. 链路接入。
-3. 可靠交付。TCP提供更宏观的可靠运输服务。
-4. 差错检测和纠正。IP和TCP提供有限的差错检测，即因特网检验和。</p>
+<p>链路层协议向网络层提供的服务：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>成帧。TCP同样将应用层报文分段，将其封装成运输层报文段。IP将运输层报文段（分片并）用网络层数据报封装起来。</p>
+</li>
+<li>
+<p>链路接入。</p>
+</li>
+<li>
+<p>可靠交付。TCP提供更宏观的可靠运输服务。</p>
+</li>
+<li>
+<p>差错检测和纠正。IP和TCP提供有限的差错检测，即因特网检验和。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r4"><a class="link" href="#_r4">R4</a></h4>
+<div class="paragraph">
+<p>假设两个节点同时经一个速率为R的广播信道开始传输一个长度为L的分组。用d<sub>prop</sub>表示这两个节点之间的传播时延。如果d<sub>prop</sub>&lt;L/R，会出现碰撞吗？为什么？</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./img/ch6-r4.png" alt="ch6 r4"></span></p>
+</div>
+<div class="paragraph">
+<p>假设节点在t<sub>0</sub>开始传输分组，在t<sub>2</sub>传输完成。由于d<sub>prop</sub>&lt;L/R，节点会在t<sub>1</sub>收到其他节点发送的分组，因此会发生碰撞。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r5"><a class="link" href="#_r5">R5</a></h4>
+<div class="paragraph">
+<p>在6.3节中，我们列出了广播信道的4种希望的特性。这些特性中的哪些是时隙ALOHA所具有的？令牌传递具有这些特性中的哪些？</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">时隙ALOHA</th>
+<th class="tableblock halign-left valign-top">令牌传递</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">1）单节点传输时，该节点具有Rbps吞吐量</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">2）M个节点传输时，每节点具有R/Mbps吞吐量</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✗ 大概0.37R/M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">3）分散的</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✗ 不完全分散，节点之间需要同步时隙</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">4）简单的</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✓</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_r6_二进制指数后退算法的计算"><a class="link" href="#_r6_二进制指数后退算法的计算">R6 二进制指数后退算法的计算</a></h4>
+<div class="paragraph">
+<p>在CSMA/CD中，在第5次碰撞后，节点选择K=4的概率有多大？结果K=4在10Mbps以太网上对应于多少秒的时延？</p>
+</div>
+<div class="paragraph">
+<p>在经历n次碰撞后的K待选集合是\(\{0, 1, 2, \dotsc, 2^n-1\}\)。当n=5时，这是集合是\(\{0, 1, \dotsc, 31\}\)，因此选择K=4的概率是1/32。</p>
+</div>
+<div class="paragraph">
+<p>10Mbps以太网上T<sub>512b</sub>=512b÷10Mbps=51.2ms，因此时延是K×T<sub>512b</sub>=4×5.12ms=204.8ms。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r7"><a class="link" href="#_r7">R7</a></h4>
+<div class="paragraph">
+<p>使用人类在鸡尾酒会交互的类比来描述轮询和令牌传递协议。</p>
+</div>
+<div class="paragraph">
+<p>在轮询中，一个主持人每次只允许一个参与者说话，每个参与者都有机会以轮流的方式说话。对于令牌传递，没有主持人，但有酒杯，参与者轮流拿着。只有当参与者拿着酒杯的时候，才允许他说话。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r8"><a class="link" href="#_r8">R8</a></h4>
+<div class="paragraph">
+<p>如果局域网有很大的周长时，为什么令牌环协议将是低效的？</p>
+</div>
+<div class="paragraph">
+<p>当一个节点发送一个帧时，该节点必须等待该帧在整个环上传播，然后该节点才能释放令牌。因此，如果L/R与t<sub>prop</sub>相比很小，那么该协议将是低效的。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r9"><a class="link" href="#_r9">R9</a></h4>
+<div class="paragraph">
+<p>MAC地址空间有多大？IPv4的地址空间呢？IPv6的地址空间呢？</p>
+</div>
+<div class="paragraph">
+<p>2^48 ≈        281 474 十亿
+2^32 ≈              4 十亿
+2^64 ≈ 18 446 744 073 十亿</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r10"><a class="link" href="#_r10">R10</a></h4>
+<div class="paragraph">
+<p>假设节点A、B和C（通过它们的适配器）都连接到同一个广播局域网上。如果A向B发送数千个IP数据报．每个封装帧都有B的MAC地址，C的适配器会处理这些帧吗？如果会，C的适配器将会把这些帧中的IP数据报传递给C的网络层吗？如果A用MAC广播地址来发送这些帧，你的回答将有怎样的变化呢？</p>
+</div>
+<div class="paragraph">
+<p>如果封装帧是B的MAC地址，C的适配器会处理这些帧，但只是把它们丢弃而不会传递给网络层。</p>
+</div>
+<div class="paragraph">
+<p>如果A用MAC广播地址发送这些帧，C的适配器会处理这些帧，而且会传递给网络层。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r11"><a class="link" href="#_r11">R11</a></h4>
+<div class="paragraph">
+<p>ARP查询为什么要在广播帧中发送呢？ARP响应为什么要在一个具有特定目的MAC地址的帧中发送呢？</p>
+</div>
+<div class="paragraph">
+<p>因为查询的主机不知道哪个适配器MAC地址与有关的IP地址相对应，所以ARP查询是在广播帧中发送的。对于响应，发送节点知道应该向哪个适配器地址发送响应，所以不需要发送广播帧。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r12"><a class="link" href="#_r12">R12</a></h4>
+<div class="paragraph">
+<p>对于图6-19中的网络，路由器有两个ARP模块，每个都有自己的ARP表。同样的MAC地址可能在两张表中都出现吗？</p>
+</div>
+<div class="paragraph">
+<p>这是不可能的。每个局域网都有自己独特的一组适配器连接到它，每个适配器都有一个独特的MAC地址。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r13"><a class="link" href="#_r13">R13</a></h4>
+<div class="paragraph">
+<p>比较10BASE-T、100BASE-T和吉比特以太网的帧结构。它们有什么不同吗？</p>
+</div>
+<div class="paragraph">
+<p>没有不同。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r14"><a class="link" href="#_r14">R14</a></h4>
+<div class="paragraph">
+<p>考虑图6-15。在4.3节的寻址意义下，有多少个子网呢？</p>
+</div>
+<div class="paragraph">
+<p>两个：一个内部子网和外部网络。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r15"><a class="link" href="#_r15">R15</a></h4>
+<div class="paragraph">
+<p>在一个支持802.1Q协议交换机上能够配置的VLAN的最大数量是多少？为什么？</p>
+</div>
+<div class="paragraph">
+<p>在802.1Q协议中，VLAN标识符字段是12比特，因此最多能配置2^12=4096个VLAN。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r16"><a class="link" href="#_r16">R16</a></h4>
+<div class="paragraph">
+<p>假设支持K个VLAN组的N台交换机经过一个干线协议连接起来。连接这些交换机需要多少端口？评价你的答案。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>     +-------+  +-------+                +-------+
+     |       |  |       |      ...       |       |
+-----+--*  *-+--+-*   *-+------    ------+-*   *-+------
+     +-------+  +-------+                +-------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>位于首尾的两台交换机分别用1个端口中继，中间剩余的N-2台交换机每台需要2个端口连接，总共需要的端口数量是2+2×(N-2)。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_习题"><a class="link" href="#_习题">2.6. 习题</a></h3>
+<div class="sect3">
+<h4 id="_p1_二维奇偶校验的计算"><a class="link" href="#_p1_二维奇偶校验的计算">P1 二维奇偶校验的计算</a></h4>
+<div class="paragraph">
+<p>假设某分组的信息内容是比特模式1110 0110 1001 1101，并且使用了偶校验方案。在采用二维奇偶校验方案的情况下，包含该检验比特的字段的值是什么？你的回答应该使用最小长度检验和字段。</p>
+</div>
+<div class="paragraph">
+<p>16比特的数据采用二维奇偶校验方案的行列组合有两种：2行8列和4行4列，检验和的长度分别是11比特和9比特。由于要是检验和字段长度最小，因此选择4行4列。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>1 1 1 0 | 1
+0 1 1 0 | 0
+1 0 0 1 | 0
+1 1 0 1 | 1
+--------|--
+1 1 0 0 | 0</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p2_二维奇偶校验的能力"><a class="link" href="#_p2_二维奇偶校验的能力">P2 二维奇偶校验的能力</a></h4>
+<div class="paragraph">
+<p>说明（举一个不同于图6-5的例子）二维奇偶校验能够纠正和检测单比特差错。说明（举一个例子）某些双比特差错能够被检测但不能纠正。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./img/ch6-p2.png" alt="ch6 p2"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p3_因特网检验和的计算"><a class="link" href="#_p3_因特网检验和的计算">P3 因特网检验和的计算</a></h4>
+<div class="paragraph">
+<p>假设某分组的信息部分（图6-3中的D）包含10字节，它由字符串"Networking"的8比特无符号二进制ASCII表示组成。对该数据计算因特网检验和。</p>
+</div>
+<div class="paragraph">
+<p>检验和的计算在p.133。</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">发送方</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>按16比特回卷求和</p>
+</li>
+<li>
+<p>求反</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">接收方</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有比特（包括检验和）回卷求和，结果全是1就没有错误</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Networking的ASCII表示：
+4E 65 74 77 6F 72 6B 69 6E 67</p>
+</div>
+<div class="paragraph">
+<p>按16比特回卷求和得到：
+0x0C20（0000 1100 0010 0000）</p>
+</div>
+<div class="paragraph">
+<p>求反得到：
+0xF3DF（1111 0011 1101 1111）</p>
+</div>
+<div class="paragraph">
+<p>最后发送方发送的数据以及检验和是：
+4E 65 74 77 6F 72 6B 69 6E 67 F3 DF</p>
+</div>
+<div class="paragraph">
+<p>有关ones' complement、two&#8217;s complement和有符号数的表示见<a href="https://en.wikipedia.org/wiki/Signed_number_representations">Signed number representations</a>。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p4"><a class="link" href="#_p4">P4</a></h4>
+<div class="paragraph">
+<p>考虑前一个习题，但此时假设这10字节包含：</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>数字1到10的二进制表示。</p>
+</li>
+<li>
+<p>字母B到K（大写）的ASCII表示。</p>
+</li>
+<li>
+<p>字母b到k（小写）的ASCII表示。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>计算这些数据的因特网检验和。</p>
+</div>
+<div class="sect4">
+<h5 id="_a"><a class="link" href="#_a">a</a></h5>
+<div class="paragraph">
+<p>数字1到10的二进制表示：
+01 02 03 04 05 06 07 08 09 0A</p>
+</div>
+<div class="paragraph">
+<p>16比特字的和：0x191E（0001 1001 0001 1110）</p>
+</div>
+<div class="paragraph">
+<p>反码：1110 0110 1110 0001</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b"><a class="link" href="#_b">b</a></h5>
+<div class="paragraph">
+<p>字母B到K的ASCII表示：
+42 43 44 45 46 47 48 49 4A 4B</p>
+</div>
+<div class="paragraph">
+<p>16比特字的和：0x5F64（0101 1111 0110 0100）</p>
+</div>
+<div class="paragraph">
+<p>16比特字的和：1010 0000 1001 1011</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c"><a class="link" href="#_c">c</a></h5>
+<div class="paragraph">
+<p>字母b到k的ASCII表示：
+62 63 64 65 66 67 68 69 6A 6B</p>
+</div>
+<div class="paragraph">
+<p>16比特字的和：0x5（0000 0000 0000 0101）</p>
+</div>
+<div class="paragraph">
+<p>反码：1111 1111 1111 1010</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p5"><a class="link" href="#_p5">P5</a></h4>
+<div class="paragraph">
+<p>考虑5比特生成多项式，G=10011，并且假设D的值为10 1010 1010。R的值是什么？</p>
+</div>
+<div class="paragraph">
+<p>G表示的多项式为</p>
+</div>
+<div class="paragraph">
+<p>\(1\times x^4 + 0\times x^3 + 0\times x^2 + 1\times x^1 + 1\times x^0.\)</p>
+</div>
+<div class="paragraph">
+<p>该多项式的阶数是4，因此r=4，故</p>
+</div>
+<div class="paragraph">
+<p>\(R = 10101010100000\bmod 10011= 0100.\)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p6"><a class="link" href="#_p6">P6</a></h4>
+<div class="paragraph">
+<p>考虑上一个习题，这时假设D具有值：</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>1001010101。</p>
+</li>
+<li>
+<p>0101101010。</p>
+</li>
+<li>
+<p>1010100000。</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_2"><a class="link" href="#_a_2">a</a></h5>
+<div class="paragraph">
+<p>\(1001010101\bmod 10011 = 0000\)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_2"><a class="link" href="#_b_2">b</a></h5>
+<div class="paragraph">
+<p>1111</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_2"><a class="link" href="#_c_2">c</a></h5>
+<div class="paragraph">
+<p>1001</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p7"><a class="link" href="#_p7">P7</a></h4>
+<div class="paragraph">
+<p>在这道习题中，我们探讨CRC的某些性质。对于在6.2.3节中给出的生成多项式G（=1001），回答下列问题：</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>为什么它能够检测数据D中的任何单比特差错？</p>
+</li>
+<li>
+<p>上述C能够检测任何奇数比特差错吗？为什么？</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_3"><a class="link" href="#_a_3">a</a></h5>
+<div class="paragraph">
+<p>Without loss of generality, suppose ith bit is flipped, where 0&#8656; i &#8656; d+r-1 and assume that the least significant bit is 0th bit. A single bit error means that the received data is K=D*2r XOR R + 2i. It is clear that if we divide K by G, then the reminder is not zero. In general, if G contains at least two 1&#8217;s, then a single bit error can always be detected.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_3"><a class="link" href="#_b_3">b</a></h5>
+<div class="paragraph">
+<p>The key insight here is that G can be divided by 11 (binary number), but any number of odd-number of 1&#8217;s cannot be divided by 11. Thus, a sequence (not necessarily contiguous) of odd-number bit errors cannot be divided by 11, thus it cannot be divided by G.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p8_时隙aloha效率推导"><a class="link" href="#_p8_时隙aloha效率推导">P8 时隙ALOHA效率推导</a></h4>
+<div class="paragraph">
+<p>在6.3节中，我们提供了时隙ALOHA效率推导的概要。在本习题中，我们将完成这个推导。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>前面讲过，当有N个活跃节点时，时隙ALOHA的效率是Np(1-p)<sup>N-1</sup>。求出使这个表达式最大化的p值。</p>
+</li>
+<li>
+<p>使用在（a）中求出的p值，令N接近于无穷，求出时隙ALOHA的效率。（提示：当N接近于无穷时，(1-1/N)<sup>N</sup>接近于1/e。）</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_4"><a class="link" href="#_a_4">a</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+E'(p) &amp;= N(1-p)^{N-1} - Np(N-1)(1-p)^{N-2} \\
+&amp;= N(1-p)^{N-2}(1-pN) \\
+
+E'(p)&amp; = 0 \implies p*=\frac1N
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_4"><a class="link" href="#_b_4">b</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+&amp;E(p*) = N\frac1N (1-\frac1N)^{N-1} = \frac{(1-\frac1N)^N}{1-\frac1N} \\
+&amp;\lim_{N\to \infty}(1-\frac1N) = 1 \\
+&amp;\lim_{N\to \infty}(1-\frac1N)^N = \frac1e \\
+&amp;\text{因此} \\
+&amp;\lim_{N\to \infty}E(p*) = \frac1e
+\end{align*}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p9"><a class="link" href="#_p9">P9</a></h4>
+<div class="paragraph">
+<p>说明纯ALOHA的最大效率是1/(2e)。注意：如果你完成了上面的习题，本习题就很简单了。</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+E(p) &amp;= Np(1-p)^{2(N-1)} \\
+E'(p) &amp;= N(1-p)^{2(N-1)} - Np2(N-1)(1-p)^{2(N-1)-1} \\
+&amp;= N(1-p)^{2N-3}((1-2N)p+1) \\
+
+E'(p)&amp; = 0 \implies p*=\frac{1}{2N-1} \\
+
+\lim_{N\to \infty}E(p*)
+&amp;= \lim_{N\to \infty}\frac{N}{2N-1}\cdot (1-\frac{1}{2N-1})^{2N-1}\cdot (1-\frac{1}{2N-1})^{-1} \\
+&amp;= \frac12\cdot \frac1e\cdot 1 = \frac1{2e} \\
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p10_节点吞吐量与重传概率"><a class="link" href="#_p10_节点吞吐量与重传概率">P10 节点吞吐量与重传概率</a></h4>
+<div class="paragraph">
+<p>考虑两个节点A和B，它们都使用时隙ALOHA协议来竞争一个信道。假定节点A比节点B有更多的数据要传输，并且节点A的重传概率p<sub>A</sub>比节点B的重传概率p<sub>B</sub>要大。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>给出节点A的平均吞吐量的公式。具有这两个节点的协议的总体效率是多少？</p>
+</li>
+<li>
+<p>如果p<sub>A</sub>=2p<sub>B</sub>，节点A的平均吞吐量比节点B的要大两倍吗？为什么？如果不是，你能够选择什么样的p<sub>A</sub>和p<sub>B</sub>使得其成立？</p>
+</li>
+<li>
+<p>一般而言，假设有N个节点，其中的节点A具有重传概率2p并且所有其他节点具有重传概率p。给出表达式来计算节点A和其他任何节点的平均吞吐量。</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_5"><a class="link" href="#_a_5">a</a></h5>
+<div class="paragraph">
+<p>某一时隙A成功传输的概率为p<sub>A</sub>(1-p<sub>B</sub>)，因此A的平均吞吐量T<sub>A</sub>=Rp<sub>A</sub>(1-p<sub>B</sub>)。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_5"><a class="link" href="#_b_5">b</a></h5>
+<div class="paragraph">
+<p>B的平均吞吐量T<sub>B</sub>=Rp<sub>B</sub>(1-p<sub>A</sub>)，总体效率为(Rp<sub>A</sub>(1-p<sub>B</sub>)+Rp<sub>B</sub>(1-p<sub>A</sub>))/R = p<sub>A</sub>+p<sub>B</sub>-2p<sub>A</sub>p<sub>B</sub>。</p>
+</div>
+<div class="paragraph">
+<p>当p<sub>A</sub>=2p<sub>B</sub>时，T<sub>A</sub>/T<sub>B</sub>=1/(1-2p<sub>B</sub>)+1，大两倍不成立。</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+T_A = 2T_B
+&amp;\implies p_A(1-p_{B}) = 2p_B(1-p_A) \\
+&amp;\implies p_A = \frac{2p_B}{1+p_B}.
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_3"><a class="link" href="#_c_3">c</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+T_A &amp;= 2p(1-p)^{N-1} \\
+T_O &amp;= p(1-p)^{N-2}(1-2p)
+\end{align*}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p11_时隙aloha的概率问题"><a class="link" href="#_p11_时隙aloha的概率问题">P11 时隙ALOHA的概率问题</a></h4>
+<div class="paragraph">
+<p>假定4个活跃节点A、B、C和D都使用时隙ALOHA来竞争访问某信道。假设每个节点有无限个分组要发送。每个节点在每个时隙中以概率p尝试传输。第一个时隙编号为时隙1，第二个时隙编号为时隙2，等等。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>节点A在时隙5中首次成功的概率是多少？</p>
+</li>
+<li>
+<p>某个节点（A、B、C或D）在时隙4中成功的概率是多少？</p>
+</li>
+<li>
+<p>在时隙3中出现首个成功的概率是多少？</p>
+</li>
+<li>
+<p>这个4节点系统的效率是多少？</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_6"><a class="link" href="#_a_6">a</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+p_{\text{节点A在时隙5中首次成功}}
+&amp;= p_{\text{前4个时隙中节点A没成功}}\cdot p_{\text{节点A在时隙5中成功}} \\
+&amp;= (1 -p_{\text{节点A在某一时隙成功}})^4\cdot p(1-p)^3 \\
+&amp;= (1 - p(1-p)^3)^4\cdot p(1-p)^3.
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_6"><a class="link" href="#_b_6">b</a></h5>
+<div class="paragraph">
+<p>4p(1-p)<sup>3</sup></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_4"><a class="link" href="#_c_4">c</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+p_{\text{在时隙3中出现首个成功}}
+&amp;= p_{\text{前2个时隙中没有节点成功}}\cdot p_{\text{时隙3中有节点成功}} \\
+&amp;= (1 -p_{\text{某一时隙有节点成功}})^2\cdot 4p(1-p)^3 \\
+&amp;= (1 - 4p(1-p)^3)^2\cdot 4p(1-p)^3.
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_d"><a class="link" href="#_d">d</a></h5>
+<div class="paragraph">
+<p>4p(1-p)<sup>3</sup></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p12_画图对比时隙和纯aloha的效率"><a class="link" href="#_p12_画图对比时隙和纯aloha的效率">P12 画图对比时隙和纯ALOHA的效率</a></h4>
+<div class="paragraph">
+<p>对N的下列值，画出以p为函数的时隙ALOHA和纯ALOHA的效率。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>N=15。</p>
+</li>
+<li>
+<p>N=25。</p>
+</li>
+<li>
+<p>N=35。</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import numpy as np
+import math
+import matplotlib.pyplot as plt
+
+
+def vectorize(func):
+    def wrapper(*args, **kw):
+        return np.vectorize(func(*args, **kw))
+    return wrapper
+
+
+@vectorize
+def slot_aloha_eff(n):
+    return lambda p: n * p * math.pow(1 - p, n - 1)
+
+
+@vectorize
+def pure_aloha_eff(n):
+    return lambda p: n * p * math.pow(1 - p, 2 * (n - 1))
+
+
+def main():
+    x = np.arange(0, 1, 0.01)
+    plt.xlabel('probability')
+    plt.ylabel('efficiency')
+    plt.xlim(0, 0.4)
+    plt.plot(x, slot_aloha_eff(15)(x), 'r', label='N=15 slotted')
+    plt.plot(x, slot_aloha_eff(25)(x), 'g', label='N=25 slotted')
+    plt.plot(x, slot_aloha_eff(35)(x), 'b', label='N=35 slotted')
+    plt.plot(x, pure_aloha_eff(15)(x), 'r--', label='N=15 pure')
+    plt.plot(x, pure_aloha_eff(25)(x), 'g--', label='N=25 pure')
+    plt.plot(x, pure_aloha_eff(35)(x), 'b--', label='N=35 pure')
+    plt.legend()
+    plt.show()
+
+
+if __name__ == '__main__':
+    main()</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p12.png" alt="ch6 p12" width="450">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p13"><a class="link" href="#_p13">P13</a></h4>
+<div class="paragraph">
+<p>考虑具有N个节点和传输速率为Rbps的一个广播信道。假设该广播信道使用轮询进行多路访问（有一个附加的轮询节点）。。假设从某节点完成传输到后续节点允许传输之间的时间量（即轮询时延）是d<sub>poll</sub>。假设在一个轮询周期中，一个给定的节点允许至多传输Q比特。该广播信道的最大吞吐量是多少？</p>
+</div>
+<div class="paragraph">
+<p>传输Q比特所用的时间为</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[t_Q=\frac{Q}{R}\]
+</div>
+</div>
+<div class="paragraph">
+<p>因此该信道最大吞吐量就是传输时间在总时间里的占比</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
+&amp;= \frac{Q}{\frac{Q}{R}+d_{poll}}
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p14"><a class="link" href="#_p14">P14</a></h4>
+<div class="paragraph">
+<p>如图6-33所示，考虑通过两台路由器互联的3个局域网。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>对所有的接口分配IP地址。对子网1使用形式为192.168.1.xxx的地址，对子网2使用形式为192.168.2.xxx的地址，对子网3使用形式为192.168.3.xxx的地址。</p>
+</li>
+<li>
+<p>为所有的适配器分配MAC地址。</p>
+</li>
+<li>
+<p>考虑从主机E向主机B发送一个IP数据报。假设所有的ARP表都是最新的。就像在6.4.1节中对单路由器例子所做的那样，列举出所有步骤。</p>
+</li>
+<li>
+<p>重复（c），现在假设在发送主机中的ARP表为空（并且其他表都是最新的）。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-33.png" alt="fig6 33" width="300">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_a_b"><a class="link" href="#_a_b">a b</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p14.png" alt="ch6 p14" width="700">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_5"><a class="link" href="#_c_5">c</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>主机E要发送的IP数据报目的IP是<code>192.168.1.3</code>，由于这个IP和自己不是一个子网，所以被发往网关路由器<code>192.168.3.1</code>，该IP数据报被封装成以太网帧。以太网帧的目的MAC地址通过查询ARP表可以知道，是<code>JJ:JJ:JJ:JJ:JJ:JJ</code>。</p>
+</li>
+<li>
+<p>路由器N在MAC地址为<code>JJ:JJ:JJ:JJ:JJ:JJ</code>的接口收到该帧，从该帧中取出IP数据报发现目的IP地址是<code>192.168.1.3</code>，查询路由表得知该数据报应该从左边接口被发往<code>192.168.2.1</code>。该数据报被装入以太网帧，查询ARP表得到目的MAC地址<code>HH:HH:HH:HH:HH:HH</code>。</p>
+</li>
+<li>
+<p>路由器M收到该帧后取出IP数据报，查询路由表得知从左边接口发送该数据报。该数据包被转入以太网帧后查询ARP得知目的MAC地址是<code>BB:BB:BB:BB:BB:BB</code>。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_d_2"><a class="link" href="#_d_2">d</a></h5>
+<div class="paragraph">
+<p>在第一步要将该帧发送给网关路由器之前需要发送ARP查询报文，该查询报文目的IP地址是<code>192.168.3.1</code>，源IP和MAC地址是自己的，然后用目的MAC地址<code>FF:FF:FF:FF:FF:FF</code>广播查询报文，收到响应后就知道了网关路由器的MAC地址。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p15_交换机转发"><a class="link" href="#_p15_交换机转发">P15 交换机转发</a></h4>
+<div class="paragraph">
+<p>考虑图6-33。现在我们用一台交换机代替子网1和子网2之间的路由器，并且将子网2和子网3之间的路由器标记为R1。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>考虑从主机E向主机F发送一个IP数据报。主机E将请求路由器R1帮助转发该数据报吗？为什么？在包含IP数据报的以太网帧中，源和目的IP和MAC地址分别是什么？</p>
+</li>
+<li>
+<p>假定E希望向B发送一个IP数据报，假设E的ARP缓存中不包含B的MAC地址。E将执行ARP查询来发现B的MAC地址吗？为什么？在交付给路由器R1的以太网帧（包含发向B的IP数据报）中，源和目的IP和MAC地址分别是什么？</p>
+</li>
+<li>
+<p>假定主机A希望向主机B发送一个IP数据报，A的ARP缓存不包含B的MAC地址，B的ARP缓存也不包含A的MAC地址。进一步假定交换机S1的转发表仅包含主机B和路由器R1的表项。因此，A将广播一个ARP请求报文。一旦交换机S1收到ARP请求报文将执行什么动作？路由器R1也会收到这个ARP请求报文吗？如果收到的话，R1将向子网3转发该报文吗？一旦主机B收到这个ARP请求报文，它将向主机A回发一个ARP响应报文。但是它将发送一个ARP查询报文来请求A的MAC地址吗？为什么？一旦交换机S1收到来自主机B的一个ARP响应报文，它将做什么？</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p15.png" alt="ch6 p15">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_a_7"><a class="link" href="#_a_7">a</a></h5>
+<div class="paragraph">
+<p>主机E向主机F发送数据报不需要路由器R1转发该数据报，因为主机E和F在同一个子网，可以经交换机发送以太网帧。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>目的IP地址：主机F的IP地址；</p>
+</li>
+<li>
+<p>目的MAC地址：主机F的MAC地址。</p>
+</li>
+<li>
+<p>源IP地址：主机E的IP地址；</p>
+</li>
+<li>
+<p>源MAC地址：主机E的MAC地址；</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_7"><a class="link" href="#_b_7">b</a></h5>
+<div class="paragraph">
+<p>E不会执行ARP查询来发现B的MAC地址，因为B和E不在同一个子网。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>目的IP地址：主机B的IP地址；</p>
+</li>
+<li>
+<p>目的MAC地址：路由器R1的MAC地址。</p>
+</li>
+<li>
+<p>源IP地址：主机E的IP地址；</p>
+</li>
+<li>
+<p>源MAC地址：主机E的MAC地址；</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_6"><a class="link" href="#_c_6">c</a></h5>
+<div class="paragraph">
+<p>交换机S1收到ARP请求报文首先会将A的MAC地址和入接口存入转发表，然后向另外两个接口转发该帧。</p>
+</div>
+<div class="paragraph">
+<p>路由器R1也会收到这个ARP请求报文。但不会向子网3转发该报文。</p>
+</div>
+<div class="paragraph">
+<p>主机B收到这个ARP请求报文，它不会送一个ARP查询报文来请求A的MAC地址，因为ARP请求报文中已经包含了A的MAC地址。</p>
+</div>
+<div class="paragraph">
+<p>交换机S1收到来自主机B的一个ARP响应报文，它将查找转发表，发现已经存在与该帧目的MAC地址匹配的表项，从相应的接口转发该帧。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p16"><a class="link" href="#_p16">P16</a></h4>
+<div class="paragraph">
+<p>考虑前面的习题，但是现在假设用一台交换机代替子网2和子网3之间的路由器，在这种新的场景中回答前面习题中的问题（a）~（c）。</p>
+</div>
+<div class="paragraph">
+<p>略。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p17_后退时间"><a class="link" href="#_p17_后退时间">P17 后退时间</a></h4>
+<div class="paragraph">
+<p>前面讲过，使用CSMA/CD协议，适配器在碰撞之后等待K•512比特时间，其中K是随机选取的。对于K=100，对于一个1OMbps的广播信道，适配器返回到第二步要等多长时间？对于1OOMbps的广播信道来说呢？</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+t_{10M} &amp;= K × t_{512b} \\
+&amp;= 100 × 512b ÷ 10Mpbs = 5.12ms \\
+
+t_{100M} &amp;= K × t_{512b} \\
+&amp;= 100 × 512b ÷ 100Mbps = 0.512ms
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p18_csmacd误检测"><a class="link" href="#_p18_csmacd误检测">P18 CSMA/CD误检测</a></h4>
+<div class="paragraph">
+<p>假设节点A和节点B在同一个1OMbps广播信道上，这两个节点的传播时延为325比特时间。假设对这个广播信道使用CSMA/CD和以太网分组。假设节点A开始传输一帧，并且在它传输结束之前节点B开始传输一帧。在A检测到B已经传输之前，A能完成传输吗？为什么？如果回答是可以，则A错误地认为它的帧已成功传输而无碰撞。提示：假设在t=O比特时刻，A开始传输一帧。在最坏的情况下，A传输一个512+64比特时间的最小长度的帧。因此A将在t=512+64比特时刻完成帧的传输。如果B的信号在比特时间t=512+64比特之前到达A，则答案是否定的。在最坏的情况下，B的信号什么时候到达A？</p>
+</div>
+<div class="paragraph">
+<p>最小长度的以太网帧：26字节首部+46字节数据=72Byte=576bit。</p>
+</div>
+<div class="paragraph">
+<p>假设在t=0比特时刻，A开始传输一帧，如果B在[1,250]比特时刻开始传输一帧，相应的首帧到达A的时刻为[326,575]，则A在传输完之前能检测到；如果B在t=[251,324]比特时刻开始传输，相应的首帧到达时刻为[576,649]则A在传输完之前检测不到。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p19_csmacd过程"><a class="link" href="#_p19_csmacd过程">P19 CSMA/CD过程</a></h4>
+<div class="paragraph">
+<p>假设节点A和节点B在相同的10Mbps广播信道上，并且这两个节点的传播时延为245比特时间。假设A和B同时发送以太网帧，帧发生了碰撞，然后A和B在CSMA/CD算法中选择不同的K值。假设没有其他节点处于活跃状态，来自A和B的重传会碰撞吗？为此，完成下面的例子就足以说明问题了。假设A和B在t=O比特时间开始传输。它们在t=245比特时间都检测到了碰撞。假设K<sub>A</sub>=0，K<sub>B</sub>=1。B会将它的重传调整到什么时间？A在什么时间开始发送？（注意：这些节点在返回第2步之后，必须等待一个空闲信道，参见协议。）A的信号在什么时间到达B呢？B在它预定的时刻抑制传输吗？</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">时刻t</th>
+<th class="tableblock halign-left valign-top">事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A和B开始发送</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">245</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A和B检测到碰撞</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">245+48=293 (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A和B发送完拥塞信号</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">293+245=538</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B发送的最后一比特到达A，A侦听到信道空闲</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">538+96=634 (2)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A开始发送</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">293+512=805</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">过了后退时间，B开始侦听信道</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">634+245=879</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A发送的比特开始到达B；打断了B从805开始持续96比特的空闲侦听，因此B抑制传输</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>(1) 检测到碰撞后需要持续发送48比特时间的拥塞信号通知其他发送节点。<br>
+(2) 持续侦听信道空闲96比特时间后开始发送</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p20_csmacd效率推导"><a class="link" href="#_p20_csmacd效率推导">P20 CSMA/CD效率推导</a></h4>
+<div class="paragraph">
+<p>在这个习题中，你将对一个类似于CSMA/CD的多路访问协议的效率进行推导。在这个协议中，时间分为时隙，并且所有适配器都与时隙同步。然而，和时隙ALOHA不同的是，一个时隙的长度（以秒计）比一帧的时间（即传输一帧的时间）小得多。令S表示一个时隙的长度。假设所有帧都有恒定长度L＝kRS，其中R是信道的传输速率，k是一个大整数。假定有N个节点。每个节点都有无穷多帧要发送。我们还假设d<sub>prop</sub>&lt;S，以便所有节点在一个时隙时间结束之前能够检测到碰撞。这个协议描述如下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>对于某给定的时隙，如果没有节点占有这个信道，所有节点竞争该信道；特别是每个节点以概率p在该时隙传输。如果刚好有一个节点在该时隙中传输，该节点在后续的k-1个时隙占有信道，并传输它的整个帧。</p>
+</li>
+<li>
+<p>如果某节点占用了信道，所有其他节点抑制传输，直到占有信道的这个节点完成了该帧的传输为止。一且该节点传输完它的帧，所有节点竞争该信道。<br>
+注意到此信道在两种状态之间交替：“生产性状态”（它恰好持续k个时隙）和“非生产性状态”（它持续随机数个时隙）。显然，该信道的效率是k/(k+x)，其中x是连续的非生产性时隙的期望值。</p>
+</li>
+</ul>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>对于固定的N和p，确定这个协议的效率。</p>
+</li>
+<li>
+<p>对于固定的N，确定使该效率最大化的p值。</p>
+</li>
+<li>
+<p>使用在（b）中求出的p（它是N的函数），确定当N趋向无穷时的效率。</p>
+</li>
+<li>
+<p>说明随着帧长度变大，该效率趋近于1。</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_8"><a class="link" href="#_a_8">a</a></h5>
+<div class="paragraph">
+<p>设随机变量Y是出现成功传输所经过的时隙个数</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+P(Y=m) = β(1-β)^{m-1}, \text{β是传输成功的概率}
+\end{align*}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Y是一个几何分布，它期望是\(\frac1β\)。在成功传输之前被浪费的连续时隙的数量\(X=Y-1\)，因此</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+x = E[X] = E[Y]-1 = \frac{1-β}{β}
+\end{align*}\]
+</div>
+</div>
+<div class="paragraph">
+<p>又因为在给定时隙有节点成功传输的概率\(β=\binom{N}{1}p(1-p)^{N-1}\)，所以</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+\text{eff} = \frac{k}{k+x} = \frac{k}{k+\frac{1-Np(1-p)^{N-1}}{Np(1-p)^{N-1}}}
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_8"><a class="link" href="#_b_8">b</a></h5>
+<div class="paragraph">
+<p>使eff最大相当于使x最小，也即相当于使β最大。
+根据P8知p*=1/N时，β取得最大值。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_7"><a class="link" href="#_c_7">c</a></h5>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+\text{eff}(p*) &amp;= \frac{k}{k+\frac{1-(1-\frac1N)^{N-1}}{(1-\frac1N)^{N-1}}} \\
+\lim_{N\to \infty}\text{eff}(p*) &amp;= \frac{k}{k+\frac{1-1/e}{1/e}} = \frac{k}{k+e-1}
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_d_3"><a class="link" href="#_d_3">d</a></h5>
+<div class="paragraph">
+<p>S不变时，k随着帧长度变大而变大，因此</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+\lim_{k\to \infty}\frac{k}{k+e-1} = 1
+\end{align*}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p21_以太网帧转发的mac和ip地址"><a class="link" href="#_p21_以太网帧转发的mac和ip地址">P21 以太网帧转发的MAC和IP地址</a></h4>
+<div class="paragraph">
+<p>现在考虑习题P14中的图6-33。对主机A、两台路由器和主机F的各个接口提供MAC地址和IP地址。假定主机A向主机F发送一个数据报。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边的路由器；（ii）从左边的路由器到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中的源和目的IP地址。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-33.png" alt="fig6 33" width="320">
+</div>
+</div>
+<div class="paragraph">
+<p>路由器从左往右依次是R1、R2，路由器的接口从左往右依次是a、b。</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">i</th>
+<th class="tableblock halign-left valign-top">ii</th>
+<th class="tableblock halign-left valign-top">iii</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SRC MAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R1b的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R2b的MAC地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DST MAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R1a的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R2a的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的MAC地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SRC IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DST IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_p22"><a class="link" href="#_p22">P22</a></h4>
+<div class="paragraph">
+<p>现在假定在图6-33最左边的路由器被一台交换机替换。主机A、B、C和D和右边的路由器以星形方式与这台交换机相连。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边交换机；（ii）从左边交换机到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中源和目的IP地址。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p22.png" alt="ch6 p22" width="400">
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">i</th>
+<th class="tableblock halign-left valign-top">ii</th>
+<th class="tableblock halign-left valign-top">iii</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SRC MAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rb的MAC地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DST MAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ra的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ra的MAC地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的MAC地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SRC IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A的IP地址</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DST IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F的IP地址</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_p23_交换机与集线器的总聚合带宽"><a class="link" href="#_p23_交换机与集线器的总聚合带宽">P23 交换机与集线器的总聚合带宽</a></h4>
+<div class="paragraph">
+<p>考虑图6-15。假定所有链路都是100Mbps。在该网络中的9台主机和两台服务器之间，能够取得的最大总聚合吞吐量是多少？你能够假设任何主机或服务器能够向任何其他主机或服务器发送分组。为什么？</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">交换机的聚合带宽</dt>
+<dd>
+<p>该交换机所有接口速率之和。（p.315）</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-15.png" alt="fig6 15" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>全部9+2个节点向外发送的速率最高是100Mbps，那么总聚合带宽=(9+2)×100Mbps=1.1Gbps。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p24"><a class="link" href="#_p24">P24</a></h4>
+<div class="paragraph">
+<p>假定在图6-15中的3台连接各系的交换机用集线器（departmental hub）来代替。所有链路是100Mbps。现在回答习题P23中提出的问题。</p>
+</div>
+<div class="paragraph">
+<p>每一个集线器是一个独立的碰撞域，具有100Mbps的吞吐量。那么三个碰撞域和两个服务器都以最高100Mbps的速率向外发送，总聚合吞吐量=(3+2)×100Mbps=500Mbps。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p25"><a class="link" href="#_p25">P25</a></h4>
+<div class="paragraph">
+<p>假定在图6-15中的所有交换机用集线器来代替。所有链路是100Mbps。现在回答在习题P23中提出的问题。</p>
+</div>
+<div class="paragraph">
+<p>11个终端位于同一个碰撞域内，所以聚合吞吐量是100Mbps。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p26"><a class="link" href="#_p26">P26</a></h4>
+<div class="paragraph">
+<p>在某网络中标识为A到F的6个节点以星形与一台交换机连接，考虑在该网络环境中某个正在学习的交换机的运行情况。假定：（i）B向E发送一个帧；（ii）E向B回答一个帧；（iii）A向B发送一个帧；（iv）B向A回答一个帧；该交换机表初始为空。显示在这些事件的前后该交换机表的状态。对于每个事件，指出在其上面转发传输的帧的链路，并简要地评价你的答案。</p>
+</div>
+<div class="paragraph">
+<p>假设A到F与交换机连接的接口为a到f；A到F的MAC地址为MA到MF。</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">事件</th>
+<th class="tableblock halign-left valign-top">表项操作</th>
+<th class="tableblock halign-left valign-top">转发操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">新增表项MB,b</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">转发到a,c,d,e</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ii</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">新增表项ME,e</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">转发到b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iii</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">新增表项MA,a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">转发到b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">转发到a</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_p27_小分组的时延"><a class="link" href="#_p27_小分组的时延">P27 小分组的时延</a></h4>
+<div class="paragraph">
+<p>在这个习题中，我们探讨用于IP语音应用的小分组。小分组长度的一个主要缺点是链路带宽的较大比例被首部字节所消耗。基于此，假定分组是由P字节和5字节首部组成。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>考虑直接发送一个数字编码语音源。假定该源以128kbps的恒定速率进行编码。假设每个源向网络发送分组之前每个分组被完全填充。填充一个分组所需的时间是分组化时延（packetization delay）。根据L，确定分组化时延（以毫秒计）。</p>
+</li>
+<li>
+<p>大于20毫秒的分组化时延会导致一个明显的、令人不快的回音。对于L=1500字节（大致对应于一个最大长度的以太网分组）和L=50字节（对应于一个ATM信元），确定该分组化时延。</p>
+</li>
+<li>
+<p>对R=622Mbps的链路速率以及L=1500字节和L=50字节，计算单台交换机的存储转发时延。</p>
+</li>
+<li>
+<p>对使用小分组长度的优点进行评述。</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_a_9"><a class="link" href="#_a_9">a</a></h5>
+<div class="paragraph">
+<p>d<sub>pkt</sub>(L) = L Byte ÷ 128kbps = 0.0625L ms</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_9"><a class="link" href="#_b_9">b</a></h5>
+<div class="paragraph">
+<p>d<sub>pkt</sub>(1500) = 93.75ms</p>
+</div>
+<div class="paragraph">
+<p>d<sub>pkt</sub>(50) = 3.125ms</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_8"><a class="link" href="#_c_8">c</a></h5>
+<div class="paragraph">
+<p>d<sub>trans</sub>(L) = (L+5) Byte ÷ 622Mbps</p>
+</div>
+<div class="paragraph">
+<p>d<sub>trans</sub>(1500) = 19.36μs</p>
+</div>
+<div class="paragraph">
+<p>d<sub>trans</sub>(50) = 0.71μs</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_d_4"><a class="link" href="#_d_4">d</a></h5>
+<div class="paragraph">
+<p>使用小分组具有更小的分组时延和存储转发时延。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p28_vlan转发"><a class="link" href="#_p28_vlan转发">P28 VLAN转发</a></h4>
+<div class="paragraph">
+<p>考虑图6-25中的单个交换VLAN，假定一台外部路由器与交换机端口1相连。为EE和CS的主机和路由器接口分配IP地址。跟踪从EE主机向CS主机传送一个数据报时网络层和链路层所采取的步骤（提示：重读课文中对图6-19的讨论）。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-25.png" alt="fig6 25" width="320">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>The IP addresses for those three computers (from left to right) in EE department are: 111.111.1.1, 111.111.1.2, 111.111.1.3. The subnet mask is 111.111.1/24.
+
+The IP addresses for those three computers (from left to right) in CS department are: 111.111.2.1, 111.111.2.2, 111.111.2.3. The subnet mask is 111.111.2/24.
+
+The router's interface card that connects to port 1 can be configured to contain two subinterface IP addresses: 111.111.1.0 and 111.111.2.0. The first one is for the subnet of EE department, and the second one is for the subnet of CS department. Each IP address is associated with a VLAN ID. Suppose 111.111.1.0 is associated with VLAN 11, and 111.111.2.0 is associated with VLAN 12. This means that each frame that comes from subnet 111.111.1/24 will be added an 802.1q tag with VLAN ID 11, and each frame that comes from 111.111.2/24 will be added an 802.1q tag with VLAN ID 12.
+
+Suppose that host A in EE department with IP address 111.111.1.1 would like to send an IP datagram to host B (111.111.2.1) in CS department. Host A first encapsulates the IP datagram (destined to 111.111.2.1) into a frame with a destination MAC address equal to the MAC address of the router's interface card that connects to port 1 of the switch. Once the router receives the frame, then it passes it up to IP layer, which decides that the IP datagram should be forwarded to subnet 111.111.2/24 via sub-interface 111.111.2.0. Then the router encapsulates the IP datagram into a frame and sends it to port 1. Note that this frame has an 802.1q tag VLAN ID 12. Once the switch receives the frame port 1, it knows that this frame is destined to VLAN with ID 12, so the switch will send the frame to Host B which is in CS department. Once Host B receives this frame, it will remove the 802.1q tag.</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p29_mpls与流量工程"><a class="link" href="#_p29_mpls与流量工程">P29 MPLS与流量工程</a></h4>
+<div class="paragraph">
+<p>考虑显示在图6-29中的MPLS网络，假定路由器R5和R6现在是MPLS使能的。假定我们要执行流量工程，使从R6发往A的分组要经R6-R4-R3-R1交换到A，从R5发向A的分组要过R5-R4-R2-R1交换。给出R5和R6中的MPLS表以及在R4中修改的表，使得这些成为可能。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig6-29.png" alt="fig6 29" width="510">
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<caption class="title">Table 5. R6</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">入标签</th>
+<th class="tableblock halign-left valign-top">出标签</th>
+<th class="tableblock halign-left valign-top">目的地</th>
+<th class="tableblock halign-left valign-top">出接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content">
+<caption class="title">Table 6. R5</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">入标签</th>
+<th class="tableblock halign-left valign-top">出标签</th>
+<th class="tableblock halign-left valign-top">目的地</th>
+<th class="tableblock halign-left valign-top">出接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content">
+<caption class="title">Table 7. R4</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">入标签</th>
+<th class="tableblock halign-left valign-top">出标签</th>
+<th class="tableblock halign-left valign-top">目的地</th>
+<th class="tableblock halign-left valign-top">出接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_p30"><a class="link" href="#_p30">P30</a></h4>
+<div class="paragraph">
+<p>再次考虑上一个习题中相同的场景，但假定从R6发往D的分组经R6-R4-R3交换，而从R5发往D的分组经R4-R2-R1-R3交换。说明为使这些成为可能在所有路由器中的MPLS表。</p>
+</div>
+<div class="paragraph">
+<p>忽略与A相关的表项。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p30.png" alt="ch6 p30" width="550">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p31_web页面请求的历程"><a class="link" href="#_p31_web页面请求的历程">P31 Web页面请求的历程</a></h4>
+<div class="paragraph">
+<p>在这个习题中，你将把已经学习过的因特网协议的许多东西拼装在一起。假设你走进房间，与以太网连接，并下载一个Web页面。从打开PC电源到得到Web网页，发生的所有协议步骤是什么？假设当你给PC加电时，在DNS或浏览器缓存中什么也没有。（提示：步骤包括使用以太网、DHCP、ARP、DNS、TCP和HTTP协议。）明确指出在这些步骤中你如何获得网关路由器的IP和MAC地址。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>接入以太局域网，通过DHCP服务器获取IP以及其他信息。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>主机上的操作系统生成DHCP发现报文（DHCP Message Type Discover），装入UDP报文段（源端口68，目的端口67），再装入IP数据报（目的IP地址255.255.255.255，源IP地址0.0.0.0），该数据报被装入以太网帧（目的MAC地址ff:ff:ff:ff:ff:ff，源MAC地址为主机网卡的MAC地址）广播到所有子网连接的节点。</p>
+</li>
+<li>
+<p>包含有DHCP发现报文的以太网帧到达DHCP服务器接口，服务器从该帧中抽取出IP数据报。该数据报的广播IP目的地址指示了这个IP数据报应当由在该节点的高层协议处理，因此该数据报的载荷被分解向上到达UDP，DHCP请求报文从此UDP报文段中抽取出来。接下来服务器用DHCP提供报文（DHCP Message Type Offer）做出响应（单播）。</p>
+</li>
+<li>
+<p>主机收到提供报文后发送DHCP请求报文进行响应（广播），回显配置的参数。</p>
+</li>
+<li>
+<p>服务器用DHCP ACK报文对DHCP请求报文进行响应（单播）。主机收到DHCP ACK报文后设置IP地址、网关路由器、子网掩码、DNS服务器等信息。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>ARP查询</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>主机生成包含网址的DNS查询报文，该报文被放入UDP报文段中(目的端口53，源端口由套接字生成)。该UDP报文段则被放入目的IP地址是本地DNS服务器的IP数据报中。主机将该数据报放入一个以太网帧中，该帧将发送到网关路由器。为了获得该网关路由器的MAC地址，主机将需要使用ARP协议。</p>
+</li>
+<li>
+<p>主机生成ARP查询报文，装入以太网帧（目的MAC地址ff:ff:ff:ff:ff:ff，源MAC地址为主机的MAC地址，目的IP地址是要查询的DNS服务器的IP地址，源IP地址是主机的IP地址），广播给子网的所有节点。</p>
+</li>
+<li>
+<p>DNS服务器收到ARP查询报文后向主机发送ARP响应报文。</p>
+</li>
+<li>
+<p>主机收到ARP响应报文后获知DNS服务器的MAC地址。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>DNS查询</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>本地DNS服务器接收到该帧并抽取DNS查询报文。本地DNS服务器在它的DNS数据库中查找不到该网址的表项，于是决定将该报文转发到根DNS服务器。</p>
+</li>
+<li>
+<p>主机首先将该报文放入DUP报文段（目的端口53），然后将该报文段放入IP数据报（目的IP地址是根DNS服务器的地址，源IP地址是本地DNS服务器的地址），并根据其转发表确定出接口，经过该接口朝着根DNS服务器转发数据报，而转发表已根据域内协议（如OSPF）以及因特网的域间协议BGP所填写。</p>
+</li>
+<li>
+<p>根DNS服务器收到查询报文后，向本地DNS服务器返回TLD服务器的IP地址列表。本地DNS服务器则再次向这些TLD服务器之一发送査询报文。该TLD服务器用权威DNS服务器的IP地址进行响应。最后，本地DNS服务器直接向权威服务器重发查询报文，权威DNS服务器用被查询名字的IP地址进行响应。至此主机获得了网址的IP地址。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>TCP</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>主机首先生成一个TCP套接字，然后生成一个具有目的端口80的TCP SYN报文段，将该报文段放置在目的地址是网址IP的IP数据报中，将该数据报放置在MAC地址是网关路由器MAC地址的帧中，并发送该帧。</p>
+</li>
+<li>
+<p>在ISP网络、骨干网络、提供商网络中的路由器使用各自的转发表朝着HTTP服务器转发包含TCP SYN的数据报。</p>
+</li>
+<li>
+<p>最终，包含TCP SYN的数据报到达HTTP服务器。从数据报抽取TCP SYN报文并分解到与端口80相联系的欢迎套接字。服务器对其与和用户主机之间的TCP连接生成一个连接套接字。产生一个TCP SYNACK报文段，将其放入一个数据报中，最后放人链路层帧中，该链路适合将HTTP服务器连接到其第一跳路由器。</p>
+</li>
+<li>
+<p>包含TCP SYNACK报文段的数据报通过提供商、骨干和ISP网络，最终到达用户主机的以太网卡。数据报在操作系统中分解到之前生成的TCP套接字，从而进人连接状态。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>HTTP</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>浏览器生成包含要获取的URL的HTTP GET报文。HTTP GET报文则写人套接字，其中GET报文成为一个TCP报文段的载荷。该TCP报文段放置进一个IP数据报中，并交付到HTTP服务器。</p>
+</li>
+<li>
+<p>HTTP服务器从TCP套接字读取HTTP GET报文，生成一个HTTP响应报文，将请求的Web网页内容放入HTTP响应体中，并将报文发送进TCP套接字中。</p>
+</li>
+<li>
+<p>包含HTTP回答报文的数据报通过网络转发到达用户主机。Web浏览器程序从套接字读取HTTP响应，从HTTP响应体中抽取Web网页的html,并最终显示了Web网页。</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p32_等级拓扑与高度互联拓扑"><a class="link" href="#_p32_等级拓扑与高度互联拓扑">P32 等级拓扑与高度互联拓扑</a></h4>
+<div class="paragraph">
+<p>考虑在图6-30中具有等级拓扑的数据中心网络。假设现在有80对流，在第1和第9机架之间有10个流，在第2和第10机架之间有10个流，等等。进一步假设网络中的所有链路是10Gbps，而主机和TOR交换机之间的链路是1Gbps。
+a.每条流具有相同的数据率；确定一条流的最大速率。
+b.对于相同的流量模式，对于图6-31中高度互联的拓扑，确定一条流的最大速率。
+c.现在假设有类似的流量模式，但在每个机架上涉及20台主机和160对流。确定对这两个拓扑的最大流速率。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p32a.png" alt="ch6 p32a" width="420">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-p32b.png" alt="ch6 p32b" width="420">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_a_10"><a class="link" href="#_a_10">a</a></h5>
+<div class="paragraph">
+<p>80条流平均地共享B-D-E-F-G的10Gbps链路，每条流获得的速率为10Gbps/80=125Mbps。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_10"><a class="link" href="#_b_10">b</a></h5>
+<div class="paragraph">
+<p>在交换机A到C之间有4条不相交的路径，因此机架1到4共享A-C的40Gbps链路，每条流获得的速率为40Gbps/40=1Gbps。机架5到8的情况与1到4相同。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_9"><a class="link" href="#_c_9">c</a></h5>
+<div class="paragraph">
+<p>对于等级拓扑，每条流的速率为10Gbps/160=62.5Mbps；
+对于高度互联拓扑，40Gbps/80=500Mbps。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p33"><a class="link" href="#_p33">P33</a></h4>
+<div class="paragraph">
+<p>考虑图6-30中所示的等级网络，并假设该数据中心需要在其他应用程序之间支持电子邮件和视频分发。假定4个服务器机架预留用于电子邮件，4个服务器机架预留用于视频。对于每个应用，所有4个机架必须位于某单一的二层交换机之下，因为二层到一层链路没有充足的带宽来支持应用内部的流量。对于电子邮件应用，假定99.9%时间仅使用3个机架，并且视频应用具有相同的使用模式。
+a.电子邮件应用需要使用第4个机架的时间比例有多大？视频应用需要使用第4个机架的时间比例有多大？
+b.假设电子邮件使用和视频使用是独立的，这两个应用需要其第4个机架的时间比例有多大（等价地，概率有多大）？
+c.假设对于一个应用服务器短缺的时间具为0.001%或更少（引起用户在极短时间内性能恶化）。讨论在图6-31中的拓扑能够怎样使用，使得仅7个机架被共同地分配给两个应用（假设拓扑能够支持所有流量）。</p>
+</div>
+<div class="sect4">
+<h5 id="_a_11"><a class="link" href="#_a_11">a</a></h5>
+<div class="paragraph">
+<p>\(1-99.9\%=0.1\%\)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_11"><a class="link" href="#_b_11">b</a></h5>
+<div class="paragraph">
+<p>\(0.1\%^2=0.0001\%\)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_c_10"><a class="link" href="#_c_10">c</a></h5>
+<div class="paragraph">
+<p>机架1到3分配给电子邮件应用，机架5到7分配给视频分发应用，机架4被两个应用共享使用。邮件应用与机架4在同一个二层交换机下，所以带宽是足够的。视频应用使用机架4时，机架4到7共享A-B的40Gbps链路，带宽也是足够的。邮件与视频应用同时使用机架4的概率为0.0001%，小于0.001%，满足要求。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wireshark实验_ethernet_and_arp"><a class="link" href="#_wireshark实验_ethernet_and_arp">2.7. Wireshark实验 Ethernet and ARP</a></h3>
+<div class="paragraph">
+<p><a href="code/ch6-wireshark-ethernet-arp/wireshark-ethernet-arp.pdf">Wireshark Lab: Ethernet and ARP v7.0</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://datatracker.ietf.org/doc/html/rfc826">RFC826 An Ethernet Address Resolution Protocol</a></p>
+</div>
+<div class="paragraph">
+<p><a href="code/ch6-wireshark-ethernet-arp/ethernet-ethereal-trace-1">ethernet-ethereal-trace-1</a></p>
+</div>
+<div class="sect3">
+<h4 id="_capturing_and_analyzing_ethernet_frames"><a class="link" href="#_capturing_and_analyzing_ethernet_frames">Capturing and analyzing Ethernet frames</a></h4>
+<div class="paragraph">
+<p><a href="code/ch6-wireshark-ethernet-arp/ethernet.pcapng">ethernet.pcapng</a></p>
+</div>
+<div class="paragraph">
+<p>Answer the following questions, based on the contents of the Ethernet frame containing the HTTP GET message.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>What is the 48-bit Ethernet address of your computer?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/1.png" alt="1" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>我的电脑的48位以太网地址是
+<code>Source: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)</code>。</p>
+</div>
+</li>
+<li>
+<p>What is the 48-bit destination address in the Ethernet frame? Is this the Ethernet address of gaia.cs.umass.edu? (Hint: the answer is no). What device has this as its Ethernet address?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/2.png" alt="2" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>以太网帧的48位目的地址是
+<code>Destination: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)</code>。
+这不是<code>gaia.cs.umass.edu</code>的以太网地址。
+本地局域网的网关路由器具有这个以太网地址。</p>
+</div>
+</li>
+<li>
+<p>Give the hexadecimal value for the two-byte Frame type field. What upper layer protocol does this correspond to?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/3.png" alt="3" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>2字节帧类型字段的16进制值是0x0800。
+对应的上层协议是IPv4。</p>
+</div>
+</li>
+<li>
+<p>How many bytes from the very start of the Ethernet frame does the ASCII “G” in “GET” appear in the Ethernet frame?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/4.png" alt="4" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>"GET"中的ASCII字符"G"在从以太网帧的开始数第67（0x43）个字节的位置。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Answer the following questions, based on the contents of the Ethernet frame containing the first byte of the HTTP response message.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>What is the value of the Ethernet source address? Is this the address of your computer, or of gaia.cs.umass.edu. What device has this as its Ethernet address?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/5.png" alt="5" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>以太网源地址的值是
+<code>Source: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)</code>。
+这既不是我电脑的地址，也不是<code>gaia.cs.umass.edu</code>的地址。
+本地局域网的网关路由器具有这个以太网地址。</p>
+</div>
+</li>
+<li>
+<p>What is the destination address in the Ethernet frame? Is this the Ethernet address of your computer?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/6.png" alt="6" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>该以太网帧的目的地址是
+<code>Destination: HuaweiTe_1f:00:00 (00:1e:10:1f:00:00)</code>。
+这是我电脑的以太网地址。</p>
+</div>
+</li>
+<li>
+<p>Give the hexadecimal value for the two-byte Frame type field. What upper layer protocol does this correspond to?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/7.png" alt="7" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>2字节帧类型字段的16进制值是0x0800。
+对应的上层协议是IPv4。</p>
+</div>
+</li>
+<li>
+<p>How many bytes from the very start of the Ethernet frame does the ASCII “O” in “OK” (i.e., the HTTP response code) appear in the Ethernet frame?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/8.png" alt="8" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>"OK"中的ASCII字符"O"在从以太网帧开始往后数第79（0x4F）个字节的位置。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_address_resolution_protocol"><a class="link" href="#_the_address_resolution_protocol">The Address Resolution Protocol</a></h4>
+<div class="paragraph">
+<p><a href="code/ch6-wireshark-ethernet-arp/arp.pcapng">arp.pcapng</a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="9">
+<li>
+<p>Write down the contents of your computer&#8217;s ARP cache. What is the meaning of each column value?</p>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; arp -a
+www.huaweimobilewifi.com (192.168.8.1) at 94:e9:ee:68:6c:29 on en4 ifscope [ethernet]
+ (192.168.8.124) at c6:3c:c1:f1:14:94 on en4 ifscope [ethernet]
+chaus-mbp (192.168.8.126) at 0:1e:10:1f:0:0 on en4 ifscope permanent [ethernet]
+? (224.0.0.251) at 1:0:5e:0:0:fb on en4 ifscope permanent [ethernet]
+? (239.255.255.250) at 1:0:5e:7f:ff:fa on en4 ifscope permanent [ethernet]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>每个字段的含义见<a href="https://stackoverflow.com/a/49309763/10422197">stackoverflow</a>。</p>
+</div>
+<div class="paragraph">
+<p><code>arp</code>命令的<a href="https://www.geeksforgeeks.org/arp-command-in-linux-with-examples/">使用</a>。</p>
+</div>
+</li>
+<li>
+<p>What are the hexadecimal values for the source and destination addresses in the Ethernet frame containing the ARP request message?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/10.png" alt="10" width="500">
+</div>
+</div>
+</li>
+<li>
+<p>Give the hexadecimal value for the two-byte Ethernet Frame type field. What upper layer protocol does this correspond to?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/11.png" alt="11" width="500">
+</div>
+</div>
+</li>
+<li>
+<p>A readable, detailed discussion of ARP is also at <a href="http://www.erg.abdn.ac.uk/users/gorry/course/inet-pages/arp.html" class="bare">http://www.erg.abdn.ac.uk/users/gorry/course/inet-pages/arp.html</a>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/12a1.png" alt="12a1" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>ARP opcode字段在整个以太网帧中占据第21、22字节。去掉以太网帧的首部的14字节，该字段在以太网payload中是第7、8个字节，如下图所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/12a2.png" alt="12a2" width="300">
+</div>
+</div>
+</li>
+<li>
+<p>What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP request is made?</p>
+<div class="paragraph">
+<p>以太网帧中包含的ARP请求的opcode字段的值是
+<code>Opcode: request (1)</code></p>
+</div>
+</li>
+<li>
+<p>Does the ARP message contain the IP address of the sender?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/12c.png" alt="12c" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>ARP报文中包含发送方的IP地址。</p>
+</div>
+</li>
+<li>
+<p>Where in the ARP request does the “question” appear - the Ethernet address of the machine whose corresponding IP address is being queried?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/12d.png" alt="12d" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>ARP请求中<code>Target IP address: 192.168.8.1</code>指明了查询哪个IP地址的MAC地址。</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Now find the ARP reply that was sent in response to the ARP request.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/13a.png" alt="13a" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>第21、22字节。</p>
+</div>
+</li>
+<li>
+<p>What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP response is made?</p>
+<div class="paragraph">
+<p><code>Opcode: reply (2)</code></p>
+</div>
+</li>
+<li>
+<p>Where in the ARP message does the “answer” to the earlier ARP request appear - the IP address of the machine having the Ethernet address whose corresponding IP address is being queried?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/13c.png" alt="13c" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><code>Sender MAC address: HuaweiDe_68:6c:29 (94:e9:ee:68:6c:29)</code></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>What are the hexadecimal values for the source and destination addresses in the Ethernet frame containing the ARP reply message?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/14.png" alt="14" width="500">
+</div>
+</div>
+</li>
+<li>
+<p>Open the ethernet-ethereal-trace-1 trace file in <a href="http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip" class="bare">http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip</a>. The first and second ARP packets in this trace correspond to an ARP request sent by the computer running Wireshark, and the ARP reply sent to the computer running Wireshark by the computer with the ARP-requested Ethernet address. But there is yet another computer on this network, as indicated by packet 6 - another ARP request. Why is there no ARP reply (sent in response to the ARP request in packet 6) in the packet trace?</p>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch6-wireshark-ethernet-arp/15.png" alt="15" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>同一子网的另一台主机CnetTech广播查询谁的IP是192.168.1.117，但是此时局域网里没有主机是这个IP地址，所以没有主机会回应这个ARP请求。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_extra_credit_2"><a class="link" href="#_extra_credit_2">Extra Credit</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The arp command:</p>
+<div class="paragraph">
+<p><code>arp -s InetAddr EtherAddr</code></p>
+</div>
+<div class="paragraph">
+<p>allows you to manually add an entry to the ARP cache that resolves the IP address InetAddr to the physical address EtherAddr. What would happen if, when you manually added an entry, you entered the correct IP address, but the wrong Ethernet address for that remote interface?</p>
+</div>
+<div class="paragraph">
+<p>向正确的IP地址加入错误的MAC地址会导致以太网帧被发往错误的MAC地址，从而传输失败；
+进而导致该帧包含的IP数据报传输失败；
+进一步导致TCP报文段传输失败，TCP协议会一直重传超时的报文段。</p>
+</div>
+</li>
+<li>
+<p>What is the default amount of time that an entry remains in your ARP cache before being removed. You can determine this empirically (by monitoring the cache contents) or by looking this up in your operation system documentation. Indicate how/where you determined this value.</p>
+<div class="paragraph">
+<p>macOS的<code>arp</code>工具来自于BSD：</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>These routes time out periodically (normally 20 minutes after validated; entries are not validated when not in use).</p>
+</div>
+<div class="paragraph">
+<p>Manually added entries may be temporary, static or permanent. A static entry will not time out, but may be overwritten by network traffic, while a permanent entry will not time out and cannot be overwritten.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; arp(4)<br>
+<cite><a href="https://man.openbsd.org/arp.4#DESCRIPTION" class="bare">https://man.openbsd.org/arp.4#DESCRIPTION</a></cite>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -775,8 +3293,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-07 15:44:44 +0800
+Last updated 2021-12-23 16:14:11 +0800
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
