@@ -92,6 +92,10 @@ a|. 获得数据报先放入缓存，侦听到信道空闲开始传送
 ....
 @startuml
 hide empty description
+state "就绪" as Ready
+state "监听信道" as Listening
+state "发送中" as Sending
+state "回退等待" as Backoff
 [*] --> Ready
 Ready --> Listening : 获得一条数据报\n----\n准备链路层帧\n放入帧适配器缓存
 Listening --> Sending : 信道空闲\n----\n传输帧
