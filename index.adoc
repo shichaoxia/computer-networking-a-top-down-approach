@@ -16,3 +16,5 @@ link:legacy.html[1~5章]
 include::chapter5.adoc[]
 
 include::chapter6.adoc[]
+
+include::chapter7.adoc[]
