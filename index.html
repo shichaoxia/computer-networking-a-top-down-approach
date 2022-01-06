@@ -469,6 +469,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     h6 {
         font-weight: 400;
     }
+
+    p {
+        line-height: normal;
+        margin-bottom: 0.5em;
+        text-rendering: optimizeLegibility
+    }
 </style>
 </head>
 <body class="article toc2 toc-left">
@@ -477,21 +483,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_网络层控制平面">1. 网络层：控制平面</a>
+<li><a href="#_网络层控制平面">网络层：控制平面</a>
 <ul class="sectlevel2">
-<li><a href="#_wireshark实验_nat">1.1. Wireshark实验 NAT</a>
+<li><a href="#_wireshark实验_nat">Wireshark实验 NAT</a>
 <ul class="sectlevel3">
 <li><a href="#_nat_measurement_scenario">NAT Measurement Scenario</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_链路层和局域网">2. 链路层和局域网</a>
+<li><a href="#_链路层和局域网">链路层和局域网</a>
 <ul class="sectlevel2">
-<li><a href="#_链路层概述">2.1. 链路层概述</a></li>
-<li><a href="#_差错检测和纠正技术">2.2. 差错检测和纠正技术</a></li>
-<li><a href="#_多路访问链路和协议">2.3. 多路访问链路和协议</a></li>
-<li><a href="#_交换局域网">2.4. 交换局域网</a>
+<li><a href="#_链路层概述">链路层概述</a></li>
+<li><a href="#_差错检测和纠正技术">差错检测和纠正技术</a></li>
+<li><a href="#_多路访问链路和协议">多路访问链路和协议</a></li>
+<li><a href="#_交换局域网">交换局域网</a>
 <ul class="sectlevel3">
 <li><a href="#_mac地址和ip地址的比较">MAC地址和IP地址的比较</a></li>
 <li><a href="#_需要mac地址的原因">需要MAC地址的原因</a></li>
@@ -503,7 +509,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_交换机等级结构的特点">交换机等级结构的特点</a></li>
 </ul>
 </li>
-<li><a href="#_复习题">2.5. 复习题</a>
+<li><a href="#_复习题">复习题</a>
 <ul class="sectlevel3">
 <li><a href="#_r1">R1</a></li>
 <li><a href="#_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</a></li>
@@ -523,7 +529,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_r16">R16</a></li>
 </ul>
 </li>
-<li><a href="#_习题">2.6. 习题</a>
+<li><a href="#_习题">习题</a>
 <ul class="sectlevel3">
 <li><a href="#_p1_二维奇偶校验的计算">P1 二维奇偶校验的计算</a></li>
 <li><a href="#_p2_二维奇偶校验的能力">P2 二维奇偶校验的能力</a></li>
@@ -560,10 +566,68 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_p33">P33</a></li>
 </ul>
 </li>
-<li><a href="#_wireshark实验_ethernet_and_arp">2.7. Wireshark实验 Ethernet and ARP</a>
+<li><a href="#_wireshark实验_ethernet_and_arp">Wireshark实验 Ethernet and ARP</a>
 <ul class="sectlevel3">
 <li><a href="#_capturing_and_analyzing_ethernet_frames">Capturing and analyzing Ethernet frames</a></li>
 <li><a href="#_the_address_resolution_protocol">The Address Resolution Protocol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_无线网络和移动网络">无线网络和移动网络</a>
+<ul class="sectlevel2">
+<li><a href="#_笔记">笔记</a>
+<ul class="sectlevel3">
+<li><a href="#_gsm_2g蜂窝网">GSM 2G蜂窝网</a></li>
+<li><a href="#_3g蜂窝数据网">3G蜂窝数据网</a></li>
+<li><a href="#4g-lte">4G LTE</a></li>
+<li><a href="#comparison-of-234g-cellular-network-architectures">2、3、4代蜂窝网体系结构的比较</a></li>
+<li><a href="#_移动管理原理">移动管理原理</a></li>
+<li><a href="#_移动节点的间接路由选择">移动节点的间接路由选择</a></li>
+<li><a href="#_移动节点的直接路由选择">移动节点的直接路由选择</a></li>
+<li><a href="#_移动ip">移动IP</a></li>
+<li><a href="#_蜂窝网中的移动性">蜂窝网中的移动性</a></li>
+<li><a href="#_gsm中的切换">GSM中的切换</a></li>
+<li><a href="#_解决tcp拥塞控制在无线情况下的问题">解决TCP拥塞控制在无线情况下的问题</a></li>
+</ul>
+</li>
+<li><a href="#_复习题_2">复习题</a>
+<ul class="sectlevel3">
+<li><a href="#_r1_基础设施模式和自组织模式">R1 基础设施模式和自组织模式</a></li>
+<li><a href="#_r2">R2</a></li>
+<li><a href="#_r3">R3</a></li>
+<li><a href="#_r4_无线信道的物理特征">R4 无线信道的物理特征</a></li>
+<li><a href="#_r5_信标帧">R5 信标帧</a></li>
+<li><a href="#_r6">R6</a></li>
+<li><a href="#_r7_802_11使用了确认">R7 802.11使用了确认</a></li>
+<li><a href="#_r8_2">R8</a></li>
+<li><a href="#_r9_rts门限值的工作过程">R9 RTS门限值的工作过程</a></li>
+<li><a href="#_r10_2">R10</a></li>
+<li><a href="#_r11_交换机与同一子网bss间移动">R11 交换机与同一子网BSS间移动</a></li>
+<li><a href="#_r12_2">R12</a></li>
+<li><a href="#_r13_2">R13</a></li>
+<li><a href="#_r14_2">R14</a></li>
+<li><a href="#_r15_2">R15</a></li>
+<li><a href="#_r16_2">R16</a></li>
+<li><a href="#_r17">R17</a></li>
+<li><a href="#_r18_移动性">R18 移动性</a></li>
+<li><a href="#_r19">R19</a></li>
+<li><a href="#_r20">R20</a></li>
+<li><a href="#_r21">R21</a></li>
+<li><a href="#_r22">R22</a></li>
+<li><a href="#_r23">R23</a></li>
+</ul>
+</li>
+<li><a href="#_习题_2">习题</a>
+<ul class="sectlevel3">
+<li><a href="#_p1">P1</a></li>
+<li><a href="#_p2">P2</a></li>
+<li><a href="#_p3">P3</a></li>
+<li><a href="#_p4_2">P4</a></li>
+<li><a href="#_p5_信道与传输速率">P5 信道与传输速率</a></li>
+<li><a href="#_p6_csmaca的公平性">P6 CSMA/CA的公平性</a></li>
+<li><a href="#_p7_2">P7</a></li>
+<li><a href="#_p8">P8</a></li>
 </ul>
 </li>
 </ul>
@@ -580,10 +644,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_网络层控制平面"><a class="link" href="#_网络层控制平面">1. 网络层：控制平面</a></h2>
+<h2 id="_网络层控制平面"><a class="anchor" href="#_网络层控制平面"></a><a class="link" href="#_网络层控制平面">网络层：控制平面</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_wireshark实验_nat"><a class="link" href="#_wireshark实验_nat">1.1. Wireshark实验 NAT</a></h3>
+<h3 id="_wireshark实验_nat"><a class="anchor" href="#_wireshark实验_nat"></a><a class="link" href="#_wireshark实验_nat">Wireshark实验 NAT</a></h3>
 <div class="paragraph">
 <p><a href="code/ch5-wireshark-nat/wireshark-nat.pdf">Wireshark Lab: NAT v7.0</a></p>
 </div>
@@ -594,7 +658,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="code/ch5-wireshark-nat/NAT_ISP_side.pcap">NAT_ISP_side.pcap</a></p>
 </div>
 <div class="sect3">
-<h4 id="_nat_measurement_scenario"><a class="link" href="#_nat_measurement_scenario">NAT Measurement Scenario</a></h4>
+<h4 id="_nat_measurement_scenario"><a class="anchor" href="#_nat_measurement_scenario"></a><a class="link" href="#_nat_measurement_scenario">NAT Measurement Scenario</a></h4>
 <div class="paragraph">
 <p>Open the NAT_home_side file and answer the following questions.</p>
 </div>
@@ -785,7 +849,7 @@ SYN ACK: 64.233.169.104 71.192.34.104, 80 → 4335</p>
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_extra_credit"><a class="link" href="#_extra_credit">Extra Credit</a></h5>
+<h5 id="_extra_credit"><a class="anchor" href="#_extra_credit"></a><a class="link" href="#_extra_credit">Extra Credit</a></h5>
 <div class="paragraph">
 <p>In the NAT_home_side trace file, consider the client-to-server GET at time 1.572315, and the GET at time 7.573305. Research the use of these two HTTP messages and write a half page explanation of the purpose of each of these messages.</p>
 </div>
@@ -821,18 +885,18 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_链路层和局域网"><a class="link" href="#_链路层和局域网">2. 链路层和局域网</a></h2>
+<h2 id="_链路层和局域网"><a class="anchor" href="#_链路层和局域网"></a><a class="link" href="#_链路层和局域网">链路层和局域网</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_链路层概述"><a class="link" href="#_链路层概述">2.1. 链路层概述</a></h3>
+<h3 id="_链路层概述"><a class="anchor" href="#_链路层概述"></a><a class="link" href="#_链路层概述">链路层概述</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="_差错检测和纠正技术"><a class="link" href="#_差错检测和纠正技术">2.2. 差错检测和纠正技术</a></h3>
+<h3 id="_差错检测和纠正技术"><a class="anchor" href="#_差错检测和纠正技术"></a><a class="link" href="#_差错检测和纠正技术">差错检测和纠正技术</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="_多路访问链路和协议"><a class="link" href="#_多路访问链路和协议">2.3. 多路访问链路和协议</a></h3>
+<h3 id="_多路访问链路和协议"><a class="anchor" href="#_多路访问链路和协议"></a><a class="link" href="#_多路访问链路和协议">多路访问链路和协议</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="./img/ch6-3a.svg" alt="ch6 3a" width="830" height="615">
@@ -959,7 +1023,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 <div class="imageblock">
 <div class="content">
-<img src="./img/ch6-3b.svg" alt="ch6 3b" width="260" height="557">
+<img src="./img/ch6-3b.svg" alt="ch6 3b" width="257" height="557">
 </div>
 <div class="title">Figure 1. 从适配器角度总结CSMA/CD的运行</div>
 </div>
@@ -1072,7 +1136,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_交换局域网"><a class="link" href="#_交换局域网">2.4. 交换局域网</a></h3>
+<h3 id="_交换局域网"><a class="anchor" href="#_交换局域网"></a><a class="link" href="#_交换局域网">交换局域网</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="./img/ch6-4a.svg" alt="ch6 4a" width="481" height="360">
@@ -1084,7 +1148,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mac地址和ip地址的比较"><a class="link" href="#_mac地址和ip地址的比较">MAC地址和IP地址的比较</a></h4>
+<h4 id="_mac地址和ip地址的比较"><a class="anchor" href="#_mac地址和ip地址的比较"></a><a class="link" href="#_mac地址和ip地址的比较">MAC地址和IP地址的比较</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1109,7 +1173,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_需要mac地址的原因"><a class="link" href="#_需要mac地址的原因">需要MAC地址的原因</a></h4>
+<h4 id="_需要mac地址的原因"><a class="anchor" href="#_需要mac地址的原因"></a><a class="link" href="#_需要mac地址的原因">需要MAC地址的原因</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1141,7 +1205,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dns和arp的比较"><a class="link" href="#_dns和arp的比较">DNS和ARP的比较</a></h4>
+<h4 id="_dns和arp的比较"><a class="anchor" href="#_dns和arp的比较"></a><a class="link" href="#_dns和arp的比较">DNS和ARP的比较</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1160,7 +1224,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_arp协议"><a class="link" href="#_arp协议">ARP协议</a></h4>
+<h4 id="_arp协议"><a class="anchor" href="#_arp协议"></a><a class="link" href="#_arp协议">ARP协议</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1184,7 +1248,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_基于交换机的以太局域网没有必要使用mac协议"><a class="link" href="#_基于交换机的以太局域网没有必要使用mac协议">基于交换机的以太局域网没有必要使用MAC协议</a></h4>
+<h4 id="_基于交换机的以太局域网没有必要使用mac协议"><a class="anchor" href="#_基于交换机的以太局域网没有必要使用mac协议"></a><a class="link" href="#_基于交换机的以太局域网没有必要使用mac协议">基于交换机的以太局域网没有必要使用MAC协议</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1200,7 +1264,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_以太局域网基于交换机与基于总线或集线器的区别"><a class="link" href="#_以太局域网基于交换机与基于总线或集线器的区别">以太局域网基于交换机与基于总线或集线器的区别</a></h4>
+<h4 id="_以太局域网基于交换机与基于总线或集线器的区别"><a class="anchor" href="#_以太局域网基于交换机与基于总线或集线器的区别"></a><a class="link" href="#_以太局域网基于交换机与基于总线或集线器的区别">以太局域网基于交换机与基于总线或集线器的区别</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1260,7 +1324,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_交换机与路由器的比较"><a class="link" href="#_交换机与路由器的比较">交换机与路由器的比较</a></h4>
+<h4 id="_交换机与路由器的比较"><a class="anchor" href="#_交换机与路由器的比较"></a><a class="link" href="#_交换机与路由器的比较">交换机与路由器的比较</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1338,7 +1402,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_交换机等级结构的特点"><a class="link" href="#_交换机等级结构的特点">交换机等级结构的特点</a></h4>
+<h4 id="_交换机等级结构的特点"><a class="anchor" href="#_交换机等级结构的特点"></a><a class="link" href="#_交换机等级结构的特点">交换机等级结构的特点</a></h4>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
@@ -1380,9 +1444,9 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_复习题"><a class="link" href="#_复习题">2.5. 复习题</a></h3>
+<h3 id="_复习题"><a class="anchor" href="#_复习题"></a><a class="link" href="#_复习题">复习题</a></h3>
 <div class="sect3">
-<h4 id="_r1"><a class="link" href="#_r1">R1</a></h4>
+<h4 id="_r1"><a class="anchor" href="#_r1"></a><a class="link" href="#_r1">R1</a></h4>
 <div class="paragraph">
 <p>考虑在6.1节（p.286）中的运输类比。如果一个乘客类比为一个数据报，什么类比于链路层帧？</p>
 </div>
@@ -1391,7 +1455,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r2_链路层的可靠交付服务与tcp可靠传输服务"><a class="link" href="#_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</a></h4>
+<h4 id="_r2_链路层的可靠交付服务与tcp可靠传输服务"><a class="anchor" href="#_r2_链路层的可靠交付服务与tcp可靠传输服务"></a><a class="link" href="#_r2_链路层的可靠交付服务与tcp可靠传输服务">R2 链路层的可靠交付服务与TCP可靠传输服务</a></h4>
 <div class="paragraph">
 <p>如果在因特网中的所有链路都提供可靠的交付服务，TCP可靠传输服务将是多余的吗？为什么？</p>
 </div>
@@ -1400,7 +1464,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r3_链路层提供的服务与iptcp"><a class="link" href="#_r3_链路层提供的服务与iptcp">R3 链路层提供的服务与IP、TCP</a></h4>
+<h4 id="_r3_链路层提供的服务与iptcp"><a class="anchor" href="#_r3_链路层提供的服务与iptcp"></a><a class="link" href="#_r3_链路层提供的服务与iptcp">R3 链路层提供的服务与IP、TCP</a></h4>
 <div class="paragraph">
 <p>链路层协议能够向网络层提供哪些可能的服务？在这些链路层服务中，哪些在IP中有对应的服务？哪些在TCP中有对应的服务？</p>
 </div>
@@ -1425,7 +1489,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r4"><a class="link" href="#_r4">R4</a></h4>
+<h4 id="_r4"><a class="anchor" href="#_r4"></a><a class="link" href="#_r4">R4</a></h4>
 <div class="paragraph">
 <p>假设两个节点同时经一个速率为R的广播信道开始传输一个长度为L的分组。用d<sub>prop</sub>表示这两个节点之间的传播时延。如果d<sub>prop</sub>&lt;L/R，会出现碰撞吗？为什么？</p>
 </div>
@@ -1437,7 +1501,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r5"><a class="link" href="#_r5">R5</a></h4>
+<h4 id="_r5"><a class="anchor" href="#_r5"></a><a class="link" href="#_r5">R5</a></h4>
 <div class="paragraph">
 <p>在6.3节中，我们列出了广播信道的4种希望的特性。这些特性中的哪些是时隙ALOHA所具有的？令牌传递具有这些特性中的哪些？</p>
 </div>
@@ -1479,7 +1543,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_r6_二进制指数后退算法的计算"><a class="link" href="#_r6_二进制指数后退算法的计算">R6 二进制指数后退算法的计算</a></h4>
+<h4 id="_r6_二进制指数后退算法的计算"><a class="anchor" href="#_r6_二进制指数后退算法的计算"></a><a class="link" href="#_r6_二进制指数后退算法的计算">R6 二进制指数后退算法的计算</a></h4>
 <div class="paragraph">
 <p>在CSMA/CD中，在第5次碰撞后，节点选择K=4的概率有多大？结果K=4在10Mbps以太网上对应于多少秒的时延？</p>
 </div>
@@ -1491,7 +1555,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r7"><a class="link" href="#_r7">R7</a></h4>
+<h4 id="_r7"><a class="anchor" href="#_r7"></a><a class="link" href="#_r7">R7</a></h4>
 <div class="paragraph">
 <p>使用人类在鸡尾酒会交互的类比来描述轮询和令牌传递协议。</p>
 </div>
@@ -1500,7 +1564,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r8"><a class="link" href="#_r8">R8</a></h4>
+<h4 id="_r8"><a class="anchor" href="#_r8"></a><a class="link" href="#_r8">R8</a></h4>
 <div class="paragraph">
 <p>如果局域网有很大的周长时，为什么令牌环协议将是低效的？</p>
 </div>
@@ -1509,7 +1573,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r9"><a class="link" href="#_r9">R9</a></h4>
+<h4 id="_r9"><a class="anchor" href="#_r9"></a><a class="link" href="#_r9">R9</a></h4>
 <div class="paragraph">
 <p>MAC地址空间有多大？IPv4的地址空间呢？IPv6的地址空间呢？</p>
 </div>
@@ -1520,7 +1584,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r10"><a class="link" href="#_r10">R10</a></h4>
+<h4 id="_r10"><a class="anchor" href="#_r10"></a><a class="link" href="#_r10">R10</a></h4>
 <div class="paragraph">
 <p>假设节点A、B和C（通过它们的适配器）都连接到同一个广播局域网上。如果A向B发送数千个IP数据报．每个封装帧都有B的MAC地址，C的适配器会处理这些帧吗？如果会，C的适配器将会把这些帧中的IP数据报传递给C的网络层吗？如果A用MAC广播地址来发送这些帧，你的回答将有怎样的变化呢？</p>
 </div>
@@ -1532,7 +1596,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r11"><a class="link" href="#_r11">R11</a></h4>
+<h4 id="_r11"><a class="anchor" href="#_r11"></a><a class="link" href="#_r11">R11</a></h4>
 <div class="paragraph">
 <p>ARP查询为什么要在广播帧中发送呢？ARP响应为什么要在一个具有特定目的MAC地址的帧中发送呢？</p>
 </div>
@@ -1541,7 +1605,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r12"><a class="link" href="#_r12">R12</a></h4>
+<h4 id="_r12"><a class="anchor" href="#_r12"></a><a class="link" href="#_r12">R12</a></h4>
 <div class="paragraph">
 <p>对于图6-19中的网络，路由器有两个ARP模块，每个都有自己的ARP表。同样的MAC地址可能在两张表中都出现吗？</p>
 </div>
@@ -1550,7 +1614,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r13"><a class="link" href="#_r13">R13</a></h4>
+<h4 id="_r13"><a class="anchor" href="#_r13"></a><a class="link" href="#_r13">R13</a></h4>
 <div class="paragraph">
 <p>比较10BASE-T、100BASE-T和吉比特以太网的帧结构。它们有什么不同吗？</p>
 </div>
@@ -1559,7 +1623,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r14"><a class="link" href="#_r14">R14</a></h4>
+<h4 id="_r14"><a class="anchor" href="#_r14"></a><a class="link" href="#_r14">R14</a></h4>
 <div class="paragraph">
 <p>考虑图6-15。在4.3节的寻址意义下，有多少个子网呢？</p>
 </div>
@@ -1568,7 +1632,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r15"><a class="link" href="#_r15">R15</a></h4>
+<h4 id="_r15"><a class="anchor" href="#_r15"></a><a class="link" href="#_r15">R15</a></h4>
 <div class="paragraph">
 <p>在一个支持802.1Q协议交换机上能够配置的VLAN的最大数量是多少？为什么？</p>
 </div>
@@ -1577,7 +1641,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_r16"><a class="link" href="#_r16">R16</a></h4>
+<h4 id="_r16"><a class="anchor" href="#_r16"></a><a class="link" href="#_r16">R16</a></h4>
 <div class="paragraph">
 <p>假设支持K个VLAN组的N台交换机经过一个干线协议连接起来。连接这些交换机需要多少端口？评价你的答案。</p>
 </div>
@@ -1595,9 +1659,9 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_习题"><a class="link" href="#_习题">2.6. 习题</a></h3>
+<h3 id="_习题"><a class="anchor" href="#_习题"></a><a class="link" href="#_习题">习题</a></h3>
 <div class="sect3">
-<h4 id="_p1_二维奇偶校验的计算"><a class="link" href="#_p1_二维奇偶校验的计算">P1 二维奇偶校验的计算</a></h4>
+<h4 id="_p1_二维奇偶校验的计算"><a class="anchor" href="#_p1_二维奇偶校验的计算"></a><a class="link" href="#_p1_二维奇偶校验的计算">P1 二维奇偶校验的计算</a></h4>
 <div class="paragraph">
 <p>假设某分组的信息内容是比特模式1110 0110 1001 1101，并且使用了偶校验方案。在采用二维奇偶校验方案的情况下，包含该检验比特的字段的值是什么？你的回答应该使用最小长度检验和字段。</p>
 </div>
@@ -1616,7 +1680,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p2_二维奇偶校验的能力"><a class="link" href="#_p2_二维奇偶校验的能力">P2 二维奇偶校验的能力</a></h4>
+<h4 id="_p2_二维奇偶校验的能力"><a class="anchor" href="#_p2_二维奇偶校验的能力"></a><a class="link" href="#_p2_二维奇偶校验的能力">P2 二维奇偶校验的能力</a></h4>
 <div class="paragraph">
 <p>说明（举一个不同于图6-5的例子）二维奇偶校验能够纠正和检测单比特差错。说明（举一个例子）某些双比特差错能够被检测但不能纠正。</p>
 </div>
@@ -1625,7 +1689,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p3_因特网检验和的计算"><a class="link" href="#_p3_因特网检验和的计算">P3 因特网检验和的计算</a></h4>
+<h4 id="_p3_因特网检验和的计算"><a class="anchor" href="#_p3_因特网检验和的计算"></a><a class="link" href="#_p3_因特网检验和的计算">P3 因特网检验和的计算</a></h4>
 <div class="paragraph">
 <p>假设某分组的信息部分（图6-3中的D）包含10字节，它由字符串"Networking"的8比特无符号二进制ASCII表示组成。对该数据计算因特网检验和。</p>
 </div>
@@ -1678,7 +1742,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p4"><a class="link" href="#_p4">P4</a></h4>
+<h4 id="_p4"><a class="anchor" href="#_p4"></a><a class="link" href="#_p4">P4</a></h4>
 <div class="paragraph">
 <p>考虑前一个习题，但此时假设这10字节包含：</p>
 </div>
@@ -1699,7 +1763,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 <p>计算这些数据的因特网检验和。</p>
 </div>
 <div class="sect4">
-<h5 id="_a"><a class="link" href="#_a">a</a></h5>
+<h5 id="_a"><a class="anchor" href="#_a"></a><a class="link" href="#_a">a</a></h5>
 <div class="paragraph">
 <p>数字1到10的二进制表示：
 01 02 03 04 05 06 07 08 09 0A</p>
@@ -1712,7 +1776,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b"><a class="link" href="#_b">b</a></h5>
+<h5 id="_b"><a class="anchor" href="#_b"></a><a class="link" href="#_b">b</a></h5>
 <div class="paragraph">
 <p>字母B到K的ASCII表示：
 42 43 44 45 46 47 48 49 4A 4B</p>
@@ -1725,7 +1789,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c"><a class="link" href="#_c">c</a></h5>
+<h5 id="_c"><a class="anchor" href="#_c"></a><a class="link" href="#_c">c</a></h5>
 <div class="paragraph">
 <p>字母b到k的ASCII表示：
 62 63 64 65 66 67 68 69 6A 6B</p>
@@ -1739,7 +1803,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p5"><a class="link" href="#_p5">P5</a></h4>
+<h4 id="_p5"><a class="anchor" href="#_p5"></a><a class="link" href="#_p5">P5</a></h4>
 <div class="paragraph">
 <p>考虑5比特生成多项式，G=10011，并且假设D的值为10 1010 1010。R的值是什么？</p>
 </div>
@@ -1757,7 +1821,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p6"><a class="link" href="#_p6">P6</a></h4>
+<h4 id="_p6"><a class="anchor" href="#_p6"></a><a class="link" href="#_p6">P6</a></h4>
 <div class="paragraph">
 <p>考虑上一个习题，这时假设D具有值：</p>
 </div>
@@ -1775,26 +1839,26 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_2"><a class="link" href="#_a_2">a</a></h5>
+<h5 id="_a_2"><a class="anchor" href="#_a_2"></a><a class="link" href="#_a_2">a</a></h5>
 <div class="paragraph">
 <p>\(1001010101\bmod 10011 = 0000\)</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_2"><a class="link" href="#_b_2">b</a></h5>
+<h5 id="_b_2"><a class="anchor" href="#_b_2"></a><a class="link" href="#_b_2">b</a></h5>
 <div class="paragraph">
 <p>1111</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_2"><a class="link" href="#_c_2">c</a></h5>
+<h5 id="_c_2"><a class="anchor" href="#_c_2"></a><a class="link" href="#_c_2">c</a></h5>
 <div class="paragraph">
 <p>1001</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p7"><a class="link" href="#_p7">P7</a></h4>
+<h4 id="_p7"><a class="anchor" href="#_p7"></a><a class="link" href="#_p7">P7</a></h4>
 <div class="paragraph">
 <p>在这道习题中，我们探讨CRC的某些性质。对于在6.2.3节中给出的生成多项式G（=1001），回答下列问题：</p>
 </div>
@@ -1809,20 +1873,20 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_3"><a class="link" href="#_a_3">a</a></h5>
+<h5 id="_a_3"><a class="anchor" href="#_a_3"></a><a class="link" href="#_a_3">a</a></h5>
 <div class="paragraph">
 <p>Without loss of generality, suppose ith bit is flipped, where 0&#8656; i &#8656; d+r-1 and assume that the least significant bit is 0th bit. A single bit error means that the received data is K=D*2r XOR R + 2i. It is clear that if we divide K by G, then the reminder is not zero. In general, if G contains at least two 1&#8217;s, then a single bit error can always be detected.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_3"><a class="link" href="#_b_3">b</a></h5>
+<h5 id="_b_3"><a class="anchor" href="#_b_3"></a><a class="link" href="#_b_3">b</a></h5>
 <div class="paragraph">
 <p>The key insight here is that G can be divided by 11 (binary number), but any number of odd-number of 1&#8217;s cannot be divided by 11. Thus, a sequence (not necessarily contiguous) of odd-number bit errors cannot be divided by 11, thus it cannot be divided by G.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p8_时隙aloha效率推导"><a class="link" href="#_p8_时隙aloha效率推导">P8 时隙ALOHA效率推导</a></h4>
+<h4 id="_p8_时隙aloha效率推导"><a class="anchor" href="#_p8_时隙aloha效率推导"></a><a class="link" href="#_p8_时隙aloha效率推导">P8 时隙ALOHA效率推导</a></h4>
 <div class="paragraph">
 <p>在6.3节中，我们提供了时隙ALOHA效率推导的概要。在本习题中，我们将完成这个推导。</p>
 </div>
@@ -1837,7 +1901,7 @@ Shill, the connection manager for Chromium OS, attempts to detect services that 
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_4"><a class="link" href="#_a_4">a</a></h5>
+<h5 id="_a_4"><a class="anchor" href="#_a_4"></a><a class="link" href="#_a_4">a</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -1850,7 +1914,7 @@ E'(p)&amp; = 0 \implies p*=\frac1N
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_4"><a class="link" href="#_b_4">b</a></h5>
+<h5 id="_b_4"><a class="anchor" href="#_b_4"></a><a class="link" href="#_b_4">b</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -1865,7 +1929,7 @@ E'(p)&amp; = 0 \implies p*=\frac1N
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p9"><a class="link" href="#_p9">P9</a></h4>
+<h4 id="_p9"><a class="anchor" href="#_p9"></a><a class="link" href="#_p9">P9</a></h4>
 <div class="paragraph">
 <p>说明纯ALOHA的最大效率是1/(2e)。注意：如果你完成了上面的习题，本习题就很简单了。</p>
 </div>
@@ -1886,7 +1950,7 @@ E'(p)&amp; = 0 \implies p*=\frac{1}{2N-1} \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p10_节点吞吐量与重传概率"><a class="link" href="#_p10_节点吞吐量与重传概率">P10 节点吞吐量与重传概率</a></h4>
+<h4 id="_p10_节点吞吐量与重传概率"><a class="anchor" href="#_p10_节点吞吐量与重传概率"></a><a class="link" href="#_p10_节点吞吐量与重传概率">P10 节点吞吐量与重传概率</a></h4>
 <div class="paragraph">
 <p>考虑两个节点A和B，它们都使用时隙ALOHA协议来竞争一个信道。假定节点A比节点B有更多的数据要传输，并且节点A的重传概率p<sub>A</sub>比节点B的重传概率p<sub>B</sub>要大。</p>
 </div>
@@ -1904,13 +1968,13 @@ E'(p)&amp; = 0 \implies p*=\frac{1}{2N-1} \\
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_5"><a class="link" href="#_a_5">a</a></h5>
+<h5 id="_a_5"><a class="anchor" href="#_a_5"></a><a class="link" href="#_a_5">a</a></h5>
 <div class="paragraph">
 <p>某一时隙A成功传输的概率为p<sub>A</sub>(1-p<sub>B</sub>)，因此A的平均吞吐量T<sub>A</sub>=Rp<sub>A</sub>(1-p<sub>B</sub>)。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_5"><a class="link" href="#_b_5">b</a></h5>
+<h5 id="_b_5"><a class="anchor" href="#_b_5"></a><a class="link" href="#_b_5">b</a></h5>
 <div class="paragraph">
 <p>B的平均吞吐量T<sub>B</sub>=Rp<sub>B</sub>(1-p<sub>A</sub>)，总体效率为(Rp<sub>A</sub>(1-p<sub>B</sub>)+Rp<sub>B</sub>(1-p<sub>A</sub>))/R = p<sub>A</sub>+p<sub>B</sub>-2p<sub>A</sub>p<sub>B</sub>。</p>
 </div>
@@ -1928,7 +1992,7 @@ T_A = 2T_B
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_3"><a class="link" href="#_c_3">c</a></h5>
+<h5 id="_c_3"><a class="anchor" href="#_c_3"></a><a class="link" href="#_c_3">c</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -1940,7 +2004,7 @@ T_O &amp;= p(1-p)^{N-2}(1-2p)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p11_时隙aloha的概率问题"><a class="link" href="#_p11_时隙aloha的概率问题">P11 时隙ALOHA的概率问题</a></h4>
+<h4 id="_p11_时隙aloha的概率问题"><a class="anchor" href="#_p11_时隙aloha的概率问题"></a><a class="link" href="#_p11_时隙aloha的概率问题">P11 时隙ALOHA的概率问题</a></h4>
 <div class="paragraph">
 <p>假定4个活跃节点A、B、C和D都使用时隙ALOHA来竞争访问某信道。假设每个节点有无限个分组要发送。每个节点在每个时隙中以概率p尝试传输。第一个时隙编号为时隙1，第二个时隙编号为时隙2，等等。</p>
 </div>
@@ -1961,7 +2025,7 @@ T_O &amp;= p(1-p)^{N-2}(1-2p)
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_6"><a class="link" href="#_a_6">a</a></h5>
+<h5 id="_a_6"><a class="anchor" href="#_a_6"></a><a class="link" href="#_a_6">a</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -1974,13 +2038,13 @@ p_{\text{节点A在时隙5中首次成功}}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_6"><a class="link" href="#_b_6">b</a></h5>
+<h5 id="_b_6"><a class="anchor" href="#_b_6"></a><a class="link" href="#_b_6">b</a></h5>
 <div class="paragraph">
 <p>4p(1-p)<sup>3</sup></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_4"><a class="link" href="#_c_4">c</a></h5>
+<h5 id="_c_4"><a class="anchor" href="#_c_4"></a><a class="link" href="#_c_4">c</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -1993,14 +2057,14 @@ p_{\text{在时隙3中出现首个成功}}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_d"><a class="link" href="#_d">d</a></h5>
+<h5 id="_d"><a class="anchor" href="#_d"></a><a class="link" href="#_d">d</a></h5>
 <div class="paragraph">
 <p>4p(1-p)<sup>3</sup></p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p12_画图对比时隙和纯aloha的效率"><a class="link" href="#_p12_画图对比时隙和纯aloha的效率">P12 画图对比时隙和纯ALOHA的效率</a></h4>
+<h4 id="_p12_画图对比时隙和纯aloha的效率"><a class="anchor" href="#_p12_画图对比时隙和纯aloha的效率"></a><a class="link" href="#_p12_画图对比时隙和纯aloha的效率">P12 画图对比时隙和纯ALOHA的效率</a></h4>
 <div class="paragraph">
 <p>对N的下列值，画出以p为函数的时隙ALOHA和纯ALOHA的效率。</p>
 </div>
@@ -2066,7 +2130,7 @@ if __name__ == '__main__':
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p13"><a class="link" href="#_p13">P13</a></h4>
+<h4 id="_p13"><a class="anchor" href="#_p13"></a><a class="link" href="#_p13">P13</a></h4>
 <div class="paragraph">
 <p>考虑具有N个节点和传输速率为Rbps的一个广播信道。假设该广播信道使用轮询进行多路访问（有一个附加的轮询节点）。。假设从某节点完成传输到后续节点允许传输之间的时间量（即轮询时延）是d<sub>poll</sub>。假设在一个轮询周期中，一个给定的节点允许至多传输Q比特。该广播信道的最大吞吐量是多少？</p>
 </div>
@@ -2091,7 +2155,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p14"><a class="link" href="#_p14">P14</a></h4>
+<h4 id="_p14"><a class="anchor" href="#_p14"></a><a class="link" href="#_p14">P14</a></h4>
 <div class="paragraph">
 <p>如图6-33所示，考虑通过两台路由器互联的3个局域网。</p>
 </div>
@@ -2117,7 +2181,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_a_b"><a class="link" href="#_a_b">a b</a></h5>
+<h5 id="_a_b"><a class="anchor" href="#_a_b"></a><a class="link" href="#_a_b">a b</a></h5>
 <div class="imageblock">
 <div class="content">
 <img src="./img/ch6-p14.png" alt="ch6 p14" width="700">
@@ -2125,7 +2189,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_5"><a class="link" href="#_c_5">c</a></h5>
+<h5 id="_c_5"><a class="anchor" href="#_c_5"></a><a class="link" href="#_c_5">c</a></h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2141,14 +2205,14 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_d_2"><a class="link" href="#_d_2">d</a></h5>
+<h5 id="_d_2"><a class="anchor" href="#_d_2"></a><a class="link" href="#_d_2">d</a></h5>
 <div class="paragraph">
 <p>在第一步要将该帧发送给网关路由器之前需要发送ARP查询报文，该查询报文目的IP地址是<code>192.168.3.1</code>，源IP和MAC地址是自己的，然后用目的MAC地址<code>FF:FF:FF:FF:FF:FF</code>广播查询报文，收到响应后就知道了网关路由器的MAC地址。</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p15_交换机转发"><a class="link" href="#_p15_交换机转发">P15 交换机转发</a></h4>
+<h4 id="_p15_交换机转发"><a class="anchor" href="#_p15_交换机转发"></a><a class="link" href="#_p15_交换机转发">P15 交换机转发</a></h4>
 <div class="paragraph">
 <p>考虑图6-33。现在我们用一台交换机代替子网1和子网2之间的路由器，并且将子网2和子网3之间的路由器标记为R1。</p>
 </div>
@@ -2171,7 +2235,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_a_7"><a class="link" href="#_a_7">a</a></h5>
+<h5 id="_a_7"><a class="anchor" href="#_a_7"></a><a class="link" href="#_a_7">a</a></h5>
 <div class="paragraph">
 <p>主机E向主机F发送数据报不需要路由器R1转发该数据报，因为主机E和F在同一个子网，可以经交换机发送以太网帧。</p>
 </div>
@@ -2193,7 +2257,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_7"><a class="link" href="#_b_7">b</a></h5>
+<h5 id="_b_7"><a class="anchor" href="#_b_7"></a><a class="link" href="#_b_7">b</a></h5>
 <div class="paragraph">
 <p>E不会执行ARP查询来发现B的MAC地址，因为B和E不在同一个子网。</p>
 </div>
@@ -2215,7 +2279,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_6"><a class="link" href="#_c_6">c</a></h5>
+<h5 id="_c_6"><a class="anchor" href="#_c_6"></a><a class="link" href="#_c_6">c</a></h5>
 <div class="paragraph">
 <p>交换机S1收到ARP请求报文首先会将A的MAC地址和入接口存入转发表，然后向另外两个接口转发该帧。</p>
 </div>
@@ -2231,7 +2295,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p16"><a class="link" href="#_p16">P16</a></h4>
+<h4 id="_p16"><a class="anchor" href="#_p16"></a><a class="link" href="#_p16">P16</a></h4>
 <div class="paragraph">
 <p>考虑前面的习题，但是现在假设用一台交换机代替子网2和子网3之间的路由器，在这种新的场景中回答前面习题中的问题（a）~（c）。</p>
 </div>
@@ -2240,7 +2304,7 @@ T &amp;= \frac{t_Q}{t_Q+d_{poll}}R \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p17_后退时间"><a class="link" href="#_p17_后退时间">P17 后退时间</a></h4>
+<h4 id="_p17_后退时间"><a class="anchor" href="#_p17_后退时间"></a><a class="link" href="#_p17_后退时间">P17 后退时间</a></h4>
 <div class="paragraph">
 <p>前面讲过，使用CSMA/CD协议，适配器在碰撞之后等待K•512比特时间，其中K是随机选取的。对于K=100，对于一个1OMbps的广播信道，适配器返回到第二步要等多长时间？对于1OOMbps的广播信道来说呢？</p>
 </div>
@@ -2257,7 +2321,7 @@ t_{100M} &amp;= K × t_{512b} \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p18_csmacd误检测"><a class="link" href="#_p18_csmacd误检测">P18 CSMA/CD误检测</a></h4>
+<h4 id="_p18_csmacd误检测"><a class="anchor" href="#_p18_csmacd误检测"></a><a class="link" href="#_p18_csmacd误检测">P18 CSMA/CD误检测</a></h4>
 <div class="paragraph">
 <p>假设节点A和节点B在同一个1OMbps广播信道上，这两个节点的传播时延为325比特时间。假设对这个广播信道使用CSMA/CD和以太网分组。假设节点A开始传输一帧，并且在它传输结束之前节点B开始传输一帧。在A检测到B已经传输之前，A能完成传输吗？为什么？如果回答是可以，则A错误地认为它的帧已成功传输而无碰撞。提示：假设在t=O比特时刻，A开始传输一帧。在最坏的情况下，A传输一个512+64比特时间的最小长度的帧。因此A将在t=512+64比特时刻完成帧的传输。如果B的信号在比特时间t=512+64比特之前到达A，则答案是否定的。在最坏的情况下，B的信号什么时候到达A？</p>
 </div>
@@ -2269,7 +2333,7 @@ t_{100M} &amp;= K × t_{512b} \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p19_csmacd过程"><a class="link" href="#_p19_csmacd过程">P19 CSMA/CD过程</a></h4>
+<h4 id="_p19_csmacd过程"><a class="anchor" href="#_p19_csmacd过程"></a><a class="link" href="#_p19_csmacd过程">P19 CSMA/CD过程</a></h4>
 <div class="paragraph">
 <p>假设节点A和节点B在相同的10Mbps广播信道上，并且这两个节点的传播时延为245比特时间。假设A和B同时发送以太网帧，帧发生了碰撞，然后A和B在CSMA/CD算法中选择不同的K值。假设没有其他节点处于活跃状态，来自A和B的重传会碰撞吗？为此，完成下面的例子就足以说明问题了。假设A和B在t=O比特时间开始传输。它们在t=245比特时间都检测到了碰撞。假设K<sub>A</sub>=0，K<sub>B</sub>=1。B会将它的重传调整到什么时间？A在什么时间开始发送？（注意：这些节点在返回第2步之后，必须等待一个空闲信道，参见协议。）A的信号在什么时间到达B呢？B在它预定的时刻抑制传输吗？</p>
 </div>
@@ -2321,7 +2385,7 @@ t_{100M} &amp;= K × t_{512b} \\
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p20_csmacd效率推导"><a class="link" href="#_p20_csmacd效率推导">P20 CSMA/CD效率推导</a></h4>
+<h4 id="_p20_csmacd效率推导"><a class="anchor" href="#_p20_csmacd效率推导"></a><a class="link" href="#_p20_csmacd效率推导">P20 CSMA/CD效率推导</a></h4>
 <div class="paragraph">
 <p>在这个习题中，你将对一个类似于CSMA/CD的多路访问协议的效率进行推导。在这个协议中，时间分为时隙，并且所有适配器都与时隙同步。然而，和时隙ALOHA不同的是，一个时隙的长度（以秒计）比一帧的时间（即传输一帧的时间）小得多。令S表示一个时隙的长度。假设所有帧都有恒定长度L＝kRS，其中R是信道的传输速率，k是一个大整数。假定有N个节点。每个节点都有无穷多帧要发送。我们还假设d<sub>prop</sub>&lt;S，以便所有节点在一个时隙时间结束之前能够检测到碰撞。这个协议描述如下：</p>
 </div>
@@ -2353,7 +2417,7 @@ t_{100M} &amp;= K × t_{512b} \\
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_8"><a class="link" href="#_a_8">a</a></h5>
+<h5 id="_a_8"><a class="anchor" href="#_a_8"></a><a class="link" href="#_a_8">a</a></h5>
 <div class="paragraph">
 <p>设随机变量Y是出现成功传输所经过的时隙个数</p>
 </div>
@@ -2386,14 +2450,14 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_8"><a class="link" href="#_b_8">b</a></h5>
+<h5 id="_b_8"><a class="anchor" href="#_b_8"></a><a class="link" href="#_b_8">b</a></h5>
 <div class="paragraph">
 <p>使eff最大相当于使x最小，也即相当于使β最大。
 根据P8知p*=1/N时，β取得最大值。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_7"><a class="link" href="#_c_7">c</a></h5>
+<h5 id="_c_7"><a class="anchor" href="#_c_7"></a><a class="link" href="#_c_7">c</a></h5>
 <div class="stemblock">
 <div class="content">
 \[\begin{align*}
@@ -2404,7 +2468,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_d_3"><a class="link" href="#_d_3">d</a></h5>
+<h5 id="_d_3"><a class="anchor" href="#_d_3"></a><a class="link" href="#_d_3">d</a></h5>
 <div class="paragraph">
 <p>S不变时，k随着帧长度变大而变大，因此</p>
 </div>
@@ -2418,7 +2482,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p21_以太网帧转发的mac和ip地址"><a class="link" href="#_p21_以太网帧转发的mac和ip地址">P21 以太网帧转发的MAC和IP地址</a></h4>
+<h4 id="_p21_以太网帧转发的mac和ip地址"><a class="anchor" href="#_p21_以太网帧转发的mac和ip地址"></a><a class="link" href="#_p21_以太网帧转发的mac和ip地址">P21 以太网帧转发的MAC和IP地址</a></h4>
 <div class="paragraph">
 <p>现在考虑习题P14中的图6-33。对主机A、两台路由器和主机F的各个接口提供MAC地址和IP地址。假定主机A向主机F发送一个数据报。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边的路由器；（ii）从左边的路由器到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中的源和目的IP地址。</p>
 </div>
@@ -2474,7 +2538,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_p22"><a class="link" href="#_p22">P22</a></h4>
+<h4 id="_p22"><a class="anchor" href="#_p22"></a><a class="link" href="#_p22">P22</a></h4>
 <div class="paragraph">
 <p>现在假定在图6-33最左边的路由器被一台交换机替换。主机A、B、C和D和右边的路由器以星形方式与这台交换机相连。当在下列场合传输该帧时，给出在封装该IP数据报的帧中的源和目的MAC地址：（i）从A到左边交换机；（ii）从左边交换机到右边的路由器；（iii）从右边的路由器到F。还要给出到达每个点时封装在该帧中的IP数据报中源和目的IP地址。</p>
 </div>
@@ -2527,7 +2591,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_p23_交换机与集线器的总聚合带宽"><a class="link" href="#_p23_交换机与集线器的总聚合带宽">P23 交换机与集线器的总聚合带宽</a></h4>
+<h4 id="_p23_交换机与集线器的总聚合带宽"><a class="anchor" href="#_p23_交换机与集线器的总聚合带宽"></a><a class="link" href="#_p23_交换机与集线器的总聚合带宽">P23 交换机与集线器的总聚合带宽</a></h4>
 <div class="paragraph">
 <p>考虑图6-15。假定所有链路都是100Mbps。在该网络中的9台主机和两台服务器之间，能够取得的最大总聚合吞吐量是多少？你能够假设任何主机或服务器能够向任何其他主机或服务器发送分组。为什么？</p>
 </div>
@@ -2549,7 +2613,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p24"><a class="link" href="#_p24">P24</a></h4>
+<h4 id="_p24"><a class="anchor" href="#_p24"></a><a class="link" href="#_p24">P24</a></h4>
 <div class="paragraph">
 <p>假定在图6-15中的3台连接各系的交换机用集线器（departmental hub）来代替。所有链路是100Mbps。现在回答习题P23中提出的问题。</p>
 </div>
@@ -2558,7 +2622,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p25"><a class="link" href="#_p25">P25</a></h4>
+<h4 id="_p25"><a class="anchor" href="#_p25"></a><a class="link" href="#_p25">P25</a></h4>
 <div class="paragraph">
 <p>假定在图6-15中的所有交换机用集线器来代替。所有链路是100Mbps。现在回答在习题P23中提出的问题。</p>
 </div>
@@ -2567,7 +2631,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p26"><a class="link" href="#_p26">P26</a></h4>
+<h4 id="_p26"><a class="anchor" href="#_p26"></a><a class="link" href="#_p26">P26</a></h4>
 <div class="paragraph">
 <p>在某网络中标识为A到F的6个节点以星形与一台交换机连接，考虑在该网络环境中某个正在学习的交换机的运行情况。假定：（i）B向E发送一个帧；（ii）E向B回答一个帧；（iii）A向B发送一个帧；（iv）B向A回答一个帧；该交换机表初始为空。显示在这些事件的前后该交换机表的状态。对于每个事件，指出在其上面转发传输的帧的链路，并简要地评价你的答案。</p>
 </div>
@@ -2612,7 +2676,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_p27_小分组的时延"><a class="link" href="#_p27_小分组的时延">P27 小分组的时延</a></h4>
+<h4 id="_p27_小分组的时延"><a class="anchor" href="#_p27_小分组的时延"></a><a class="link" href="#_p27_小分组的时延">P27 小分组的时延</a></h4>
 <div class="paragraph">
 <p>在这个习题中，我们探讨用于IP语音应用的小分组。小分组长度的一个主要缺点是链路带宽的较大比例被首部字节所消耗。基于此，假定分组是由P字节和5字节首部组成。</p>
 </div>
@@ -2633,13 +2697,13 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_a_9"><a class="link" href="#_a_9">a</a></h5>
+<h5 id="_a_9"><a class="anchor" href="#_a_9"></a><a class="link" href="#_a_9">a</a></h5>
 <div class="paragraph">
 <p>d<sub>pkt</sub>(L) = L Byte ÷ 128kbps = 0.0625L ms</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_9"><a class="link" href="#_b_9">b</a></h5>
+<h5 id="_b_9"><a class="anchor" href="#_b_9"></a><a class="link" href="#_b_9">b</a></h5>
 <div class="paragraph">
 <p>d<sub>pkt</sub>(1500) = 93.75ms</p>
 </div>
@@ -2648,7 +2712,7 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_8"><a class="link" href="#_c_8">c</a></h5>
+<h5 id="_c_8"><a class="anchor" href="#_c_8"></a><a class="link" href="#_c_8">c</a></h5>
 <div class="paragraph">
 <p>d<sub>trans</sub>(L) = (L+5) Byte ÷ 622Mbps</p>
 </div>
@@ -2660,14 +2724,14 @@ x = E[X] = E[Y]-1 = \frac{1-β}{β}
 </div>
 </div>
 <div class="sect4">
-<h5 id="_d_4"><a class="link" href="#_d_4">d</a></h5>
+<h5 id="_d_4"><a class="anchor" href="#_d_4"></a><a class="link" href="#_d_4">d</a></h5>
 <div class="paragraph">
 <p>使用小分组具有更小的分组时延和存储转发时延。</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p28_vlan转发"><a class="link" href="#_p28_vlan转发">P28 VLAN转发</a></h4>
+<h4 id="_p28_vlan转发"><a class="anchor" href="#_p28_vlan转发"></a><a class="link" href="#_p28_vlan转发">P28 VLAN转发</a></h4>
 <div class="paragraph">
 <p>考虑图6-25中的单个交换VLAN，假定一台外部路由器与交换机端口1相连。为EE和CS的主机和路由器接口分配IP地址。跟踪从EE主机向CS主机传送一个数据报时网络层和链路层所采取的步骤（提示：重读课文中对图6-19的讨论）。</p>
 </div>
@@ -2689,7 +2753,7 @@ Suppose that host A in EE department with IP address 111.111.1.1 would like to s
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p29_mpls与流量工程"><a class="link" href="#_p29_mpls与流量工程">P29 MPLS与流量工程</a></h4>
+<h4 id="_p29_mpls与流量工程"><a class="anchor" href="#_p29_mpls与流量工程"></a><a class="link" href="#_p29_mpls与流量工程">P29 MPLS与流量工程</a></h4>
 <div class="paragraph">
 <p>考虑显示在图6-29中的MPLS网络，假定路由器R5和R6现在是MPLS使能的。假定我们要执行流量工程，使从R6发往A的分组要经R6-R4-R3-R1交换到A，从R5发向A的分组要过R5-R4-R2-R1交换。给出R5和R6中的MPLS表以及在R4中修改的表，使得这些成为可能。</p>
 </div>
@@ -2787,7 +2851,7 @@ Suppose that host A in EE department with IP address 111.111.1.1 would like to s
 </table>
 </div>
 <div class="sect3">
-<h4 id="_p30"><a class="link" href="#_p30">P30</a></h4>
+<h4 id="_p30"><a class="anchor" href="#_p30"></a><a class="link" href="#_p30">P30</a></h4>
 <div class="paragraph">
 <p>再次考虑上一个习题中相同的场景，但假定从R6发往D的分组经R6-R4-R3交换，而从R5发往D的分组经R4-R2-R1-R3交换。说明为使这些成为可能在所有路由器中的MPLS表。</p>
 </div>
@@ -2801,7 +2865,7 @@ Suppose that host A in EE department with IP address 111.111.1.1 would like to s
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p31_web页面请求的历程"><a class="link" href="#_p31_web页面请求的历程">P31 Web页面请求的历程</a></h4>
+<h4 id="_p31_web页面请求的历程"><a class="anchor" href="#_p31_web页面请求的历程"></a><a class="link" href="#_p31_web页面请求的历程">P31 Web页面请求的历程</a></h4>
 <div class="paragraph">
 <p>在这个习题中，你将把已经学习过的因特网协议的许多东西拼装在一起。假设你走进房间，与以太网连接，并下载一个Web页面。从打开PC电源到得到Web网页，发生的所有协议步骤是什么？假设当你给PC加电时，在DNS或浏览器缓存中什么也没有。（提示：步骤包括使用以太网、DHCP、ARP、DNS、TCP和HTTP协议。）明确指出在这些步骤中你如何获得网关路由器的IP和MAC地址。</p>
 </div>
@@ -2900,7 +2964,7 @@ Suppose that host A in EE department with IP address 111.111.1.1 would like to s
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p32_等级拓扑与高度互联拓扑"><a class="link" href="#_p32_等级拓扑与高度互联拓扑">P32 等级拓扑与高度互联拓扑</a></h4>
+<h4 id="_p32_等级拓扑与高度互联拓扑"><a class="anchor" href="#_p32_等级拓扑与高度互联拓扑"></a><a class="link" href="#_p32_等级拓扑与高度互联拓扑">P32 等级拓扑与高度互联拓扑</a></h4>
 <div class="paragraph">
 <p>考虑在图6-30中具有等级拓扑的数据中心网络。假设现在有80对流，在第1和第9机架之间有10个流，在第2和第10机架之间有10个流，等等。进一步假设网络中的所有链路是10Gbps，而主机和TOR交换机之间的链路是1Gbps。
 a.每条流具有相同的数据率；确定一条流的最大速率。
@@ -2918,19 +2982,19 @@ c.现在假设有类似的流量模式，但在每个机架上涉及20台主机�
 </div>
 </div>
 <div class="sect4">
-<h5 id="_a_10"><a class="link" href="#_a_10">a</a></h5>
+<h5 id="_a_10"><a class="anchor" href="#_a_10"></a><a class="link" href="#_a_10">a</a></h5>
 <div class="paragraph">
 <p>80条流平均地共享B-D-E-F-G的10Gbps链路，每条流获得的速率为10Gbps/80=125Mbps。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_10"><a class="link" href="#_b_10">b</a></h5>
+<h5 id="_b_10"><a class="anchor" href="#_b_10"></a><a class="link" href="#_b_10">b</a></h5>
 <div class="paragraph">
 <p>在交换机A到C之间有4条不相交的路径，因此机架1到4共享A-C的40Gbps链路，每条流获得的速率为40Gbps/40=1Gbps。机架5到8的情况与1到4相同。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_9"><a class="link" href="#_c_9">c</a></h5>
+<h5 id="_c_9"><a class="anchor" href="#_c_9"></a><a class="link" href="#_c_9">c</a></h5>
 <div class="paragraph">
 <p>对于等级拓扑，每条流的速率为10Gbps/160=62.5Mbps；
 对于高度互联拓扑，40Gbps/80=500Mbps。</p>
@@ -2938,7 +3002,7 @@ c.现在假设有类似的流量模式，但在每个机架上涉及20台主机�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_p33"><a class="link" href="#_p33">P33</a></h4>
+<h4 id="_p33"><a class="anchor" href="#_p33"></a><a class="link" href="#_p33">P33</a></h4>
 <div class="paragraph">
 <p>考虑图6-30中所示的等级网络，并假设该数据中心需要在其他应用程序之间支持电子邮件和视频分发。假定4个服务器机架预留用于电子邮件，4个服务器机架预留用于视频。对于每个应用，所有4个机架必须位于某单一的二层交换机之下，因为二层到一层链路没有充足的带宽来支持应用内部的流量。对于电子邮件应用，假定99.9%时间仅使用3个机架，并且视频应用具有相同的使用模式。
 a.电子邮件应用需要使用第4个机架的时间比例有多大？视频应用需要使用第4个机架的时间比例有多大？
@@ -2946,19 +3010,19 @@ b.假设电子邮件使用和视频使用是独立的，这两个应用需要其
 c.假设对于一个应用服务器短缺的时间具为0.001%或更少（引起用户在极短时间内性能恶化）。讨论在图6-31中的拓扑能够怎样使用，使得仅7个机架被共同地分配给两个应用（假设拓扑能够支持所有流量）。</p>
 </div>
 <div class="sect4">
-<h5 id="_a_11"><a class="link" href="#_a_11">a</a></h5>
+<h5 id="_a_11"><a class="anchor" href="#_a_11"></a><a class="link" href="#_a_11">a</a></h5>
 <div class="paragraph">
 <p>\(1-99.9\%=0.1\%\)</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_b_11"><a class="link" href="#_b_11">b</a></h5>
+<h5 id="_b_11"><a class="anchor" href="#_b_11"></a><a class="link" href="#_b_11">b</a></h5>
 <div class="paragraph">
 <p>\(0.1\%^2=0.0001\%\)</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_c_10"><a class="link" href="#_c_10">c</a></h5>
+<h5 id="_c_10"><a class="anchor" href="#_c_10"></a><a class="link" href="#_c_10">c</a></h5>
 <div class="paragraph">
 <p>机架1到3分配给电子邮件应用，机架5到7分配给视频分发应用，机架4被两个应用共享使用。邮件应用与机架4在同一个二层交换机下，所以带宽是足够的。视频应用使用机架4时，机架4到7共享A-B的40Gbps链路，带宽也是足够的。邮件与视频应用同时使用机架4的概率为0.0001%，小于0.001%，满足要求。</p>
 </div>
@@ -2966,7 +3030,7 @@ c.假设对于一个应用服务器短缺的时间具为0.001%或更少（引起
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wireshark实验_ethernet_and_arp"><a class="link" href="#_wireshark实验_ethernet_and_arp">2.7. Wireshark实验 Ethernet and ARP</a></h3>
+<h3 id="_wireshark实验_ethernet_and_arp"><a class="anchor" href="#_wireshark实验_ethernet_and_arp"></a><a class="link" href="#_wireshark实验_ethernet_and_arp">Wireshark实验 Ethernet and ARP</a></h3>
 <div class="paragraph">
 <p><a href="code/ch6-wireshark-ethernet-arp/wireshark-ethernet-arp.pdf">Wireshark Lab: Ethernet and ARP v7.0</a></p>
 </div>
@@ -2977,7 +3041,7 @@ c.假设对于一个应用服务器短缺的时间具为0.001%或更少（引起
 <p><a href="code/ch6-wireshark-ethernet-arp/ethernet-ethereal-trace-1">ethernet-ethereal-trace-1</a></p>
 </div>
 <div class="sect3">
-<h4 id="_capturing_and_analyzing_ethernet_frames"><a class="link" href="#_capturing_and_analyzing_ethernet_frames">Capturing and analyzing Ethernet frames</a></h4>
+<h4 id="_capturing_and_analyzing_ethernet_frames"><a class="anchor" href="#_capturing_and_analyzing_ethernet_frames"></a><a class="link" href="#_capturing_and_analyzing_ethernet_frames">Capturing and analyzing Ethernet frames</a></h4>
 <div class="paragraph">
 <p><a href="code/ch6-wireshark-ethernet-arp/ethernet.pcapng">ethernet.pcapng</a></p>
 </div>
@@ -3096,7 +3160,7 @@ c.假设对于一个应用服务器短缺的时间具为0.001%或更少（引起
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_address_resolution_protocol"><a class="link" href="#_the_address_resolution_protocol">The Address Resolution Protocol</a></h4>
+<h4 id="_the_address_resolution_protocol"><a class="anchor" href="#_the_address_resolution_protocol"></a><a class="link" href="#_the_address_resolution_protocol">The Address Resolution Protocol</a></h4>
 <div class="paragraph">
 <p><a href="code/ch6-wireshark-ethernet-arp/arp.pcapng">arp.pcapng</a></p>
 </div>
@@ -3246,7 +3310,7 @@ chaus-mbp (192.168.8.126) at 0:1e:10:1f:0:0 on en4 ifscope permanent [ethernet]
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_extra_credit_2"><a class="link" href="#_extra_credit_2">Extra Credit</a></h5>
+<h5 id="_extra_credit_2"><a class="anchor" href="#_extra_credit_2"></a><a class="link" href="#_extra_credit_2">Extra Credit</a></h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3290,10 +3354,956 @@ chaus-mbp (192.168.8.126) at 0:1e:10:1f:0:0 on en4 ifscope permanent [ethernet]
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_无线网络和移动网络"><a class="anchor" href="#_无线网络和移动网络"></a><a class="link" href="#_无线网络和移动网络">无线网络和移动网络</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_笔记"><a class="anchor" href="#_笔记"></a><a class="link" href="#_笔记">笔记</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-1.png" alt="fig7 1" width="350">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1a.svg" alt="ch7 1a" width="455" height="596">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1b.svg" alt="ch7 1b" width="556" height="289">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. 基础设施模式和自组织模式的比较</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">基础设施模式</th>
+<th class="tableblock halign-left valign-top">自组织模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">网络服务（地址分配、路由选择、DNS等）由谁提供</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">由网络经基站向主机提供</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主机本身提供</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. 802.11网络和以太网的类比</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">网络</th>
+<th class="tableblock halign-left valign-top">主机接口</th>
+<th class="tableblock halign-left valign-top">链路层交换机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">802.11网络</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无线网络接口</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">接入点</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">以太网</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">以太网接口</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">以太网交换机</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1c.svg" alt="ch7 1c" width="517" height="417">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1d.svg" alt="ch7 1d" width="875" height="292">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1e.svg" alt="ch7 1e" width="459" height="297">
+</div>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="./img/fig7-7.png" alt="fig7 7" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>基本服务集Basic Service Set, BSS<br>
+接入点Access Point, AP</p>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-9.png" alt="fig7 9" width="540">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. CSMA/CD与CSMA/CA的比较</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">CSMA/CD</th>
+<th class="tableblock halign-left valign-top">CSMA/CA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">碰撞</p></th>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>碰撞检测</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在CSMA/CD协议中碰撞并非是一个严重的问题，因为两个站点检测到碰撞后都会放弃它们的发送，从而避免了由于碰撞而造成的该帧剩余部分的无用发送</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>碰撞避免</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>检测碰撞的能力要求站点具有同时发送和接收的能力。因为在802.11适配器上，接收信号的强度通常远远小于发送信号的强度，制造具有检测碰撞能力的硬件代价较大</p>
+</li>
+<li>
+<p>即使适配器可以同时发送和监听信号，适配器也会由于隐藏终端问题和衰减问题而无法检测到所有的碰撞</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">重传</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">链路层确认/重传</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不使用</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-1f.svg" alt="ch7 1f" width="514" height="688">
+</div>
+<div class="title">Figure 2. CSMA/CA运行状态图</div>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="./img/ch6-3b.svg" alt="ch6 3b">
+</div>
+</div>
+<div class="paragraph">
+<p>与左边的CSMA/CD状态图相比，CSMA/CA增加了两个部分：1.从监听信道到回退等待；2.从发送中到等待确认到回退等待。在CSMA/CA中，监听信道忙不会进入回退等待，而是一旦空闲就发送；从发送中一旦检测到碰撞就进入回退等待，而不需要等待确认。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gsm_2g蜂窝网"><a class="anchor" href="#_gsm_2g蜂窝网"></a><a class="link" href="#_gsm_2g蜂窝网">GSM 2G蜂窝网</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-18.png" alt="fig7 18" width="550">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">cellular</dt>
+<dd>
+<p>蜂窝，由一个蜂窝网覆盖的区域被分成许多称作小区的地理覆盖区域。</p>
+</dd>
+<dt class="hdlist1">BTS</dt>
+<dd>
+<p>Base Transceiver Station，收发基站，负责向位于其小区内的移动站点发送或接收信号。</p>
+</dd>
+<dt class="hdlist1">BSC</dt>
+<dd>
+<p>Base Station Controller，基站控制器，为移动用户分配BTS无线信道，执行寻呼，执行移动用户的切换。</p>
+</dd>
+<dt class="hdlist1">BSS</dt>
+<dd>
+<p>Base Station System，基站系统，基站控制器及其控制的收发基站共同构成了GSM基站系统。</p>
+</dd>
+<dt class="hdlist1">MSC</dt>
+<dd>
+<p>Mobile Switching Center，移动交换中心，在用户鉴别和账户管理以及呼叫建立和切换中起着决定性的作用。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3g蜂窝数据网"><a class="anchor" href="#_3g蜂窝数据网"></a><a class="link" href="#_3g蜂窝数据网">3G蜂窝数据网</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-19.png" alt="fig7 19" width="610">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RNC</dt>
+<dd>
+<p>Radio Network Controller，无线电网络控制器，通常控制几个小区的收发基站，既通过MSC与电路交换蜂窝语音网连接，又通过SGSN与分组交换的因特网连接。</p>
+</dd>
+<dt class="hdlist1">GPRS</dt>
+<dd>
+<p>General Packet Radio Service，通用分组无线服务，是一种在2G网络中的早期蜂窝数据服务。</p>
+</dd>
+<dt class="hdlist1">SGSN</dt>
+<dd>
+<p>Serving GPRS Support Node，服务GPRS支持节点，负责向移动节点交付或获取数据报。SGSN与该区域蜂窝语音网的MSC进行交互，提供用户认证和切换，维护活跃移动节点的位置信息。</p>
+</dd>
+<dt class="hdlist1">GGSN</dt>
+<dd>
+<p>Gateway GPRS Support Node，网关GPRS支持节点，起着网关的作用，将多个SGSN连接到更大的因特网。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="4g-lte"><a class="anchor" href="#4g-lte"></a><a class="link" href="#4g-lte">4G LTE</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-20.png" alt="fig7 20" width="560">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">eNodeB</dt>
+<dd>
+<p>2G基站和3G无线电网络控制器的逻辑后代。在数据平面中，UE数据报在eNodeB被封装，并且通过4G网络的全IP强化分组核以隧道形式传输到P-GW。在控制平面中，eNodeB代表UE来处理注册和移动性信令流量。</p>
+</dd>
+<dt class="hdlist1">MME</dt>
+<dd>
+<p>Mobility Management Entity，移动性管理实体，代表位于它所控制单元中的UE，执行连接和移动性管理。它从HHS接收UE订购信息。</p>
+</dd>
+<dt class="hdlist1">HSS</dt>
+<dd>
+<p>Home Subscriber Server，归属用户服务，包含了包括漫游接入能力、服务质量配置文件和鉴别信息的UE信息。该HSS从UE归属蜂 窝提供商得到这些信息。</p>
+</dd>
+<dt class="hdlist1">S-GW</dt>
+<dd>
+<p>Serving Gateway，服务网关，是数据平面移动性锚点，即所有UE流量将通过S-GW传递。该S-GW也执行收费/记账功能以及法定的流量拦截。</p>
+</dd>
+<dt class="hdlist1">P-GW</dt>
+<dd>
+<p>Packet Data Network Gateway，分组数据网络网关，给UE分配IP地址，并且保证QoS实施。作为隧道端点，当向或从UE转发数据报时，它也执行数据报封装/解封装。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="comparison-of-234g-cellular-network-architectures"><a class="anchor" href="#comparison-of-234g-cellular-network-architectures"></a><a class="link" href="#comparison-of-234g-cellular-network-architectures">2、3、4代蜂窝网体系结构的比较</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">2G</th>
+<th class="tableblock halign-left valign-top">3G</th>
+<th class="tableblock halign-left valign-top">4G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">无线电接口</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">组合的FDM/TDM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WCDMA, HSPA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OFDM</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">无线电接入网</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无线设备-收发基站BTS-基站控制器BSC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无线设备-BTS-无线电网络控制器RNC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无线设备-BTS-eNodeB</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">链路</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BSC-移动交换中心MSC-网关MSC-公共电话网</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>RNC-MSC-网关MSC-公共电话网</p>
+</li>
+<li>
+<p>RNC-服务GPRS支持节点SGSN-网关GPRS支持节点GGSN-公共因特网</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eNodeB-全IP强化分组核EPC-分组数据网络网关PGW-网络的其他部分</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_移动管理原理"><a class="anchor" href="#_移动管理原理"></a><a class="link" href="#_移动管理原理">移动管理原理</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-22.png" alt="fig7 22" width="550">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-23.png" alt="fig7 23" width="510">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">归属网络</dt>
+<dd>
+<p>home network，一个移动节点的永久居所。</p>
+</dd>
+<dt class="hdlist1">归属代理</dt>
+<dd>
+<p>home agent，在归属网络中代表移动节点执行移动管理功能的实体。</p>
+</dd>
+<dt class="hdlist1">被访网络</dt>
+<dd>
+<p>visited network，移动节点当前所在网络。</p>
+</dd>
+<dt class="hdlist1">外部代理</dt>
+<dd>
+<p>foreign agent，在被访网络中帮助移动节点做移动管理功能的实体。</p>
+</dd>
+<dt class="hdlist1">通信者</dt>
+<dd>
+<p>correspondent，希望与该移动节点通信的实体。</p>
+</dd>
+<dt class="hdlist1">COA</dt>
+<dd>
+<p>Care-Of Address，转交地址，该COA的网络部分与外部网络的网络部分相匹配。</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-5a.svg" alt="ch7 5a" width="528" height="610">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_移动节点的间接路由选择"><a class="anchor" href="#_移动节点的间接路由选择"></a><a class="link" href="#_移动节点的间接路由选择">移动节点的间接路由选择</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-24.png" alt="fig7 24" width="510">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>通信者将数据报寻址到移动节点的固定地址，并将数据报发送到网络中去。</p>
+</li>
+<li>
+<p>归属代理截获这些数据报，将原始完整数据报封装在一个新的较大的数据报中，通过使用移动节点的COA，该数据报先转发给外部代理。</p>
+</li>
+<li>
+<p>外部代理将接收并拆封该数据报，即从较大的封装数据报中取出通信者的原始数据报，然后再向移动节点转发该原始数据报。</p>
+</li>
+<li>
+<p>移动节点直接将其数据报寻址到通信者（使用自己的永久地址作为源地址，通信者的地址作为目的地址）。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/ch7-4b.svg" alt="ch7 4b" width="352" height="377">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_移动节点的直接路由选择"><a class="anchor" href="#_移动节点的直接路由选择"></a><a class="link" href="#_移动节点的直接路由选择">移动节点的直接路由选择</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-26.png" alt="fig7 26" width="520">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>通信者代理向归属代理查询移动节点的COA</p>
+</li>
+<li>
+<p>归属代理告知移动节点的COA</p>
+</li>
+<li>
+<p>通信者代理使用隧道技术将数据报发往外部代理</p>
+</li>
+<li>
+<p>外部代理拆封该数据报，将原始数据报转发到移动节点</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-27.png" alt="fig7 27" width="580">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">锚外部代理</dt>
+<dd>
+<p>anchor foreign agent，首次发现移动节点的外部网络中的外部代理</p>
+</dd>
+</dl>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>移动节点到达一个新外部网络</p>
+</li>
+<li>
+<p>移动节点向新的外部代理注册</p>
+</li>
+<li>
+<p>新外部代理向锚外部代理提供移动节点的新COA</p>
+</li>
+<li>
+<p>当锚外部代理收到一个发往已经离开的移动节点的封装数据报后，它可以使用新的COA重新封装数据报并将其转发给该移动节点</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_移动ip"><a class="anchor" href="#_移动ip"></a><a class="link" href="#_移动ip">移动IP</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-29.png" alt="fig7 29" width="570">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_蜂窝网中的移动性"><a class="anchor" href="#_蜂窝网中的移动性"></a><a class="link" href="#_蜂窝网中的移动性">蜂窝网中的移动性</a></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">HLR</dt>
+<dd>
+<p>Home Location Register，归属位置注册器，由归属网络维护的一个包括它每个用户的永久蜂窝电话号码、用户个人概要信息以及这些用户当前的位置信息的数据库。</p>
+</dd>
+<dt class="hdlist1">VLR</dt>
+<dd>
+<p>Visitor Location Register，访问者位置注册，VLR为每一个当前在其服务网络中的移动用户包含一个表项。</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-30.png" alt="fig7 30" width="450">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>呼叫从通信者通过公共交换电话网到达移动用户归属网络中的归属 MSC。</p>
+</li>
+<li>
+<p>归属MSC收到该呼叫并查询HLR来确定移动用户的位置。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>在最简单的情况下，HLR返回移动站点漫游号码。</p>
+</li>
+<li>
+<p>如果HLR不具有该漫游号码，它返回被访网络中VLR的地址。在这种情况下，归属MSC需要查询VLR以便获取移动节点的漫游号码。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>给定一个漫游号码，归属MSC通过网络到达被访网络的MSC建立呼叫。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gsm中的切换"><a class="anchor" href="#_gsm中的切换"></a><a class="link" href="#_gsm中的切换">GSM中的切换</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-32.png" alt="fig7 32" width="330">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>旧BS通知MSC和用户将切换到新BS</p>
+</li>
+<li>
+<p>MSC分配资源并告知新BS</p>
+</li>
+<li>
+<p>新BS分配资源</p>
+</li>
+<li>
+<p>新BS通过MSC-旧BS向移动用户提供与新的BS相关联所需要的信息</p>
+</li>
+<li>
+<p>移动用户被旧BS告知它应当进行一个切换</p>
+</li>
+<li>
+<p>移动用户激活新BS中新的信道</p>
+</li>
+<li>
+<p>移动用户向新BS-MSC发送一个切换完成报文。MSC重路由选择呼叫，使其经过新BS</p>
+</li>
+<li>
+<p>旧BS释放资源</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-33.png" alt="fig7 33" width="520">
+</div>
+</div>
+<div class="paragraph">
+<p>当移动用户从一个MSC覆盖区到达另一个MSC覆盖区后，正在进行的呼叫被重路由选择，从锚MSC到包含新基站的新被访问MSC。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/tb7-2.png" alt="tb7 2" width="680">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_解决tcp拥塞控制在无线情况下的问题"><a class="anchor" href="#_解决tcp拥塞控制在无线情况下的问题"></a><a class="link" href="#_解决tcp拥塞控制在无线情况下的问题">解决TCP拥塞控制在无线情况下的问题</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>本地恢复，在比特差错出现的当时和当地将其恢复。</p>
+</li>
+<li>
+<p>TCP发送方知晓无线链路，从而将在有线网络中发生的拥塞性丢包和在无线网络中发生的差错/丢包区分开，并且仅对有线网络中的拥塞性丢包采用拥塞控制。</p>
+</li>
+<li>
+<p>分离连接方法，经有线段的运输层是标准的TCP协议，经无线段的运输层是一个特别定制运行在UDP上的差错恢复协议。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_复习题_2"><a class="anchor" href="#_复习题_2"></a><a class="link" href="#_复习题_2">复习题</a></h3>
+<div class="sect3">
+<h4 id="_r1_基础设施模式和自组织模式"><a class="anchor" href="#_r1_基础设施模式和自组织模式"></a><a class="link" href="#_r1_基础设施模式和自组织模式">R1 基础设施模式和自组织模式</a></h4>
+<div class="paragraph">
+<p>一个无线网络运行在“基础设施模式”下是什么含义？如果某网络没有运行在基础设施模式下，那么它运行在什么模式下？这种运行模式与基础设施模式之间有什么不同？</p>
+</div>
+<div class="paragraph">
+<p>一个无线网络运行在“基础设施模式”下意味着所有传统的网络服务都由网络向通过基站相连的主机提供。如果网络没有运行在基础设施模式下，那么它运行在自组织模式下。这种运行模式下的网络中的主机本身提供诸如路由选择、地址分配、DNS等服务。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r2"><a class="anchor" href="#_r2"></a><a class="link" href="#_r2">R2</a></h4>
+<div class="paragraph">
+<p>在7.1节的分类法中，所确定的四种无线网络类型各是什么？你已经使用的是这些无线网络类型中的哪一种？</p>
+</div>
+<div class="paragraph">
+<p>四种无线网络类型分别是单跳基于基础设施、单跳无基础设施、多跳基于基础设施和多跳无基础设施，我使用的是单跳基于基础设施。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r3"><a class="anchor" href="#_r3"></a><a class="link" href="#_r3">R3</a></h4>
+<div class="paragraph">
+<p>下列类型的无线信道损伤之间有什么区别：路径损耗、多径传播、来自其他源的干扰？</p>
+</div>
+<div class="paragraph">
+<p>路径损耗：电磁波强度随着传播距离的增加而减弱。</p>
+</div>
+<div class="paragraph">
+<p>多径传播：电磁波的一部分受物体和地面反射，在发送方和接收方之间走了不同长度的路径，使得接收方收到的信号变得模糊。</p>
+</div>
+<div class="paragraph">
+<p>来自其他源的干扰：在同一个频段发送信号的电波源相互干扰。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r4_无线信道的物理特征"><a class="anchor" href="#_r4_无线信道的物理特征"></a><a class="link" href="#_r4_无线信道的物理特征">R4 无线信道的物理特征</a></h4>
+<div class="paragraph">
+<p>随着移动节点离开基站越来越远，为了保证传送帧的丢失概率不增加，基站能够采取的两种措施是什么？</p>
+</div>
+<div class="paragraph">
+<p>移动节点离开基站越来越远意味着信噪比降低，比特差错率升高，基站可以提高传输功率或者更换比特率更低的调制方案。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r5_信标帧"><a class="anchor" href="#_r5_信标帧"></a><a class="link" href="#_r5_信标帧">R5 信标帧</a></h4>
+<div class="paragraph">
+<p>描述802.11中信标帧的作用。</p>
+</div>
+<div class="paragraph">
+<p>802.11标准要求每个AP周期性地发送信标帧，每个信标帧包括该AP的SSID和MAC地址。无线主机通过扫描信道和监听信标帧从而发现AP，为后续的关联做准备。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r6"><a class="anchor" href="#_r6"></a><a class="link" href="#_r6">R6</a></h4>
+<div class="paragraph">
+<p>是非判断：802.11站在传输一个数据帧前，必须首先发送一个RTS帧并收到一个对应的CTS帧。</p>
+</div>
+<div class="paragraph">
+<p>错误。RTS/CTS交换仅仅用于为长数据帧预约信道。在实际中，每个无线站点可以设置一个RTS门限值，仅当帧长超过门限值时，才使用RTS/CTS序列。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r7_802_11使用了确认"><a class="anchor" href="#_r7_802_11使用了确认"></a><a class="link" href="#_r7_802_11使用了确认">R7 802.11使用了确认</a></h4>
+<div class="paragraph">
+<p>为什么802.11中使用了确认，而有线以太网中却未使用？</p>
+</div>
+<div class="paragraph">
+<p>因为无线信道具有相对较高的误比特率，如果传输错误被推迟到更高层的协议中处理将会引入更大的时延、消耗更多的资源。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r8_2"><a class="anchor" href="#_r8_2"></a><a class="link" href="#_r8_2">R8</a></h4>
+<div class="paragraph">
+<p>是非判断：以太网和802.11使用相同的帧格式。</p>
+</div>
+<div class="paragraph">
+<p>错误，尽管802.11帧与以太网帧有许多共同特点，但它也包括了许多特定用于无线链路的字段。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r9_rts门限值的工作过程"><a class="anchor" href="#_r9_rts门限值的工作过程"></a><a class="link" href="#_r9_rts门限值的工作过程">R9 RTS门限值的工作过程</a></h4>
+<div class="paragraph">
+<p>描述RTS门限值的工作过程。</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="./img/fig7-12.png" alt="fig7 12" width="340">
+</div>
+</div>
+<div class="paragraph">
+<p>当发送方要发送一个DATA帧时，它能够首先向AP发送一个RTS帧，指示传输DATA帧和确认帧需要的总时间。当AP收到RTS帧后，它广播一个CTS帧作为响应。该CTS帧有两个目的：给发送方明确的发送许可，也指示其他站点在预约期内不要发送。</p>
+</div>
+<div class="paragraph">
+<p>因此，在图7-12中，在传输DATA帧前，H1首先广播一个RTS帧，该帧能被其范围内包括AP在内的所有站点听到。AP然后用一个CTS帧响应，该帧也被其范围内包括H1和H2在内的所有站点听到。站点H2听到CTS后，在CTS帧中指明的时间内将抑制发送。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r10_2"><a class="anchor" href="#_r10_2"></a><a class="link" href="#_r10_2">R10</a></h4>
+<div class="paragraph">
+<p>假设IEEE 802.11 RTS和CTS帧与标准的DATA和ACK帧一样长，使用CTS和RTS帧还会有好处吗？为什么？</p>
+</div>
+<div class="paragraph">
+<p>没有好处。因为碰撞RTS帧的持续时间和碰撞DATA帧一样了。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r11_交换机与同一子网bss间移动"><a class="anchor" href="#_r11_交换机与同一子网bss间移动"></a><a class="link" href="#_r11_交换机与同一子网bss间移动">R11 交换机与同一子网BSS间移动</a></h4>
+<div class="paragraph">
+<p>7.3.4节讨论了802.11移动性，其中无线站点从一个BSS到同一子网中的另一个BSS。当AP是通过交换机互连时，为了让交换机能适当地转发帧，一个AP可能需要发送一个带有哄骗的MAC地址的帧，为什么？</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="./img/fig7-15.png" alt="fig7 15" width="270">
+</div>
+</div>
+<div class="paragraph">
+<p>在移动之前，交换机在其转发表中有一个表项，对应H1的MAC地址与到达H1所通过的出交换机端口。如果H1初始在BSS1中，则发往H1的数据报将经API导向H1。然而，一旦H1与BSS2关联，它的帧应当被导向AP2。一种解决方法是在新的关联形成后，让AP2以H1的源地址向交换机发送一以太网广播帧。当交换机收到该帧后，更新其转发表，使得H1可以通过AP2到达。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r12_2"><a class="anchor" href="#_r12_2"></a><a class="link" href="#_r12_2">R12</a></h4>
+<div class="paragraph">
+<p>在某蓝牙网络中的一个主设备和在802.11网络中的一个基站之间有什么不同？</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Any ordinary Bluetooth node can be a master node whereas access points in 802.11 networks are special devices (normal wireless devices like laptops cannot be used as access points).
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r13_2"><a class="anchor" href="#_r13_2"></a><a class="link" href="#_r13_2">R13</a></h4>
+<div class="paragraph">
+<p>在802.15.4 ZigBee标准中超级帧的含义是什么？</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-17.png" alt="fig7 17" width="410">
+</div>
+</div>
+<div class="paragraph">
+<p>全功能设备使用信标帧以一种时隙方式控制多个简化功能设备。其中ZigBee网络将时间划分为反复出现的超帧，每个超帧以一个信标帧开始。每个信标帧将超帧划分为一个活跃周期和一个非活跃周期。活跃周期由16个时隙组成，其中一些由采用CSMA/CA随机接人方式的设备使用，其中一些由控制器分配给特定的设备，因而为那些设备提供了确保的信道。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r14_2"><a class="anchor" href="#_r14_2"></a><a class="link" href="#_r14_2">R14</a></h4>
+<div class="paragraph">
+<p>在3G蜂窝数据体系结构中，“核心网”的作用是什么？</p>
+</div>
+<div class="paragraph">
+<p>3G核心蜂窝数据网将无线电接人网连接到公共因特网。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r15_2"><a class="anchor" href="#_r15_2"></a><a class="link" href="#_r15_2">R15</a></h4>
+<div class="paragraph">
+<p>在3G蜂窝数据体系结构中，RNC的作用是什么？在蜂窝语音网中RNC起什么作用？</p>
+</div>
+<div class="paragraph">
+<p>无线电网络控制器RNC通常控制几个小区的收发基站。每个小区的无线链路运行在移动节点和收发基站之间，就像在2G网络中那样。RNC既通过MSC与电路交换蜂窝语音网连接，又通过SGSN与分组交换的因特网连接。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r16_2"><a class="anchor" href="#_r16_2"></a><a class="link" href="#_r16_2">R16</a></h4>
+<div class="paragraph">
+<p>在4G体系结构中eNodeB、MME、P-GW和S-GW的作用是什么？</p>
+</div>
+<div class="paragraph">
+<p>见<a href="#4g-let">[4g-let]</a>。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r17"><a class="anchor" href="#_r17"></a><a class="link" href="#_r17">R17</a></h4>
+<div class="paragraph">
+<p>3G和4G蜂窝体系结构之间的3个重要差别是什么？</p>
+</div>
+<div class="paragraph">
+<p>除了<a href="#comparison-of-234g-cellular-network-architectures">2、3、4代蜂窝网体系结构的比较</a>所讨论的区别，4G网络体系结构清晰地分离了数据平面和控制平面。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r18_移动性"><a class="anchor" href="#_r18_移动性"></a><a class="link" href="#_r18_移动性">R18 移动性</a></h4>
+<div class="paragraph">
+<p>如果某节点与因特网具有无线连接，则该节点必定是移动的吗？试解释之。假设一个使用膝上型电脑的用户携带电脑绕着她的住所散步，并且总是通过相同的接人点接人因特网。从网络的角度看，这是移动用户吗？试解释之。</p>
+</div>
+<div class="paragraph">
+<p>同一个接入网的不同AP，链路层移动；不同接入网，网络层移动；通过使用移动IP，用户移动性对应用层透明。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r19"><a class="anchor" href="#_r19"></a><a class="link" href="#_r19">R19</a></h4>
+<div class="paragraph">
+<p>永久地址与转交地址之间的区别是什么？谁指派转交地址？</p>
+</div>
+<div class="paragraph">
+<p>永久地址是移动节点在归属网络中的IP地址，转交地址是移动节点访问外部网络时获得的IP地址，该地址由外部代理指派。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r20"><a class="anchor" href="#_r20"></a><a class="link" href="#_r20">R20</a></h4>
+<div class="paragraph">
+<p>考虑经移动IP的一条TCP连接。是非判断：在通信者和移动主机之间的TCP连接阶段经过该移动用户的归属网络，但数据传输阶段直接通过该通信者和移动主机，绕开了归属网络。</p>
+</div>
+<div class="paragraph">
+<p>错误。由通信者发往移动主机的数据报需要通过归属网络经隧道转发，而由移动主机发往通信者的数据报可以绕开归属网络直接发送。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r21"><a class="anchor" href="#_r21"></a><a class="link" href="#_r21">R21</a></h4>
+<div class="paragraph">
+<p>在GSM网络中，HLR和VLR的目的是什么？移动IP的什么要素类似于HLR和VLR？</p>
+</div>
+<div class="paragraph">
+<p>归属网络维护一个称作归属位置注册器（Home Location Register，HLR）的数据库，其中包括它每个用户的永久蜂窝电话号码以及用户个人概要信息。重要的是，HLR也包括这些用户当前的位置信息。</p>
+</div>
+<div class="paragraph">
+<p>被访网络维护一个称作访问者位置注册（Visitor Location Register，VLR）的数据库。VLR为每一个当前在其服务网络中的移动用户包含一个表项，VLR表项因此随着移动用户进人和离开网络而出现或消失。</p>
+</div>
+<div class="paragraph">
+<p>移动IP中归属网络的边缘路由器类似于GSM中的HLR，外部网络的边缘路由器类似于GSM中的VLR。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r22"><a class="anchor" href="#_r22"></a><a class="link" href="#_r22">R22</a></h4>
+<div class="paragraph">
+<p>在GSM网络中，锚MSC的作用是什么？</p>
+</div>
+<div class="paragraph">
+<p>锚MSC是呼叫首次开始时移动用户所访问的MSC，当移动用户从一个MSC覆盖区到达另一个MSC覆盖区后，正在进行的呼叫被重路由选择，从锚MSC到包含新基站的新被访问MSC。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_r23"><a class="anchor" href="#_r23"></a><a class="link" href="#_r23">R23</a></h4>
+<div class="paragraph">
+<p>为了避免单一无线链路降低一条端到端运输层TCP连接的性能，能够采取的三种方法是什么？</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>本地恢复，在比特差错出现的当时和当地将其恢复。</p>
+</li>
+<li>
+<p>TCP发送方知晓无线链路，从而将在有线网络中发生的拥塞性丢包和在无线网络中发生的差错/丢包区分开，并且仅对有线网络中的拥塞性丢包采用拥塞控制。</p>
+</li>
+<li>
+<p>分离连接方法，经有线段的运输层是标准的TCP协议，经无线段的运输层是一个特别定制运行在UDP上的差错恢复协议。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_习题_2"><a class="anchor" href="#_习题_2"></a><a class="link" href="#_习题_2">习题</a></h3>
+<div class="sect3">
+<h4 id="_p1"><a class="anchor" href="#_p1"></a><a class="link" href="#_p1">P1</a></h4>
+<div class="paragraph">
+<p>考虑在图7-5中单一发送方的CDMA例子。如果发送方的CDMA码是<code>(1, -1, 1, -1, 1, -1, 1, -1)</code>，那么其输出（对于所显示的两个数据比特）是什么？</p>
+</div>
+<div class="paragraph">
+<p><code>-1, 1, -1, 1, -1, 1, -1, 1</code></p>
+</div>
+<div class="paragraph">
+<p><code>1, -1, 1, -1, 1, -1, 1, -1</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p2"><a class="anchor" href="#_p2"></a><a class="link" href="#_p2">P2</a></h4>
+<div class="paragraph">
+<p>考虑图7-6中的发送方2,发送方对信道\(Z_{i,m}^2\)的输出是什么（在它被加到来自发送方1的信号前）？</p>
+</div>
+<div class="paragraph">
+<p><code>1, -1, 1, 1, 1, -1, 1, 1</code></p>
+</div>
+<div class="paragraph">
+<p><code>1, -1, 1, 1, 1, -1, 1, 1</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p3"><a class="anchor" href="#_p3"></a><a class="link" href="#_p3">P3</a></h4>
+<div class="paragraph">
+<p>假设在图7-6中的接收方希望接收由发送方2发送的数据。说明通过使用发送方2的代码，（经计算）接收方的确能够将发送方2的数据从聚合信道信号中恢复出来。</p>
+</div>
+<div class="paragraph">
+<p>\(d^2_0 = (0+2+0+2+0+0+2+2)/8 = 1\)</p>
+</div>
+<div class="paragraph">
+<p>\(d^2_1 = (2+0+2+0+2+2+0+0)/8 = 1\)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p4_2"><a class="anchor" href="#_p4_2"></a><a class="link" href="#_p4_2">P4</a></h4>
+<div class="paragraph">
+<p>在两个发送方、两个接收方的场合，给出一个包括1和-1值的两个CDMA编码的例子，不允许两个接收方从两个CDMA发送方提取出初始传输的比特。</p>
+</div>
+<div class="paragraph">
+<p><code>1, 1, 1, -1, 1, -1, -1, -1</code></p>
+</div>
+<div class="paragraph">
+<p><code>1, -1, 1, 1, 1, 1, 1, 1</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p5_信道与传输速率"><a class="anchor" href="#_p5_信道与传输速率"></a><a class="link" href="#_p5_信道与传输速率">P5 信道与传输速率</a></h4>
+<div class="paragraph">
+<p>假设有两个ISP在一个特定的咖啡馆内提供WiFi接入，并且每个ISP有其自己的AP和IP地址块。
+a. 进一步假设，两个ISP都意外地将其AP配置运行在信道11。在这种情况下，802.11协议是否将完全崩溃？讨论一下当两个各自与不同ISP相关联的站点试图同时传输时，将会发生什么情况。
+b. 现在假设一个AP运行在信道1，而另一个运行在信道11。你的答案将会有什么变化？</p>
+</div>
+<div class="sect4">
+<h5 id="_a_12"><a class="anchor" href="#_a_12"></a><a class="link" href="#_a_12">a</a></h5>
+<div class="paragraph">
+<p>每个AP有不同的SSID和MAC地址。进入覆盖范围的移动站点会与其中一个AP的SSID关联，这样在移动站点和AP之间就有了一个虚拟链路。假设移动站点和AP1关联。移动站点发送了一个帧后，该帧会到达AP1和AP2，但由于该帧的目的MAC地址与AP1一致，所以只有AP1会处理该帧。因此两个ISP可以并行运行。与此同时，两个AP会共享带宽，如果同时发送会发生碰撞。以802.11b为例，两个ISP的聚合传输速率是11Mbps。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_b_12"><a class="anchor" href="#_b_12"></a><a class="link" href="#_b_12">b</a></h5>
+<div class="paragraph">
+<p>当两个AP运行在不同的信道上时，即使同时发送也不会产生碰撞，因此两个ISP的聚合传输速率是22Mbps（802.11b）。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p6_csmaca的公平性"><a class="anchor" href="#_p6_csmaca的公平性"></a><a class="link" href="#_p6_csmaca的公平性">P6 CSMA/CA的公平性</a></h4>
+<div class="paragraph">
+<p>在CSMA/CA协议的第4步，一个成功传输一个帧的站点在第2步（而非第1步）开始CSMA/CA协议。通过不让这样一个站点立即传输第2个帧（如果侦听到该信道空闲），CSMA/CA的设计者是基于怎样的基本原理来考虑的呢？</p>
+</div>
+<div class="paragraph">
+<p>如果一个站点有很多帧要传输，在传输完第一个帧后回到第1步，等待一个DIFS后开始传输第二个帧，以此类推，其他想要发送的站点会一直被抑制而没有机会传输。因此设计者是基于传输的公平性来考虑的。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p7_2"><a class="anchor" href="#_p7_2"></a><a class="link" href="#_p7_2">P7</a></h4>
+<div class="paragraph">
+<p>假设一个802.11b站点被配置为始终使用RTS/CTS序列预约信道。假设该节点突然要发送1000字节的数据，并且所有其他站点此时都是空闲的。作为SIFS和DIFS的函数，并忽略传播时延，假设无比特差错，计算发送该帧和收到确认需要的时间。</p>
+</div>
+<div class="paragraph">
+<p>没有载荷的802.11帧是34字节。</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+t &amp;= DIFS+RTS+SIFS+CTS+SIFS+DATA+SIFS+ACK \\
+&amp;= DIFS + 3SIFS + 3*(34B/11Mbps) + 1000B/11Mbps \\
+&amp;= DIFS + 3SIFS+ 801μs
+\end{align*}\]
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_p8"><a class="anchor" href="#_p8"></a><a class="link" href="#_p8">P8</a></h4>
+<div class="paragraph">
+<p>考虑在图7-34中显示的情形，其中有4个无线节点A、B、C和D。这4个节点的无线电覆盖范围显示为其中的楠圆形阴影；所有节点共享相同的频率。当A传输时，仅有B能接收到；当B传输时，A和C能接收到；当C传输时，B和D能接收到；当D传输时，仅有C能接收到。</p>
+</div>
+<div class="paragraph">
+<p>假定现在每个节点都有无限多的报文要向每个其他节点发送。如果一个报文的目的地不是近邻，则该报文必须要中继。例如，如果A要向D发送，来自A的报文必须首先发往B，B再将该报文发送给C，C则再将其发向D。时间是分隙的，报文所用的传输时间正好是一个时隙，如在时隙Aloha中的情况一样。在一个时隙中，节点能够做下列工作之一：（i）发送一个报文（如果它有报文向D转发）；（ii）接收一个报文（如果正好一个报文要向它发送）；（iii）保持静默。如同通常情况那样，如果一个节点听到了两个或更多的节点同时发送，出现冲突，并且重传的报文没有一个能成功收到。你这时能够假定没有比特级的差错，因此如果正好只有一个报文在发送，它将被位于发送方传输半径之内的站点正确收到。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>现在假定一个无所不知的控制器（即一个知道在网络中每个节点状态的控制器）能够命令每个节点去做它（无所不知的控制器）希望做的事情，例如发送报文，接收报文，或保持静默。给定这种无所不知的控制器，数据报文能够从C到A传输的最大速率是什么，假定在任何其他源/目的地对之间没有其他报文？</p>
+</li>
+<li>
+<p>现在假定A向B发送报文，并且D向C发送报文。数据报文能够从A到B且从D到C流动的组合最大速率是多少？</p>
+</li>
+<li>
+<p>现在假定A向B发送报文且C向D发送报文。数据报文能够从A到B且从C到D流动的组合最大速率是多少？</p>
+</li>
+<li>
+<p>现在假定无线链路由有线链路代替。在此情况下，重复问题（a）~（c）。</p>
+</li>
+<li>
+<p>现在假定我们又在无线状态下，对于从源到目的地的每个数据报文，目的地将向源回送一个ACK报文（例如，如同在TCP中）。对这种情况重复问题（a）~（c）。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./img/fig7-34.png" alt="fig7 34" width="510">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-23 16:14:11 +0800
+Last updated 2021-12-31 12:30:30 +0800
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
