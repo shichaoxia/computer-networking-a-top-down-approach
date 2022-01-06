@@ -3,10 +3,9 @@
 :toc: left
 :toclevels: 3
 :stem: latexmath
+:sectanchors:
 :sectlinks:
 :favicon:
-:sectnums:
-:sectnumlevels: 2
 :docinfo: shared
 :source-highlighter: highlightjs
 
